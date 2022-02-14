@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev
 
 RUN install2.r shiny pkgload remotes devtools
-RUN R -e 'devtools::install_github("https://github.com/LBC-LNBio/KVshiny", auth_token = "token")'
+RUN R -e 'devtools::install_github("https://github.com/LBC-LNBio/KVshiny-docker")'
 
 # copy the app directory into the image
 COPY ./KVshiny/ /srv/shiny-server/KVshiny/
