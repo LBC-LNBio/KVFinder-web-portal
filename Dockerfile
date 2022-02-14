@@ -10,7 +10,7 @@ RUN install2.r shiny pkgload remotes devtools
 RUN R -e 'devtools::install_github("https://github.com/LBC-LNBio/KVshiny", auth_token = "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")'
 
 # copy the app directory into the image
-COPY ../KVshiny/ /srv/shiny-server/KVshiny/
+COPY ../KVshiny-docker/ /srv/shiny-server/KVshiny/
 
 WORKDIR /srv/shiny-server/KVserver
 
