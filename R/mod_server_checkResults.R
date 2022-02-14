@@ -1,0 +1,129 @@
+#' Check results
+#' 
+#' @param input shiny input
+#' @param output shiny output
+#' @param run_id current run id
+#' @param is_pg2 logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page). 
+#' 
+#' @import shiny
+#' @import RcppTOML
+#' @import data.table
+#' @import DT
+#' @export
+#' 
+
+check_results <- function(input, output, run_id, is_pg2){
+    
+    #check which page to use and guide the output
+    if(is_pg2 == TRUE){
+      output_status <- "output_status_pg2"
+      download <- "download_pg2"
+      download_results <- "download_results_pg2"
+      results_table <- "results_table_pg2"
+      table_out <- "table_out_pg2"
+      view_output <- "view_output_pg2"
+      view_str <- "view_str_pg2"
+    } else{
+      output_status <- "output_status1"
+      download <- "download"
+      download_results <- "download_results"
+      results_table <- "results_table"
+      table_out <- "table_out"
+      view_output <- "view_output"
+      view_str <- "view_str"
+    }
+    
+    #access results 
+    get_output <- GET(url = paste("http://localhost:8081/", run_id, sep = ""))
+    
+    #check if get returned a OK success status
+    if(get_output$status_code == 200){
+      #get content
+      content_get_output <- content(get_output)
+      #get status
+      var_status <- content_get_output$status
+      #get structure to use outside this scope
+      result_pdb_cav <- content_get_output$output$pdb_kv
+      
+      #Parse results if status is completed
+      if(var_status == "completed"){
+        output[[output_status]] <- renderValueBox({
+          valueBox(
+            value = paste("Status: ", var_status,sep = ""),
+            subtitle = paste("Job ID:",  run_id, sep = ""),
+            icon = icon("check-circle"), 
+            color = "success"
+          )
+        })
+        #table with results
+        result_toml <- parseTOML(input = content_get_output$output$report,fromFile = FALSE,escape = TRUE)$RESULTS
+        
+        #create download button
+        output[[download]] <- renderUI({
+          downloadButton(download_results, 'Download Results', style="color: #fff; background-color: #6c757d; border-color: #6c757d")
+        })
+        output[[download_results]] <- downloadHandler(
+          filename = function() {
+            paste("kvfinder_output",".pdb",sep = "")
+          },
+          content = function(filename) {
+            write(content_get_output$output$pdb_kv,filename)
+          }
+        )
+        print(results_table)
+        print(table_out)
+        print(view_str)
+        print(dataTableOutput(table_out))
+        #create result table
+        output[[results_table]] <- renderUI({
+          DT::dataTableOutput(table_out)
+        })
+        output[[table_out]] <- DT::renderDataTable(data.table(
+          `Cavity ID` = names(result_toml$AREA),
+          `Area (A^2)` = unlist(result_toml$AREA),
+          `Volume (A^3)` = unlist(result_toml$VOLUME)
+        ), filter = c("none"), style = "auto")
+        #save cavities name
+        cav_out_names <- names(result_toml$AREA)
+        #create visualization
+        output[[view_output]] <- renderUI({
+          actionButton(inputId = view_str,label = "View", icon = icon("eye"), style="color: #fff; background-color: #6c757d; border-color: #6c757d")
+        })
+        
+        #retrieve input pdb to be used in visualization
+        retrieve_get <- GET(url = paste("http://localhost:8081/retrieve-input/", run_id, sep = ""))
+        retrieve_content <- content(retrieve_get)
+        retrieve_input_pdb <- retrieve_content$input$pdb
+        
+        #create list to store results 
+        result_list <- list(
+          retrieve_input_pdb = retrieve_input_pdb,
+          result_pdb_cav = result_pdb_cav,
+          result_cav_names = cav_out_names,
+          result_toml = result_toml
+        )
+        return(result_list)
+        
+      } else {
+        output[[output_status]] <- renderValueBox({
+          valueBox(
+            value = paste("Status: ", content_get_output$status,sep = ""),
+            subtitle = paste("Job ID:",  run_id, sep = ""),
+            icon = icon("exclamation"), 
+            color = "warning"
+          )
+        })
+      }
+      
+    } else{
+      output[[output_status]] <- renderValueBox({
+        valueBox(
+          value = paste("A error occurred.", "Please check your run ID.", "If the problem persist, please contact us."),
+          subtitle = paste("Job ID:",  run_id, sep = ""),
+          icon = icon("exclamation-triangle"), 
+          color = "danger"
+        )
+      })
+    }
+    
+}

@@ -1,1 +1,2 @@
-# KVshiny
+# KVserver
+KVFinder-web service
