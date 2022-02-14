@@ -12,7 +12,7 @@ RUN R -e 'devtools::install_github("https://github.com/LBC-LNBio/KVshiny", auth_
 # copy the app directory into the image
 COPY ./KVshiny/ /srv/shiny-server/KVshiny/
 
-WORKDIR /srv/shiny-server/KVserver
+WORKDIR /srv/shiny-server/KVshiny
 
 EXPOSE 3838
 
