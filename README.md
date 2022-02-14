@@ -1,2 +1,0 @@
-# KVserver
-KVFinder-web service
