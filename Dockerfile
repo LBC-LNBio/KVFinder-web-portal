@@ -17,4 +17,4 @@ WORKDIR /srv/shiny-server/KVserver
 EXPOSE 3838
 
 # run app
-CMD ["Rscript", "/srv/shiny-server/KVserver/app.R"]
+CMD ["Rscript", "/srv/shiny-server/KVshiny/app.R"]
