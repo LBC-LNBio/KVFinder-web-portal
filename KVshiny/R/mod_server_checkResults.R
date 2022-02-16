@@ -34,7 +34,7 @@ check_results <- function(input, output, run_id, is_pg2){
     }
     
     #access results 
-    get_output <- GET(url = paste("http://localhost:8081/", run_id, sep = ""))
+    get_output <- GET(url = paste("http://10.0.0.123:8081/", run_id, sep = ""))
     
     #check if get returned a OK success status
     if(get_output$status_code == 200){
@@ -91,7 +91,7 @@ check_results <- function(input, output, run_id, is_pg2){
         })
         
         #retrieve input pdb to be used in visualization
-        retrieve_get <- GET(url = paste("http://localhost:8081/retrieve-input/", run_id, sep = ""))
+        retrieve_get <- GET(url = paste("http://10.0.0.123:8081/retrieve-input/", run_id, sep = ""))
         retrieve_content <- content(retrieve_get)
         retrieve_input_pdb <- retrieve_content$input$pdb
         
