@@ -29,6 +29,11 @@ app_server <- function( input, output, session ) {
   
   current_run_id <- c()
   result_pdb <- c()
+  
+  include_list <- c()
+  get_nonstand <- NULL
+  
+  pdb_name_click_load <- "init"
   #---------------------------------------------
   
   
@@ -45,52 +50,56 @@ app_server <- function( input, output, session ) {
   #------------------------------------------------------
   #Upload PDB section 
   observeEvent(input$input_pdb, {
-    run_mode_list <<- c()
-    lig_name_list <<- c()
-
-    if(input$run_mode == "lig_mode"){
-      #process PDB according to ligand mode
-      process_upload_ligmode(input = input, output = output)
-    } else { #not ligand mode
-      #process PDB according to all the other modes: default, customized and box mode.
-      process_upload(input = input, output = output)
-    }
+    process_upload(input = input, output = output)
     
-  })
+    #run_mode_list <<- c()
+    #lig_name_list <<- c()
+
+  #   if(input$run_mode == "lig_mode"){
+  #     #process PDB according to ligand mode
+  #     process_upload_ligmode(input = input, output = output)
+  #   } else { #not ligand mode
+  #     #process PDB according to all the other modes: default, customized and box mode.
+  #     process_upload(input = input, output = output)
+  #   }
+  #   
+   })
   #-----------------------------------------------------
   
   #-----------------------------------------------------
   #Fetch PDB section
   observeEvent(input$send_pdb_id, {
-    run_mode_list <<- c()
-    lig_name_list <<- c()
+    #run_mode_list <<- c()
+    #lig_name_list <<- c()
+    pdb_name_click_load <<- input$pdb_id
     
     #check if the PDB code is valid by using get_nonstand  
     showModal(modalDialog("Loading and checking PDB...", footer=NULL,fade = FALSE))
-    get_nonstand <- report_nonstand(pdb_input = input$pdb_id)
+    get_nonstand_check <- report_nonstand(pdb_input = input$pdb_id)
     removeModal()
-    if (is.na(get_nonstand)){
+    if (is.na(get_nonstand_check)){
       shinyalert("Oops!", "Please insert a valid PDB ID.", type = "error")
     } else{
       print("PDB ID ok")
     }
     
-    if(input$run_mode == "lig_mode"){
-      #process PDB according to ligand mode
-      process_fetch_ligmode(input = input, output = output)
-    } else { #not ligand mode
-      #process PDB according to all the other modes: default, customized and box mode.
-      process_fetch(input = input, output = output)
-    }
+    process_fetch(input = input, output = output)
+    
+    # if(input$run_mode == "lig_mode"){
+    #   #process PDB according to ligand mode
+    #   process_fetch_ligmode(input = input, output = output)
+    # } else { #not ligand mode
+    #   #process PDB according to all the other modes: default, customized and box mode.
+    #   process_fetch(input = input, output = output)
+    # }
   })
   
   #----------------------------------------------------
   #Submit section
   observeEvent(input$submit_button, {
       current_run_id <<- submit_job(input = input, 
-                                   output = output, 
-                                   run_mode_list = run_mode_list, 
-                                   lig_name_list = lig_name_list)
+                                   output = output,
+                                   pdb_name_click_load = pdb_name_click_load)
   })
   #----------------------------------------------------
     

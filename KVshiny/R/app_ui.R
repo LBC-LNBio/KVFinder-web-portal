@@ -97,13 +97,13 @@ app_ui <- function(request) {
             #Create jumbotron
             create_jumbotron(),
             #-------------------------------------------
-            #Choose run mode card
-            fluidRow(column(12,
-                            choose_run_mode(),)),
-            #------------------------------------------
             #Choose input card
             fluidRow(column(12,
                             choose_input())),
+            #------------------------------------------
+            #Choose run mode card
+            fluidRow(column(12,
+                            choose_run_mode(),)),
             #-------------------------------------------
             #Submit section
             column(

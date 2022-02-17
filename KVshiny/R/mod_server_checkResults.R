@@ -70,10 +70,7 @@ check_results <- function(input, output, run_id, is_pg2){
             write(content_get_output$output$pdb_kv,filename)
           }
         )
-        print(results_table)
-        print(table_out)
-        print(view_str)
-        print(dataTableOutput(table_out))
+        
         #create result table
         output[[results_table]] <- renderUI({
           DT::dataTableOutput(table_out)

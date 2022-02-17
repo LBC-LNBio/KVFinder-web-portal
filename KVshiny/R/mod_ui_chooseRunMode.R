@@ -10,7 +10,7 @@ choose_run_mode <- function(){
   
   #Choose run mode 
   run_mode_card <- bs4Card(
-                      title = "Step 1. Choose run mode",
+                      title = "Step 2. Choose run mode",
                       id = "run_mode_box",
                       collapsible = TRUE,
                       collapsed = TRUE,
@@ -70,11 +70,12 @@ choose_run_mode <- function(){
                                ),
                                # Around target molecule - Ligand mode >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                conditionalPanel( condition = "input.run_mode == 'lig_mode'",
-                                                 column(12, 
-                                                        textInput(inputId = "lig_name",
-                                                                  label = "Ligand or molecule name:",
-                                                                  placeholder = "ex: ABC (3-letter residue name)",
-                                                                  width = 250)),
+                                                 column(5,
+                                                        #uiOutput("show_lig_name")),
+                                                        selectInput(inputId = "lig_name",
+                                                                    label = "Ligand or molecule name:",
+                                                                    choices = NULL,
+                                                                    selected = NULL)),
                                                  column(8, align = "center",
                                                         tags$h5("KVFinder parameters")),
                                                  

@@ -11,26 +11,33 @@
 
 process_fetch <- function(input, output){
   
-  #check the target resides if KVFinder is running in box mode
-  if(input$run_mode == "box_mode"){ #only to check correct residues names
-    check_residues = check_residues_name(pdb_input = input$pdb_id, target_residues = input$box_residues)
-    if(check_residues == FALSE){
-      shinyalert("Oops!", "Please insert a valid list of residues for box mode run.", type = "error")
-    } else{
-      print("check residues OK")
-    }
-  }
+  # #check the target resides if KVFinder is running in box mode
+  # if(input$run_mode == "box_mode"){ #only to check correct residues names
+  #   check_residues = check_residues_name(pdb_input = input$pdb_id, target_residues = input$box_residues)
+  #   if(check_residues == FALSE){
+  #     shinyalert("Oops!", "Please insert a valid list of residues for box mode run.", type = "error")
+  #   } else{
+  #     print("check residues OK")
+  #   }
+  # }
 
   #get nonstandard residues from the input PDB
-  get_nonstand <- report_nonstand(pdb_input = input$pdb_id)
+  get_nonstand <<- report_nonstand(pdb_input = input$pdb_id)
 
   
   #if there is any nonstand residue in PDB...
   if(length(get_nonstand) > 0){
     
-    print(get_nonstand)
+    #checkpoint to create the uiOuput of show_lig_name of ligmode
+    updateSelectInput(inputId = "lig_name",
+                      label = "Ligand or molecule name:",
+                      choices = get_nonstand,
+                      selected = NULL
+    )
+    
+    #print(get_nonstand)
     #by default remove all non standards residues and the ligand 
-    pdb_processed <<- deal_sele_nonstand(pdb_input = input$pdb_id,nonstand_list = get_nonstand, include_list = NULL)
+    #pdb_processed <<- deal_sele_nonstand(pdb_input = input$pdb_id,nonstand_list = get_nonstand, include_list = NULL)
     
 
     
@@ -44,22 +51,22 @@ process_fetch <- function(input, output){
                    If you intend to consider the residues below in cavity detection, please select them and click include.
                      Otherwise, keep the check box unselected.",style= "text-align:justify")
     })
-    observeEvent(input$select_nonstand2,{
-      output$ask_preprocess_include2 <- renderUI({ 
-        tags$b("Do you want to include them in KVFinder run?")
-      })
-      
-      output$preprocess_include2 <- renderUI({
-        actionButton(inputId = "go_include2", label = "Include")
-      })
-    })
-    
-
-    #If users click in include button, the selected residues will be considered in KVFinder run 
-    observeEvent(input$go_include2,{
-      pdb_processed <<- deal_sele_nonstand(pdb_input = input$pdb_id,nonstand_list = get_nonstand, include_list = input$select_nonstand2)
-      shinyalert("Residues successfully included.", type = "success", timer = 2000)
-    })
+    # observeEvent(input$select_nonstand2,{
+    #   output$ask_preprocess_include2 <- renderUI({ 
+    #     tags$b("Do you want to include them in KVFinder run?")
+    #   })
+    #   
+    #   output$preprocess_include2 <- renderUI({
+    #     actionButton(inputId = "go_include2", label = "Include")
+    #   })
+    # })
+    # 
+    # 
+    # #If users click in include button, the selected residues will be considered in KVFinder run 
+    # observeEvent(input$go_include2,{
+    #   pdb_processed <<- deal_sele_nonstand(pdb_input = input$pdb_id,nonstand_list = get_nonstand, include_list = input$select_nonstand2)
+    #   shinyalert("Residues successfully included.", type = "success", timer = 2000)
+    # })
     
   } else{
     #Do not show any widgets related to nonstandard residues inclusion
