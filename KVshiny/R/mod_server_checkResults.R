@@ -13,6 +13,12 @@
 #' 
 
 check_results <- function(input, output, run_id, is_pg2){
+  
+  # observe({
+  #   invalidateLater(5000)
+  #   click("go_to_check_results")
+  #   #print("here3")
+  # })
     
     #check which page to use and guide the output
     if(is_pg2 == TRUE){
@@ -35,13 +41,16 @@ check_results <- function(input, output, run_id, is_pg2){
     
     #access results 
     get_output <- GET(url = paste("http://10.0.0.123:8081/", run_id, sep = ""))
+    #get_output <- GET(url = paste("http://localhost:8081/", run_id, sep = "")) #use localhost
     
     #check if get returned a OK success status
     if(get_output$status_code == 200){
       #get content
       content_get_output <- content(get_output)
       #get status
-      var_status <- content_get_output$status
+      var_status <<- content_get_output$status
+
+      #var_status <- "running"
       #get structure to use outside this scope
       result_pdb_cav <- content_get_output$output$pdb_kv
       
@@ -89,6 +98,8 @@ check_results <- function(input, output, run_id, is_pg2){
         
         #retrieve input pdb to be used in visualization
         retrieve_get <- GET(url = paste("http://10.0.0.123:8081/retrieve-input/", run_id, sep = ""))
+        #retrieve_get <- GET(url = paste("http://localhost:8081/retrieve-input/", run_id, sep = "")) #use local host
+        
         retrieve_content <- content(retrieve_get)
         retrieve_input_pdb <- retrieve_content$input$pdb
         
@@ -106,10 +117,13 @@ check_results <- function(input, output, run_id, is_pg2){
           valueBox(
             value = paste("Status: ", content_get_output$status,sep = ""),
             subtitle = paste("Job ID:",  run_id, sep = ""),
+            #subtitle = HTML(paste(p(paste("Job ID:",  run_id, sep = "")),p("teste"))),
             icon = icon("exclamation"), 
-            color = "warning"
+            color = "warning",
+            footer = div("The status is automatically updated each 5 seconds. Please, don't refresh the page.")
           )
         })
+        
       }
       
     } else{
@@ -122,5 +136,5 @@ check_results <- function(input, output, run_id, is_pg2){
         )
       })
     }
-    
+    return(var_status)
 }
