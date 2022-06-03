@@ -9,6 +9,7 @@
 #' @import RcppTOML
 #' @import data.table
 #' @import DT
+#' @import blogdown
 #' @export
 #' 
 
@@ -32,7 +33,9 @@ check_results <- function(input, output, run_id, is_pg2){
     } else{
       output_status <- "output_status1"
       download <- "download"
+      download2 <- "download2"
       download_results <- "download_results"
+      download_results2 <- "download_results2"
       results_table <- "results_table"
       table_out <- "table_out"
       view_output <- "view_output"
@@ -66,19 +69,8 @@ check_results <- function(input, output, run_id, is_pg2){
         })
         #table with results
         result_toml <- parseTOML(input = content_get_output$output$report,fromFile = FALSE,escape = TRUE)$RESULTS
-        
-        #create download button
-        output[[download]] <- renderUI({
-          downloadButton(download_results, 'Download Results', style="color: #fff; background-color: #6c757d; border-color: #6c757d")
-        })
-        output[[download_results]] <- downloadHandler(
-          filename = function() {
-            paste("kvfinder_output",".pdb",sep = "")
-          },
-          content = function(filename) {
-            write(content_get_output$output$pdb_kv,filename)
-          }
-        )
+        print(names(result_toml))
+
         
         #create result table
         output[[results_table]] <- renderUI({
@@ -102,6 +94,44 @@ check_results <- function(input, output, run_id, is_pg2){
         
         retrieve_content <- content(retrieve_get)
         retrieve_input_pdb <- retrieve_content$input$pdb
+        
+        #Download 3D input structure with cavities
+        pdb_all <- paste(retrieve_input_pdb, result_pdb_cav,sep = "\n")
+        #create download button
+        output[[download]] <- renderUI({
+          downloadButton(download_results, 'Download cavities', style="color: #fff; background-color: #6c757d; border-color: #6c757d")
+        })
+        output[[download_results]] <- downloadHandler(
+          filename = function() {
+            paste("kvfinder_output",".pdb",sep = "")
+          },
+          content = function(filename) {
+            write(pdb_all,filename)
+          }
+        )
+        
+        
+        #download input parameter information 
+        param_list <- list(Result_ID = retrieve_content$id, Create_time = retrieve_content$created_at,  Result_param = retrieve_content$input$settings)
+        output[[download2]] <- renderUI({
+          downloadButton(download_results2, 'Download Results', style="color: #fff; background-color: #6c757d; border-color: #6c757d")
+        })
+        output[[download_results2]] <- downloadHandler(
+          filename = function() {
+            #paste("kvfinder_output",".pdb",sep = "")
+            paste("kvfinder_output",".toml",sep = "")
+          },
+          content = function(filename) {
+            #write(content_get_output$output$pdb_kv,filename)
+            write_toml(param_list, output = filename)
+            #write.config(config.dat = result_toml, file.path = filename, 
+            #             write.type = "toml")
+          }
+        )
+        
+        
+        
+        #print(retrieve_content)
         
         #create list to store results 
         result_list <- list(
