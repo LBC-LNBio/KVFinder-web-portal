@@ -80,7 +80,10 @@ check_results <- function(input, output, run_id, is_pg2){
           `Cavity ID` = names(result_toml$AREA),
           `Area (A^2)` = unlist(result_toml$AREA),
           `Volume (A^3)` = unlist(result_toml$VOLUME)
-        ), filter = c("none"), style = "auto")
+        ), filter = c("none"), 
+        style = "auto",
+        options = list(dom = 'lBfrtip', buttons = c('excel', 'pdf')),
+        extensions = 'Buttons')
         #save cavities name
         cav_out_names <- names(result_toml$AREA)
         #create visualization
