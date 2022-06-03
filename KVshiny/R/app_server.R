@@ -97,9 +97,11 @@ app_server <- function( input, output, session ) {
   #----------------------------------------------------
   #Submit section
   observeEvent(input$submit_button, {
+      showModal(modalDialog("Submitting...", footer=NULL,fade = FALSE))
       current_run_id <<- submit_job(input = input, 
                                    output = output,
                                    pdb_name_click_load = pdb_name_click_load)
+      removeModal()
   })
   #----------------------------------------------------
     
@@ -107,10 +109,58 @@ app_server <- function( input, output, session ) {
   #>>>>>>>>>>>>>> Check Results <<<<<<<<<<<<<<<<<<<<<<<
   
   #Check results in Run KVFinder page
+#  var_status <- "queue"
   observeEvent(input$go_to_check_results, {
     result_pdb <<- check_results(input = input, output = output, run_id = current_run_id, is_pg2 = FALSE)
+    observe({
+      if(result_pdb %in% c("queued", "running")){
+        invalidateLater(3000)
+        result_pdb <<- check_results(input = input, output = output, run_id = current_run_id, is_pg2 = FALSE)
+      }
+      #print(result_pdb)
+      #if(var_status != "completed"){
+      #  invalidateLater(3000)
+      #  result_pdb <<- check_results(input = input, output = output, run_id = current_run_id, is_pg2 = FALSE)
+      #  print(var_status)
+      #} 
+      #print(var_status)
+    })
     
+    
+    # for(n_try in seq(1,100)){
+    #   print(var_status)
+    #   if(var_status != "completed"){
+    #     observe({
+    #       click("go_to_check_results")  
+    #     })
+    #     
+    #     Sys.sleep(5)
+    #   }
+    # }
+    #print(result_pdb)
+    #print("teste")
+    #print(var_status)
+    #observe({
+      #invalidateLater(3000)
+    #  print(var_status)
+    #  if(var_status != "completed"){
+    #    click("go_to_check_results")
+    #    Sys.sleep(5)
+        #invalidateLater(3000)
+    #  }
+    #})
+    
+    #click("go_to_check_results")
+    #invalidateLater(10000)
   })
+  
+
+  
+  
+  # observe({
+  #   click("go_to_check_results")
+  #   invalidateLater(10000)
+  # })
   #Check results in Get latest results page (pg2)
   observeEvent(input$check_loc_pg2, {
     result_pdb <<- check_results(input = input, output = output, run_id = input$insert_ID, is_pg2 = TRUE)
@@ -131,6 +181,9 @@ app_server <- function( input, output, session ) {
     create_init_scene(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
     disable("view_str")
   })
+  
+
+  
   #Create a work scene and change biomolecular structure representation 
   observeEvent(input$input_protein_rep,{
     #save the current representatio
