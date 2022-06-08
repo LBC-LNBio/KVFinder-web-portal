@@ -36,10 +36,10 @@ submit_job <- function(input, output, pdb_name_click_load){
     shinyalert("Oops!", "Please load from PDB or upload a PDB file before to submit.", type = "error")
   } else if(pdb_name_click_load != "init" & pdb_name_click_load != input$pdb_id){
     shinyalert("Oops!", "Please after input PDB ID in Choose input section, be sure you loaded the PDB by clicking in Load button.", type = "error")
-  } else if(length(input$pdb_id) > 0 & input$send_pdb_id == 0){
+  } else if(length(input$pdb_id) > 0 & input$send_pdb_id == 0){ #in case of 
     shinyalert("Oops!", "Please load from PDB or upload a PDB file before to submit.", type = "error")
   } else {
-    print("here2")
+    print("hereSub")
     #get pdb_processed 
     if(input$input_type == 'pdb_from_file'){
       
@@ -67,7 +67,8 @@ submit_job <- function(input, output, pdb_name_click_load){
       #shinyalert("Oops!", "If you changed the ligand or molecule name, please reload your PDB.", type = "error")
     } else {
       
-
+      # Create modal dialog
+      showModal(modalDialog("Submitting...", footer=NULL,fade = FALSE))
       
       #Create a KVFinder input file to be submitted to the server 
       #Whole protein (default parameters)
@@ -83,8 +84,8 @@ submit_job <- function(input, output, pdb_name_click_load){
       
 
       #submit to parKVFinder server
-      post_output <- POST(url = "http://10.0.0.123:8081/create",body = input_list, encode = "json")
-      #post_output <- POST(url = "http://localhost:8081/create",body = input_list, encode = "json") #using localhost
+      #post_output <- POST(url = "http://10.0.0.123:8081/create",body = input_list, encode = "json")
+      post_output <- POST(url = "http://localhost:8081/create",body = input_list, encode = "json") #using localhost
 
       #get ID of the submitted job
       get_run_id <<- content(post_output)$id
@@ -102,9 +103,14 @@ submit_job <- function(input, output, pdb_name_click_load){
       # output$status_auto <- renderText({paste(p("Your job was successfully submitted to KVFinder server."), p("Your run ID is: "), p(tags$b(get_run_id)), 
       #                                    p("The results of this run will be available for 1 day"),
       #                                    p("Save this ID to check results later"))})
+      
+      # Stop modal dialog
+      removeModal()
+      
+      return(get_run_id)
     }
     
     
   }
-  return(get_run_id)
+  
 }

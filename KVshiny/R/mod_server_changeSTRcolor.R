@@ -20,7 +20,11 @@ change_str_color <- function(input, output, protein_col_list, is_pg2){
     structure <- "structure"
   }
     protein_col_list <- c(protein_col_list, input[[input_protein_color]])
+    print("inside_str")
+    print(protein_col_list)
+    if(length(protein_col_list) > 1 & (tail(protein_col_list, n = 1) != "")){ #only change protein color if we change the input color
     NGLVieweR_proxy(structure) %>%
       updateColor("sel2", input[[input_protein_color]])
+    }
   return(protein_col_list)
 }

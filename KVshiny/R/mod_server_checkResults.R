@@ -14,18 +14,14 @@
 #' 
 
 check_results <- function(input, output, run_id, is_pg2){
-  
-  # observe({
-  #   invalidateLater(5000)
-  #   click("go_to_check_results")
-  #   #print("here3")
-  # })
-    
+
     #check which page to use and guide the output
     if(is_pg2 == TRUE){
       output_status <- "output_status_pg2"
       download <- "download_pg2"
+      download2 <- "download2_pg2"
       download_results <- "download_results_pg2"
+      download_results2 <- "download_results2_pg2"
       results_table <- "results_table_pg2"
       table_out <- "table_out_pg2"
       view_output <- "view_output_pg2"
@@ -43,8 +39,8 @@ check_results <- function(input, output, run_id, is_pg2){
     }
     
     #access results 
-    get_output <- GET(url = paste("http://10.0.0.123:8081/", run_id, sep = ""))
-    #get_output <- GET(url = paste("http://localhost:8081/", run_id, sep = "")) #use localhost
+    #get_output <- GET(url = paste("http://10.0.0.123:8081/", run_id, sep = ""))
+    get_output <- GET(url = paste("http://localhost:8081/", run_id, sep = "")) #use localhost
     
     #check if get returned a OK success status
     if(get_output$status_code == 200){
@@ -67,9 +63,19 @@ check_results <- function(input, output, run_id, is_pg2){
             color = "success"
           )
         })
+        
+        
+        #retrieve input pdb to be used in visualization
+        #retrieve_get <- GET(url = paste("http://10.0.0.123:8081/retrieve-input/", run_id, sep = ""))
+        retrieve_get <- GET(url = paste("http://localhost:8081/retrieve-input/", run_id, sep = "")) #use local host
+        
+        retrieve_content <- content(retrieve_get)
+        retrieve_input_pdb <- retrieve_content$input$pdb
+        
+        
         #table with results
         result_toml <- parseTOML(input = content_get_output$output$report,fromFile = FALSE,escape = TRUE)$RESULTS
-        print(names(result_toml))
+        #print(names(result_toml))
 
         
         #create result table
@@ -86,17 +92,9 @@ check_results <- function(input, output, run_id, is_pg2){
         extensions = 'Buttons')
         #save cavities name
         cav_out_names <- names(result_toml$AREA)
-        #create visualization
-        output[[view_output]] <- renderUI({
-          actionButton(inputId = view_str,label = "View", icon = icon("eye"), style="color: #fff; background-color: #6c757d; border-color: #6c757d")
-        })
+
         
-        #retrieve input pdb to be used in visualization
-        retrieve_get <- GET(url = paste("http://10.0.0.123:8081/retrieve-input/", run_id, sep = ""))
-        #retrieve_get <- GET(url = paste("http://localhost:8081/retrieve-input/", run_id, sep = "")) #use local host
-        
-        retrieve_content <- content(retrieve_get)
-        retrieve_input_pdb <- retrieve_content$input$pdb
+
         
         #Download 3D input structure with cavities
         pdb_all <- paste(retrieve_input_pdb, result_pdb_cav,sep = "\n")
@@ -112,6 +110,8 @@ check_results <- function(input, output, run_id, is_pg2){
             write(pdb_all,filename)
           }
         )
+        
+        
         
         
         #download input parameter information 
@@ -131,6 +131,11 @@ check_results <- function(input, output, run_id, is_pg2){
             #             write.type = "toml")
           }
         )
+        
+        #create visualization
+        output[[view_output]] <- renderUI({
+          actionButton(inputId = view_str,label = "View", icon = icon("eye"), style="color: #fff; background-color: #6c757d; border-color: #6c757d")
+        })
         
         
         

@@ -23,10 +23,36 @@ select_cav <- function(input, output, result_pdb_list, is_pg2){
           interface_res <- "interface_res"
 
         }
+  print(input[[select_cavity]])
         #if click to select cavity...
                   if(input[[select_cavity]] == "All"){ #show all cavities
                     NGLVieweR_proxy(structure) %>%
                       updateSelection("point", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
+                    
+                    #Update to show interface results 
+                    observeEvent(input[[interface_res]], {
+                      print("interfaceAll")
+                      
+                      if(input[[interface_res]] == TRUE & input[[select_cavity]] == "All"){
+                        #print(lapply(result_pdb_list$result_toml$RESIDUES, function(x) paste(x[1], x[2], sep = ":")))
+                        res <- paste(unlist(lapply(result_pdb_list$result_toml$RESIDUES, function(x) lapply(x, function(y) paste(y[1], y[2], sep = ":")))), collapse = " or ")
+                        #res <- paste(unlist(lapply(result_pdb_list$result_toml$RESIDUES[[input[[select_cavity]]]], function(x) paste(x[1], x[2], sep = ":"))), collapse = " or ")
+                        #print(res)
+                        NGLVieweR_proxy(structure) %>%
+                          #updateSelection("point", sele = paste(unlist(lapply(result_toml$RESIDUES[[input$select_cav]], function(x) x[1])), collapse = " or "))
+                          addSelection("ball+stick",
+                                       param =
+                                         list(
+                                           name = "sel1",
+                                           sele = res
+                                         ))
+                      } else {
+                        NGLVieweR_proxy(structure) %>%
+                          #updateSelection("point", sele = paste(unlist(lapply(result_toml$RESIDUES[[input$select_cav]], function(x) x[1])), collapse = " or "))
+                          removeSelection("sel1")
+                        
+                      }
+                    }, ignoreInit = TRUE)
                   } else { #show one cavity to show and zoom it
                     NGLVieweR_proxy(structure) %>%
                       updateSelection("point", sele = input[[select_cavity]]) %>%
@@ -34,8 +60,10 @@ select_cav <- function(input, output, result_pdb_list, is_pg2){
                     
                     #Update to show interface results 
                     observeEvent(input[[interface_res]], {
-                      if(input[[interface_res]] == TRUE){
+                      print("interfaceSpec")
+                      if(input[[interface_res]] == TRUE & input[[select_cavity]] != "All"){
                         res <- paste(unlist(lapply(result_pdb_list$result_toml$RESIDUES[[input[[select_cavity]]]], function(x) paste(x[1], x[2], sep = ":"))), collapse = " or ")
+                        print(res)
                         NGLVieweR_proxy(structure) %>%
                           #updateSelection("point", sele = paste(unlist(lapply(result_toml$RESIDUES[[input$select_cav]], function(x) x[1])), collapse = " or "))
                           addSelection("ball+stick",
