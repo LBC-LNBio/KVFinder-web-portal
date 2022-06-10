@@ -16,11 +16,11 @@
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
-    #golem_add_external_resources(),
-    titlePanel(
-      windowTitle = "KVFinder",
-      title = tags$head(tags$link(rel="shortcut icon", 
-                                  href="www/kvfinder_favicon.png"))),
+    golem_add_external_resources(),
+    # titlePanel(
+    #   windowTitle = "KVFinder",
+    #   title = tags$head(tags$link(rel="shortcut icon",
+    #                               href="www/kvfinder_favicon.png"))),
   
     #____________________________________________________________
     dashboardPage(
@@ -266,17 +266,17 @@ app_ui <- function(request) {
 #' 
 #' 
 
-# golem_add_external_resources <- function() {
-#   add_resource_path('www', app_sys('app/www'))
-#   
-#   tags$head(favicon(),
-#             bundle_resources(path = app_sys('app/www'),
-#                              app_title = 'KVfinder'))
-#   
+golem_add_external_resources <- function() {
+  add_resource_path('www', app_sys('app/www'))
+# 
+  tags$head(tags$link(rel="shortcut icon",href="www/new_icon/kvfinder_favicon_v2.png"),
+            bundle_resources(path = app_sys('app/www'),
+                             app_title = 'KVfinder'))
+# 
 #   # Add here other external resources
 #   # for example, you can add shinyalert::useShinyalert() )
 #   #ico = "favicon",resources_path = "www", ext = "ico"
-# }
+}
 
 
 
