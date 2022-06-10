@@ -21,7 +21,7 @@ pdb_process <- function(input, output, get_nonstand, mode){
   
   if(input$run_mode == "mode_def"){
     pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input,nonstand_list = get_nonstand, include_list = include_list)
-    print(pdb_processed)
+    #print(pdb_processed)
     pdb_processed <- list(pdb_processed = pdb_processed)
   } else if(input$run_mode == "mode_cust"){
     pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input,nonstand_list = get_nonstand, include_list = include_list)
@@ -31,6 +31,7 @@ pdb_process <- function(input, output, get_nonstand, mode){
     check_residues = check_residues_name(pdb_input = pdb_input, target_residues = input$box_residues)
     if(check_residues == FALSE){
       shinyalert("Oops!", "Please insert a valid list of residues for box mode run.", type = "error")
+      pdb_processed <- "wrong_target_res"
     } else{
       pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input,nonstand_list = get_nonstand, include_list = include_list)
       pdb_processed <- list(pdb_processed = pdb_processed)
@@ -46,7 +47,10 @@ pdb_process <- function(input, output, get_nonstand, mode){
     pdb_processed <- list(pdb_processed = pdb_processed, pdb_lig_processed = pdb_ligand_processed)
   }
   
-  return(pdb_processed)
+
+    return(pdb_processed)  
+
+  
   
   
 }

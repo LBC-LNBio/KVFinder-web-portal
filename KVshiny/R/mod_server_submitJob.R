@@ -23,12 +23,8 @@ submit_job <- function(input, output, pdb_name_click_load){
   lig_cutoff_input <- input$lig_cutoff 
   padding_input <- input$padding_value
   #-------------------------------------------------------------------
-  print("here1")
-  print(is.null(input$input_pdb))
-  print(input$pdb_id == "")
-  print(pdb_name_click_load)
-  print(input$pdb_id)
-  print(input$send_pdb_id)
+
+  
   #check probe in is smaller than probe out
   if(probein_input > probeout_input){
     shinyalert("Oops!", "Probe In must be smaller than Probe Out.", type = "error")
@@ -36,10 +32,12 @@ submit_job <- function(input, output, pdb_name_click_load){
     shinyalert("Oops!", "Please load from PDB or upload a PDB file before to submit.", type = "error")
   } else if(pdb_name_click_load != "init" & pdb_name_click_load != input$pdb_id){
     shinyalert("Oops!", "Please after input PDB ID in Choose input section, be sure you loaded the PDB by clicking in Load button.", type = "error")
-  } else if(length(input$pdb_id) > 0 & input$send_pdb_id == 0){ #in case of 
+  } else if(length(input$pdb_id) > 0 & input$send_pdb_id == 0){ 
     shinyalert("Oops!", "Please load from PDB or upload a PDB file before to submit.", type = "error")
+  #} else if(input$run_mode == 'lig_mode' & (input$lig_name != input$select_nonstand1 | input$lig_name != input$select_nonstand2)){ #to check 
+    
   } else {
-    print("hereSub")
+    #print("hereSub")
     #get pdb_processed 
     if(input$input_type == 'pdb_from_file'){
       
@@ -48,8 +46,9 @@ submit_job <- function(input, output, pdb_name_click_load){
     } else{
       pdb_processed <- pdb_process(input = input, output = output, get_nonstand = get_nonstand, mode = "fetch")
     }
-
     
+    if(pdb_processed != "wrong_target_res"){ #check if the list of residues in "target residues" field is appropriated. The function pdb_process (in mod_server_pdbProcess.R) returns "wrong_target_res" if the input is not in the required format 
+      
     #get the PDB processed 
     if(is.null(pdb_processed$pdb_processed)) {
       pdb_path <- input$input_pdb$datapath
@@ -57,7 +56,7 @@ submit_job <- function(input, output, pdb_name_click_load){
       pdb_path <- pdb_processed$pdb_processed
     }
     
-    print(pdb_path)
+    #print(pdb_path)
     #check if user inserted a valid PDB before do submit
     if(length(pdb_path) == 0){
       shinyalert("Oops!", "Please insert a valid PDB before to submit.", type = "error")
@@ -110,7 +109,7 @@ submit_job <- function(input, output, pdb_name_click_load){
       return(get_run_id)
     }
     
-    
+  }
   }
   
 }
