@@ -4,7 +4,13 @@
 \alias{change_str_color_scheme}
 \title{Change color scheme of biomolecular structure}
 \usage{
-change_str_color_scheme(input, output, protein_col_scheme_list, is_pg2)
+change_str_color_scheme(
+  input,
+  output,
+  protein_col_scheme_list,
+  protein_rep_list,
+  is_pg2
+)
 }
 \arguments{
 \item{input}{shiny input}
@@ -12,6 +18,8 @@ change_str_color_scheme(input, output, protein_col_scheme_list, is_pg2)
 \item{output}{shiny output}
 
 \item{protein_col_scheme_list}{list of previous selected colors}
+
+\item{protein_rep_list}{used only to monitor if the scene is a initial or a work scene}
 
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
 }

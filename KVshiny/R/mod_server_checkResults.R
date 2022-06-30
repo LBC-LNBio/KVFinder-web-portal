@@ -76,7 +76,10 @@ check_results <- function(input, output, run_id, is_pg2){
         #table with results
         result_toml <- parseTOML(input = content_get_output$output$report,fromFile = FALSE,escape = TRUE)$RESULTS
         #print(names(result_toml))
-
+        
+        if(length(result_toml$AREA) == 0){
+          shinyalert("Oops!", "No cavity found. Please check the input parameters and try again.", type = "warning")
+        } else{
         
         #create result table
         output[[results_table]] <- renderUI({
@@ -93,9 +96,6 @@ check_results <- function(input, output, run_id, is_pg2){
         #save cavities name
         cav_out_names <- names(result_toml$AREA)
 
-        
-
-        
         #Download 3D input structure with cavities
         pdb_all <- paste(retrieve_input_pdb, result_pdb_cav,sep = "\n")
         #create download button
@@ -104,7 +104,7 @@ check_results <- function(input, output, run_id, is_pg2){
         })
         output[[download_results]] <- downloadHandler(
           filename = function() {
-            paste("kvfinder_output",".pdb",sep = "")
+            paste("KVfinder_results_",retrieve_content$id,".pdb",sep = "")
           },
           content = function(filename) {
             write(pdb_all,filename)
@@ -115,14 +115,14 @@ check_results <- function(input, output, run_id, is_pg2){
         
         
         #download input parameter information 
-        param_list <- list(Result_ID = retrieve_content$id, Create_time = retrieve_content$created_at,  Result_param = retrieve_content$input$settings)
+        param_list <- list(Result_ID = retrieve_content$id, Create_time = retrieve_content$created_at,  Result_param = retrieve_content$input$settings, Result_output = result_toml)
         output[[download2]] <- renderUI({
           downloadButton(download_results2, 'Download Results', style="color: #fff; background-color: #6c757d; border-color: #6c757d")
         })
         output[[download_results2]] <- downloadHandler(
           filename = function() {
             #paste("kvfinder_output",".pdb",sep = "")
-            paste("kvfinder_output",".toml",sep = "")
+            paste("KVfinder_results_",retrieve_content$id,".toml",sep = "")
           },
           content = function(filename) {
             #write(content_get_output$output$pdb_kv,filename)
@@ -149,6 +149,7 @@ check_results <- function(input, output, run_id, is_pg2){
           result_toml = result_toml
         )
         return(result_list)
+        }
         
       } else {
         output[[output_status]] <- renderValueBox({

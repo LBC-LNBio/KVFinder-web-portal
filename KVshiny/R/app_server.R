@@ -36,6 +36,11 @@ app_server <- function( input, output, session ) {
   get_nonstand <- NULL
   
   pdb_name_click_load <- "init"
+  
+  scheme_color_list <- list("Residue index" = "residueindex",
+                           "Chain ID" = "chainid", 
+                           "Hidrophobicity" = "hydrophobicity", 
+                           "Secondary Structure" = "sstruc")
   #---------------------------------------------
   
   
@@ -99,10 +104,12 @@ app_server <- function( input, output, session ) {
   #----------------------------------------------------
   #Submit section
   observeEvent(input$submit_button, {
+      
       #create a temporary empty ui output for NGL visualization and status card 
       #this is necessary to avoid the previous state (hidden by hideElement) to be shown when running showElement function
       output[["structure"]] <- renderNGLVieweR({}) 
       output[["output_status1"]] <- NULL
+      
 
       # Get current id
       current_run_id <<- submit_job(input = input, 
@@ -276,10 +283,12 @@ app_server <- function( input, output, session ) {
   
   #Click view to visualize
   observeEvent(input$view_str, {
+    print("inside_view_str")
 
     protein_rep_list <<- c() #always zero rep list when click view
+    protein_col_scheme_list <<- c() #always zero color scheme list when click view
     #current states
-    protein_col_scheme_list <<- c(protein_col_scheme_list, "residueindex")
+    protein_col_scheme_list <<- c(protein_col_scheme_list, "Residue index")
     #protein_col_list <<- c(protein_col_list, "white")
     #Create initial scene
     create_init_scene(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
@@ -324,23 +333,32 @@ app_server <- function( input, output, session ) {
       id = "snapshot_title",
       time = 0
     )
+    
+    # current_rep <- input$input_protein_rep
+    # protein_rep_list <<- c(protein_rep_list, current_rep)
+    # #Create a work scene
+    # create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE)
+    
     disable("view_str")
-  })
+  }, ignoreInit = FALSE, ignoreNULL = TRUE)
   
   #Create a work scene and change biomolecular structure representation 
   observeEvent(input$input_protein_rep,{
+    print("observe_protein_rep")
+    #print(input$input_protein_rep)
     #save the current representation
     current_rep <- input$input_protein_rep
+    print(current_rep)
     #create a list of representations 
     protein_rep_list <<- c(protein_rep_list, current_rep)
     #Create a work scene
     create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE)
     
     #clean protein color selector
-    updateSelectInput(session,'input_protein_color', #This updation is made to clean the protein color selector 
+    updateSelectInput(session,'input_protein_color', #This update is made to clean the protein color selector
                       # choices = c("","white", "red", "blue", "green","yellow"),
-                      selected = '') 
-  }, ignoreNULL = TRUE, ignoreInit = FALSE)
+                      selected = '')
+  }, ignoreNULL = TRUE, ignoreInit = TRUE)
   #Select cavity to be visualized 
   observeEvent(input$select_cavity, {
     select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
@@ -350,17 +368,18 @@ app_server <- function( input, output, session ) {
   
   observeEvent(input$input_protein_color, {
     #if(length(input$input_protein_color) > 1){ #only change protein color if we change the input color
-      protein_col_list <<- change_str_color(input = input, output = output, protein_col_list = protein_col_list, is_pg2 = FALSE)  
+      protein_col_list <<- change_str_color(input = input, output = output, protein_col_list = protein_col_list, is_pg2 = FALSE) 
     #}
   })
   #change biomolecular structure color
   observeEvent(input$input_protein_color_scheme, {
     #print("hereScheme")
-    protein_col_scheme_list <<- change_str_color_scheme(input = input, output = output, protein_col_scheme_list = protein_col_scheme_list, is_pg2 = FALSE)
+    protein_col_scheme_list <<- change_str_color_scheme(input = input, output = output, protein_col_scheme_list = protein_col_scheme_list,protein_rep_list = protein_rep_list, is_pg2 = FALSE)
+    #print(protein_col_scheme_list)
     updateSelectInput(session,'input_protein_color',
                      # choices = c("","white", "red", "blue", "green","yellow"),
                       selected = '')
-  })
+  },ignoreNULL = TRUE)
   #change cavity color
   observeEvent(input$input_cavity_color, {
     #print("cavColor")
@@ -451,7 +470,6 @@ app_server <- function( input, output, session ) {
   })
     #change biomolecular structure color
     observeEvent(input$input_protein_color_pg2, {
-      print("color")
     protein_col_list <<- change_str_color(input = input, output = output, protein_col_list = protein_col_list, is_pg2 = TRUE)
     }, ignoreInit = F, ignoreNULL = T)
     #change biomolecular structure color

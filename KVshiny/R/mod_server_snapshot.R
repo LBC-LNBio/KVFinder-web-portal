@@ -20,5 +20,5 @@ take_snapshot <- function(input, output, is_pg2){
   }
     NGLVieweR_proxy(structure) %>%
       snapShot(
-        param = list("antialias" = TRUE, trim = TRUE, transparent = TRUE, scale = 500))
+        param = list("antialias" = TRUE, trim = TRUE, transparent = TRUE, factor = 2))
 }
