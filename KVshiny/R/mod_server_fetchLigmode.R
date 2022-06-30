@@ -27,6 +27,7 @@ process_fetch_ligmode <- function(input, output){
   
   #if there is any nonstand residue in PDB...
   if(length(get_nonstand) > 0){
+
     
     #by default remove all non standards residues and the ligand 
     pdb_processed <<- deal_sele_nonstand(pdb_input = input$pdb_id,nonstand_list = c(get_nonstand,input$lig_name), include_list = NULL)
@@ -68,6 +69,7 @@ process_fetch_ligmode <- function(input, output){
     output$note_text2 <- NULL
     output$ask_preprocess_include2 <- NULL
     output$preprocess_include2 <- NULL
+
   }
   
 }
