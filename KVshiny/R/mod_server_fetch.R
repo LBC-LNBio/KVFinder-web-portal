@@ -28,6 +28,15 @@ process_fetch <- function(input, output){
   #if there is any nonstand residue in PDB...
   if(length(get_nonstand) > 0){
     
+    #always start by updating the radio button -> this was done because we need to update to remove the ligand mode if there's no ligand
+    #so we need to always update to show all buttons
+    updateRadioButtons(inputId = "run_mode",
+                       label = "Detect cavities in:",
+                       choices = c("Whole structure (default)" = "mode_def",
+                                   "Whole structure (customized)" = "mode_cust",
+                                   "Around target molecule" = "lig_mode",
+                                   "Around target residues" = "box_mode"))
+    
     #checkpoint to create the uiOuput of show_lig_name of ligmode
     updateSelectInput(inputId = "lig_name",
                       label = "Ligand or molecule name:",
@@ -74,6 +83,13 @@ process_fetch <- function(input, output){
     output$note_text2 <- NULL
     output$ask_preprocess_include2 <- NULL
     output$preprocess_include2 <- NULL
+    
+    #below code is to avoid to show ligand from the previous round if no non-stand is found
+    updateRadioButtons(inputId = "run_mode",
+                       label = "Detect cavities in:",
+                       choices = c("Whole structure (default)" = "mode_def",
+                                   "Whole structure (customized)" = "mode_cust",
+                                   "Around target residues" = "box_mode"))
   }
   
   
