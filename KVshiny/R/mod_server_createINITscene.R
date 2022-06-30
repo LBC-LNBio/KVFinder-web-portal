@@ -18,6 +18,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
     select_cavity <- "select_cavity_pg2"
     show_interface <- "show_interface_pg2"
     protein_color <- "protein_color_pg2"
+    protein_color_scheme <- "protein_color_scheme_pg2"
     cavity_color <- "cavity_color_pg2"
     protein_rep <- "protein_rep_pg2"
     bg_color <- "bg_color_pg2"
@@ -32,6 +33,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
     select_cavity <- "select_cavity"
     show_interface <- "show_interface"
     protein_color <- "protein_color"
+    protein_color_scheme <- "protein_color_scheme"
     cavity_color <- "cavity_color"
     protein_rep <- "protein_rep"
     bg_color <- "bg_color"
@@ -41,12 +43,15 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
     
     
   }
+  
+  print("inside_InitScene")
   #-------------------------------------------------------------------------------------------------------
   #Create structure view 
   #This initial scene is only created to start a structure Representation (invisible - except cavities) that will be updated and changes in view_create_work_scene 
   output[[structure]] <- renderNGLVieweR({
+  #load pdb with protein and cavities
   pdb_all <- paste(result_pdb_list$retrieve_input_pdb, result_pdb_list$result_pdb_cav,sep = "\n")
-  
+  #create initial scene
   NGLVieweR(pdb_all,format = "pdb") %>%
     addRepresentation("cartoon",
                       param = list(name = "protein_init_cartoon", colorScheme = "residueindex", visible = TRUE)
@@ -57,6 +62,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
     setQuality("high") %>%
     setFocus(0)
   })
+
   #---------------------------------------------------------------------------------------------------------
   #create view buttons
   output[[selection_pdb]] <- renderUI({
@@ -64,14 +70,19 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
         selectInput(inputId = select_cavity, label = div(style = "font-size:12px", "Show cavity"), 
                     choices = c("All",result_pdb_list$result_cav_names)))})
   
-  output[[show_interface]] <- renderUI({
-    div(style = "font-size:12px;",
-        checkboxInput(inputId = interface_res, label = div(style = "font-size:12px;display:inline-block", "Show interface residues")))})
+
+    output[[show_interface]] <- renderUI({
+      div(style = "font-size:12px;",
+          checkboxInput(inputId = interface_res, label = div(style = "font-size:12px;display:inline-block", "Show interface residues")))})
+    
+
   
+  output[[protein_color_scheme]] <- renderUI({ div(style = "font-size:12px;",
+                                         selectInput(inputId = paste("input_",protein_color_scheme, sep = ""), label = div(style = "font-size:12px", "Protein color scheme"),
+                                                     choices = names(scheme_color_list)))})
   output[[protein_color]] <- renderUI({ div(style = "font-size:12px;",
-                                         selectInput(inputId = paste("input_",protein_color, sep = ""), label = div(style = "font-size:12px", "Protein color scheme"), 
-                                                     choices = c("residueindex","chainid", "hydrophobicity", "sstruc", "uniform")))})
-  
+                                           selectInput(inputId = paste("input_",protein_color, sep = ""), label = div(style = "font-size:12px", "Protein color"), 
+                                                       choices = c("","white", "red", "blue", "green","yellow")))})
   
   output[[cavity_color]] <- renderUI({ div(style = "font-size:12px;",
                                         selectInput(inputId = paste("input_",cavity_color, sep = ""), label = div(style = "font-size:12px", "Cavity color"), 
@@ -83,7 +94,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
   
   output[[bg_color]] <- renderUI({ div(style = "font-size:12px;",
                                     selectInput(inputId = paste("input_", bg_color, sep = ""), label = div(style = "font-size:12px", "Background color"), 
-                                                choices = c( "black","white"), width = 120))})
+                                                choices = c( "black","white")))})
   output[[snapshot_title]] <-  renderUI({ div(style = "font-size:12px;font-weight: bold", "Take a snapshot")})
   
   output[[snapshot]] <- renderUI({ div(style = "font-size:12px;",

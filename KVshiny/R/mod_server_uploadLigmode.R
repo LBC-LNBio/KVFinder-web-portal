@@ -13,13 +13,13 @@
 process_upload_ligmode <- function(input, output){
   
   #check if ligand name text box is filled and the PDB input contains the ligand 
-  check_lig = check_lig_name(pdb_input = input$input_pdb$datapath, target_ligand = input$lig_name)
-  if(check_lig == FALSE){
-    shinyalert("Oops!", "Please insert a 3-letter valid ligand name.", type = "error")
-  } else{
+  # check_lig = check_lig_name(pdb_input = input$input_pdb$datapath, target_ligand = input$lig_name)
+  # if(check_lig == FALSE){
+  #   shinyalert("Oops!", "Please insert a 3-letter valid ligand name.", type = "error")
+  # } else{
     #if so, get the ligand PDB 
     pdb_ligand_processed <<- get_ligand_pdb(pdb_input = input$input_pdb$datapath, ligand_name = input$lig_name)
-  }
+  #}
   #get nonstandard residues from the input PDB, excepted the target ligand 
   get_nonstand <- report_nonstand(pdb_input = input$input_pdb$datapath)
   get_nonstand <- setdiff(get_nonstand,input$lig_name) #get all non stand but the ligand

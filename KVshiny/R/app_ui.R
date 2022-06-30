@@ -6,15 +6,22 @@
 #' @import shinyjs
 #' @import bs4Dash
 #' @import NGLVieweR
+#' @import golem
+#' @import shinycssloaders
 #' @noRd
 #' 
+
 
 
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
-    
+    # titlePanel(
+    #   windowTitle = "KVFinder",
+    #   title = tags$head(tags$link(rel="shortcut icon",
+    #                               href="www/kvfinder_favicon.png"))),
+  
     #____________________________________________________________
     dashboardPage(
       #Header----------------------------------------------------
@@ -97,13 +104,13 @@ app_ui <- function(request) {
             #Create jumbotron
             create_jumbotron(),
             #-------------------------------------------
-            #Choose run mode card
-            fluidRow(column(12,
-                            choose_run_mode(),)),
-            #------------------------------------------
             #Choose input card
             fluidRow(column(12,
                             choose_input())),
+            #------------------------------------------
+            #Choose run mode card
+            fluidRow(column(12,
+                            choose_run_mode(),)),
             #-------------------------------------------
             #Submit section
             column(
@@ -129,8 +136,10 @@ app_ui <- function(request) {
                 5,
                 uiOutput("output_status1"),
                 tags$br(),
-                fluidRow(column(8,
+                fluidRow(column(4,
                                 uiOutput("download")),
+                         column(4,
+                                uiOutput("download2")),
                          column(4,
                                 uiOutput("view_output"))),
                 tags$br(),
@@ -146,12 +155,14 @@ app_ui <- function(request) {
                   column(3, uiOutput("selection_pdb")),
                   column(3, uiOutput("cavity_color")),
                   column(3, uiOutput("protein_rep")),
-                  column(3, uiOutput("protein_color"))
+                  column(3, uiOutput("protein_color_scheme"))
+                  
                 ),
                 fluidRow(
-                  column(7, uiOutput("show_interface")),
+                  column(3, uiOutput("show_interface")),
+                  column(3, uiOutput("protein_color")),
                   column(3, uiOutput("bg_color")),
-                  column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot"))
+                  column(3, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot"))
                 )
               )
             )
@@ -185,8 +196,10 @@ app_ui <- function(request) {
                         tags$br(),
                         tags$br(),
                         uiOutput("output_status_pg2"),
-                        fluidRow(column(8,
+                        fluidRow(column(4,
                                         uiOutput("download_pg2")),
+                                 column(4,
+                                        uiOutput("download2_pg2")),
                                  column(4,
                                         uiOutput(
                                           "view_output_pg2"
@@ -210,13 +223,15 @@ app_ui <- function(request) {
                         column(3, uiOutput("selection_pdb_pg2")),
                         column(3, uiOutput("cavity_color_pg2")),
                         column(3, uiOutput("protein_rep_pg2")),
-                        column(3, uiOutput("protein_color_pg2"))
+                        column(3, uiOutput("protein_color_scheme_pg2")),
+                        #column(3, uiOutput("protein_color_pg2"))
                       ),
                       fluidRow(
-                        column(7, uiOutput("show_interface_pg2")),
+                        column(3, uiOutput("show_interface_pg2")),
+                        column(3, uiOutput("protein_color_pg2")),
                         column(3, uiOutput("bg_color_pg2")),
                         column(
-                          2,
+                          3,
                           align = "center",
                           uiOutput("snapshot_title_pg2"),
                           uiOutput("snapshot_pg2")
@@ -237,6 +252,7 @@ app_ui <- function(request) {
       )
     )
   )
+  
 }
 
 #' Add external Resources to the Application
@@ -247,13 +263,20 @@ app_ui <- function(request) {
 #' @import shiny
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
 #' @noRd
+#' 
+#' 
+
 golem_add_external_resources <- function() {
   add_resource_path('www', app_sys('app/www'))
-  
-  tags$head(favicon(),
+# 
+  tags$head(tags$link(rel="shortcut icon",href="www/new_icon/kvfinder_favicon_v2.png"),
             bundle_resources(path = app_sys('app/www'),
-                             app_title = 'KVserver'))
-  # Add here other external resources
-  # for example, you can add shinyalert::useShinyalert() )
+                             app_title = 'KVfinder'))
+# 
+#   # Add here other external resources
+#   # for example, you can add shinyalert::useShinyalert() )
+#   #ico = "favicon",resources_path = "www", ext = "ico"
 }
+
+
 

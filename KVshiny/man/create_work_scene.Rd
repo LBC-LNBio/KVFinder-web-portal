@@ -9,6 +9,7 @@ create_work_scene(
   output,
   protein_rep_list,
   protein_col_list,
+  protein_col_scheme_list,
   result_pdb_list,
   is_pg2
 )

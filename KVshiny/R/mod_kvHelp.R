@@ -90,14 +90,16 @@ kv_help <- function(){
              tags$br(),
              tags$br(),
              tags$h5(strong("KVFinder-web service requirements and limitations"))),
-             tags$p("he KVFinder-web service has a Job timeout of 30 minutes (maximum time that a accepted job could run on the server),
+             tags$p("The KVFinder-web service has a Job timeout of 30 minutes (maximum time that a accepted job could run on the server),
                               completed jobs will be available on the web service up to 1 day after completion,
-                              and the maximum payload (maximum size of the JSON) of the data sent to the KVFinder-web service is 1 MB. "),
+                              and the maximum payload (maximum size of the JSON) of the data sent to the KVFinder-web service is 1 MB."),
              tags$p("Further, the KVFinder-web service has some limitations, compared to a local installation of parKVFinder, that are: "),
+             tags$ol(
              tags$li("The Probe In and Probe Out sizes must be smaller than to 5 and 50 A, respectively, to avoid unnecessary time-consuming jobs."),
              tags$li("The Removal distance is limited must be smaller than 10 A to avoid unnecessary time-consuming jobs."),
-             tags$li("The grid spacing is preset to 0.6 A to avoid unnecessary time-consuming jobs"),
-             tags$li("Cavity representation will be always filtered (cavity files will consume less space on the web service)")
+             tags$li("The grid spacing is preset to 0.6 A to avoid unnecessary time-consuming jobs."),
+             tags$li("Cavity representation will be always filtered (cavity files will consume less space on the web service).")
+            )
   )
   )
 

@@ -4,16 +4,14 @@
 \alias{submit_job}
 \title{Submit job}
 \usage{
-submit_job(input, output, run_mode_list, lig_name_list)
+submit_job(input, output, pdb_name_click_load)
 }
 \arguments{
 \item{input}{shiny input}
 
 \item{output}{shiny output}
 
-\item{run_mode_list}{list of latest run modes}
-
-\item{lig_name_list}{list of latest ligand names}
+\item{pdb_name_click_load}{pdb_name_click_load}
 }
 \description{
 Submit job

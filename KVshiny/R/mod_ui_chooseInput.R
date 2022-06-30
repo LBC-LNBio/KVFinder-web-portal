@@ -8,10 +8,10 @@
 choose_input <- function(){
   
   input_card <- bs4Card(
-                  title = "Step 2. Choose input",
+                  title = "Step 1. Choose input",
                   id = "run_mode_box",
                   collapsible = TRUE,
-                  collapsed = TRUE,
+                  collapsed = FALSE,
                   closable = FALSE,
                   solidHeader = TRUE,
                   elevation = 2,
@@ -20,17 +20,18 @@ choose_input <- function(){
                   fluidRow(
                     column(4, radioButtons("input_type", 
                                            "Type of input:",
-                                           c("Upload PDB file" = "pdb_from_file",
-                                             "Fetch from PDB" = "pdb_from_id"))),
+                                           c("Fetch from PDB" = "pdb_from_id",
+                                             "Upload PDB file" = "pdb_from_file"
+                                             ))),
                     column(8, conditionalPanel( condition = "input.input_type == 'pdb_from_file'",
                                                 fileInput(inputId = "input_pdb",
                                                           label = "Upload PDB file",
                                                           accept = ".pdb",
                                                           width = 250 ),
                                                 uiOutput("note_text1"),
-                                                uiOutput("checkbox_nostand1",width = 800), 
-                                                uiOutput("ask_preprocess_include1"),
-                                                uiOutput("preprocess_include1")
+                                                uiOutput("checkbox_nostand1",width = 800)
+                                                #uiOutput("ask_preprocess_include1"),
+                                                #uiOutput("preprocess_include1")
                     ),
                     conditionalPanel( condition = "input.input_type == 'pdb_from_id'",
                                       fixedRow(
