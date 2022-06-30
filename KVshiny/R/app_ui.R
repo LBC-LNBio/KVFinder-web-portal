@@ -149,7 +149,7 @@ app_ui <- function(request) {
               column(
                 7,
                 fluidRow(NGLVieweROutput(
-                  "structure", width = "100%", height = "400px"
+                  "structure", width = "100%", height = "600px"
                 )),
                 fluidRow(
                   column(3, uiOutput("selection_pdb")),
