@@ -23,7 +23,7 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
   }
   
   print("inside_work_scene")
-  
+  print(protein_rep_list)
   #The work scene is always linked to the input_protein_rep input -> It is a start point 
     #If protein_rep_list contains only 1 representations that means that it is a initial scene, so we need to modify the visibility of the structure to invisible
     if(length(protein_rep_list) == 1 ){
