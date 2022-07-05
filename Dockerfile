@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libxml2-dev
 
-RUN install2.r shiny pkgload remotes devtools bio3d bs4Dash config data.table DT golem NGLVieweR RcppTOML readr rjson shinyalert shinyjs blogdown
+RUN install2.r shiny pkgload remotes devtools bio3d bs4Dash config data.table DT golem NGLVieweR RcppTOML readr rjson shinyalert shinyjs blogdown colourpicker
 #RUN R -e 'devtools::install_github("https://github.com/LBC-LNBio/KVshiny-docker")'
 
 # copy the app directory into the image

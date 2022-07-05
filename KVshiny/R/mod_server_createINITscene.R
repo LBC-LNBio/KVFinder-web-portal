@@ -7,6 +7,7 @@
 #' 
 #' @import shiny
 #' @import NGLVieweR
+#' @import colourpicker
 #'
 #' @export
 #' 
@@ -81,8 +82,23 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
                                          selectInput(inputId = paste("input_",protein_color_scheme, sep = ""), label = div(style = "font-size:12px", "Protein color scheme"),
                                                      choices = names(scheme_color_list)))})
   output[[protein_color]] <- renderUI({ div(style = "font-size:12px;",
-                                           selectInput(inputId = paste("input_",protein_color, sep = ""), label = div(style = "font-size:12px", "Protein color"), 
-                                                       choices = c("","white", "red", "blue", "green","yellow")))})
+                                           #selectInput(inputId = paste("input_",protein_color, sep = ""), label = div(style = "font-size:12px", "Protein color"), 
+                                          #             choices = c("","white", "red", "blue", "green","yellow"))
+                                          # colorSelectorDrop(
+                                          #   inputId = paste("input_",protein_color, sep = ""), label = div(style = "font-size:12px", "Protein color"),
+                                          #   choices = c("", "#FF00FF",
+                                          #               "0xFF0000", "0xFF0000",
+                                          #               "0xFF0000"),
+                                          #   display_label = TRUE,
+                                          #   circle = FALSE,
+                                          #   ncol=1,
+                                          #   up=TRUE)
+                                          colourpicker::colourInput(paste("input_",protein_color, sep = ""), 
+                                                                    label = div(style = "font-size:12px", "Protein color"),
+                                                                    value = "white",
+                                                                    showColour = "background",
+                                                                    palette = "limited")
+                                           )})
   
   output[[cavity_color]] <- renderUI({ div(style = "font-size:12px;",
                                         selectInput(inputId = paste("input_",cavity_color, sep = ""), label = div(style = "font-size:12px", "Cavity color"), 
