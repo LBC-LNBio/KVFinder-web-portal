@@ -67,7 +67,7 @@ submit_job <- function(input, output, pdb_name_click_load){
     } else {
       
       # Create modal dialog
-      showModal(modalDialog("Submitting...", footer=NULL,fade = FALSE))
+      #showModal(modalDialog("Submitting...", footer=NULL,fade = FALSE))
       
       #Create a KVFinder input file to be submitted to the server 
       #Whole protein (default parameters)
@@ -81,14 +81,19 @@ submit_job <- function(input, output, pdb_name_click_load){
         input_list <- submit_prepare(pdb_path = pdb_path, ligand_path = NULL, whole_protein_mode = TRUE, ligand_mode = FALSE,box_mode = FALSE, box_residues = NULL, probe_in = probein_input, probe_out = probeout_input, volume_cutoff = vol_cutoff_input, removal_distance = removal_dist_input, padding = NULL, lig_cutoff = NULL)
       }
       
-
+      
       #submit to parKVFinder server
       #post_output <- POST(url = "http://10.0.0.123:8081/create",body = input_list, encode = "json")
       post_output <- POST(url = "http://localhost:8081/create",body = input_list, encode = "json") #using localhost
-
+      
+      #check status for submission error 
+       if(post_output$status_code == 200){
+      #   
+      # }
+      #print(post_output$status_code)
       #get ID of the submitted job
       get_run_id <<- content(post_output)$id
-
+      print(get_run_id)
       #Show submission message
       output$run_id <- renderText({paste(p("Your job was successfully submitted to KVFinder server."), p("Your run ID is: "), p(tags$b(get_run_id)), 
                                          p("The results of this run will be available for 1 day"),
@@ -104,9 +109,12 @@ submit_job <- function(input, output, pdb_name_click_load){
       #                                    p("Save this ID to check results later"))})
       
       # Stop modal dialog
-      removeModal()
+      #removeModal()
       
       return(get_run_id)
+    } else{
+      shinyalert("Oops!", "An error occurred when submitting your job. Perhaps the input file is larger than what our server allows. If the problem persist please contact us", type = "error")
+    }
     }
     
   }

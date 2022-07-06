@@ -168,7 +168,7 @@ check_results <- function(input, output, run_id, is_pg2){
     } else{
       output[[output_status]] <- renderValueBox({
         valueBox(
-          value = paste("A error occurred.", "Please check your run ID.", "If the problem persist, please contact us."),
+          value = paste("An error occurred.", "Please check your run ID.", "If the problem persist, please contact us."),
           subtitle = paste("Job ID:",  run_id, sep = ""),
           icon = icon("exclamation-triangle"), 
           color = "danger"
