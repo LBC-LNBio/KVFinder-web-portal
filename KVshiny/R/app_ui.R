@@ -147,10 +147,13 @@ app_ui <- function(request) {
                 uiOutput('results_table'),
                 tags$br(),
               ),
+              
               column(
                 7,
+                fullscreen_this(tags$div(id = "view_panel",
                 fluidRow(
-                  fullscreen_this(NGLVieweROutput("structure", width = "100%", height = "600px"), click_id = "fullscreen")
+                  #fullscreen_this(NGLVieweROutput("structure", width = "100%", height = "600px"), click_id = "fullscreen")
+                  NGLVieweROutput("structure", width = "100%", height = "600px")
                   ),
                 fluidRow(
                   column(3, uiOutput("selection_pdb")),
@@ -165,7 +168,9 @@ app_ui <- function(request) {
                   column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
                   column(2, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
                 )
+              ),click_id = "fullscreen")
               )
+              
             )
           ),
           
@@ -219,6 +224,7 @@ app_ui <- function(request) {
                     ),
                     column(
                       7,
+                      fullscreen_this(tags$div(id = "view_panel_pg2",
                       fluidRow(
                         NGLVieweROutput("structure_pg2", width = "100%", height = "600px")
                       ),
@@ -231,16 +237,13 @@ app_ui <- function(request) {
                       ),
                       fluidRow(
                         column(3, uiOutput("show_interface_pg2")),
-                        column(3, uiOutput("protein_color_pg2")),
+                        column(2, uiOutput("protein_color_pg2")),
                         column(3, uiOutput("bg_color_pg2")),
-                        column(
-                          3,
-                          align = "center",
-                          uiOutput("snapshot_title_pg2"),
-                          uiOutput("snapshot_pg2")
-                        )
+                        column(2, align = "center", uiOutput("snapshot_title_pg2"), uiOutput("snapshot_pg2")),
+                        column(2, align = "center", uiOutput("fullscreen_title_pg2"), uiOutput("fullscreen_pg2"))
                       )
-                    )
+                    ), click_id = "fullscreen_pg2")
+                  )
                   )),
           
           #3th tab -> Help page
