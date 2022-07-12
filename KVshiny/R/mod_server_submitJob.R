@@ -113,7 +113,7 @@ submit_job <- function(input, output, pdb_name_click_load){
       
       return(get_run_id)
     } else{
-      shinyalert("Oops!", "An error occurred when submitting your job. Perhaps the input file is larger than what our server allows. If the problem persist please contact us", type = "error")
+      shinyalert("Oops!", "An error occurred when submitting your job. Perhaps the input file is larger than what our server allows or the input parameters are outside the allowed limits. Please read our Help page and if the problem persist please contact us", type = "error")
     }
     }
     

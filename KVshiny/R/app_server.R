@@ -181,6 +181,14 @@ app_server <- function( input, output, session ) {
           id = "snapshot_title",
           time = 0
         )
+        hideElement(
+          id = "fullscreen",
+          time = 0
+        )
+        hideElement(
+          id = "fullscreen_title",
+          time = 0
+        )
 
       }
 
@@ -274,6 +282,14 @@ app_server <- function( input, output, session ) {
       id = "snapshot_title_pg2",
       time = 0
     )
+    hideElement(
+      id = "fullscreen_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "fullscreen_title_pg2",
+      time = 0
+    )
   })
   #----------------------------------------------------
   
@@ -332,6 +348,14 @@ app_server <- function( input, output, session ) {
     )
     showElement(
       id = "snapshot_title",
+      time = 0
+    )
+    showElement(
+      id = "fullscreen",
+      time = 0
+    )
+    showElement(
+      id = "fullscreen_title",
       time = 0
     )
     
@@ -394,7 +418,7 @@ app_server <- function( input, output, session ) {
   observeEvent(input$input_snapshot, {
     take_snapshot(input = input, output = output, is_pg2 = FALSE)
   })
-  
+
   ##### View in Get latest results page (pg2)
   
   #Click view to visualize
@@ -444,6 +468,14 @@ app_server <- function( input, output, session ) {
     )
     showElement(
       id = "snapshot_title_pg2",
+      time = 0
+    )
+    showElement(
+      id = "fullscreen_pg2",
+      time = 0
+    )
+    showElement(
+      id = "fullscreen_title_pg2",
       time = 0
     )
     disable("view_str_pg2")

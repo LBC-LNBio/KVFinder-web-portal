@@ -24,7 +24,7 @@ kv_about <- function(){
     tags$p("The KVFinder-web service interface was developed using Shiny R package. Structure preprocessing is performed with Bio3D R package and 
                      molecular visualization uses the NGLVieweR engine."),
     tags$p(strong("Citing:"), "If you used KVFinder-web service, please refer to:"),
-    tags$p("XXXXXXXXXXXXXXXXXX"),
+    tags$p("Manuscript in submission"),
     tags$h5("parKVFinder"),
     tags$p("Parallel KVFinder, parKVFinder, is open-source (GPL v3.0) software designed for detection and spatial characterization of any type of biomolecular cavity. 
                      ParKVFinder inserts the target biomolecule in a 3D grid divided by regular voxels and applies a dual-probe algorithm, originally implemented in KVFinder. 
@@ -76,7 +76,6 @@ kv_about <- function(){
     tags$li("José Geraldo de Carvalho Pereira"),
     tags$li("Leandro Oliveira Bortot"),
     tags$li("Luiz Fernando Giolo Alves"),
-    tags$li("Maira Ribeiro Rodrigues"),
     tags$li("Paulo Sergio Lopes de Oliveira (Principal Investigator)"),
     tags$br(),
     tags$br(),

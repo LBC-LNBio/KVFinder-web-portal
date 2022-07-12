@@ -8,6 +8,7 @@
 #' @import NGLVieweR
 #' @import golem
 #' @import shinycssloaders
+#' @import shinyfullscreen
 #' @noRd
 #' 
 
@@ -90,7 +91,7 @@ app_ui <- function(request) {
       ),
       
       #Footer-----------------------------------------------------
-      footer = dashboardFooter(right = ("Developed by...")),
+      #footer = dashboardFooter(right = ("Developed by...")),
       
       
       #Dashboard body-----------------------------------------------
@@ -148,25 +149,27 @@ app_ui <- function(request) {
               ),
               column(
                 7,
-                fluidRow(NGLVieweROutput(
-                  "structure", width = "100%", height = "600px"
-                )),
+                fluidRow(
+                  fullscreen_this(NGLVieweROutput("structure", width = "100%", height = "600px"), click_id = "fullscreen")
+                  ),
                 fluidRow(
                   column(3, uiOutput("selection_pdb")),
                   column(3, uiOutput("cavity_color")),
                   column(3, uiOutput("protein_rep")),
                   column(3, uiOutput("protein_color_scheme"))
-                  
                 ),
                 fluidRow(
                   column(3, uiOutput("show_interface")),
-                  column(3, uiOutput("protein_color")),
+                  column(2, uiOutput("protein_color")),
                   column(3, uiOutput("bg_color")),
-                  column(3, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot"))
+                  column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
+                  column(2, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
                 )
               )
             )
           ),
+          
+          
           
           #2nd tab -> Get latest results
           tabItem(tabName = "check_kv_sidebar",

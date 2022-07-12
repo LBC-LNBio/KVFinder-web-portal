@@ -26,6 +26,8 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
     snapshot_title <- "snapshot_title_pg2"
     snapshot <- "snapshot_pg2"
     interface_res <- "interface_res_pg2"
+    fullscreen <- "fullscreen_pg2"
+    fullscreen_title <- "fullscreen_title_pg2"
     
     
   } else{
@@ -41,7 +43,8 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
     snapshot_title <- "snapshot_title"
     snapshot <- "snapshot"
     interface_res <- "interface_res"
-    
+    fullscreen <- "fullscreen"
+    fullscreen_title <- "fullscreen_title"
     
   }
   
@@ -111,10 +114,14 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2){
   output[[bg_color]] <- renderUI({ div(style = "font-size:12px;",
                                     selectInput(inputId = paste("input_", bg_color, sep = ""), label = div(style = "font-size:12px", "Background color"), 
                                                 choices = c( "black","white")))})
-  output[[snapshot_title]] <-  renderUI({ div(style = "font-size:12px;font-weight: bold", "Take a snapshot")})
+  output[[snapshot_title]] <-  renderUI({ div(style = "font-size:12px;font-weight: bold", "Snapshot")})
   
   output[[snapshot]] <- renderUI({ div(style = "font-size:12px;",
                                     actionButton(inputId = paste("input_", snapshot, sep = ""), label = "", 
                                                  width = 40, icon = icon("camera")))})
+  output[[fullscreen_title]] <-  renderUI({ div(style = "font-size:12px;font-weight: bold", "Fullscreen")})
+  output[[fullscreen]] <- renderUI({ div(style = "font-size:12px;",
+                                       actionButton(inputId = paste("input_", fullscreen, sep = ""), label = "", 
+                                                    width = 40, icon = icon("fullscreen",lib = "glyphicon")))})
   #----------------------------------------------------------------------------------------------------------------
 }
