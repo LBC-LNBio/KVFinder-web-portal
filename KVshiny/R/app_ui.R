@@ -1,4 +1,4 @@
-#' KVserver User-Interface
+                                                                                        #' KVserver User-Interface
 #' 
 #' @param request Internal parameter for `{shiny}`. 
 #'     DO NOT REMOVE.
@@ -152,8 +152,10 @@ app_ui <- function(request) {
                 7,
                 fullscreen_this(tags$div(id = "view_panel",
                 fluidRow(
+                  column(12 ,
                   #fullscreen_this(NGLVieweROutput("structure", width = "100%", height = "600px"), click_id = "fullscreen")
-                  NGLVieweROutput("structure", width = "100%", height = "600px")
+                  NGLVieweROutput("structure", width = "100%", height = "75vh")
+                  )
                   ),
                 fluidRow(
                   column(3, uiOutput("selection_pdb")),
