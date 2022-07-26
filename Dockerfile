@@ -1,5 +1,5 @@
 #FROM rocker/r-base:latest
-FROM rocker/shiny:4.1.1
+FROM rocker/shiny:4.2.0
 
 RUN apt-get update && apt-get install -y \
     libcurl4-gnutls-dev \
