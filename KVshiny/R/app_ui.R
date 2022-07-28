@@ -1,4 +1,4 @@
-#' KVserver User-Interface
+                                                                                        #' KVserver User-Interface
 #' 
 #' @param request Internal parameter for `{shiny}`. 
 #'     DO NOT REMOVE.
@@ -8,6 +8,7 @@
 #' @import NGLVieweR
 #' @import golem
 #' @import shinycssloaders
+#' @import shinyfullscreen
 #' @noRd
 #' 
 
@@ -90,7 +91,7 @@ app_ui <- function(request) {
       ),
       
       #Footer-----------------------------------------------------
-      footer = dashboardFooter(right = ("Developed by...")),
+      #footer = dashboardFooter(right = ("Developed by...")),
       
       
       #Dashboard body-----------------------------------------------
@@ -146,27 +147,36 @@ app_ui <- function(request) {
                 uiOutput('results_table'),
                 tags$br(),
               ),
+              
               column(
                 7,
-                fluidRow(NGLVieweROutput(
-                  "structure", width = "100%", height = "400px"
-                )),
+                fullscreen_this(tags$div(id = "view_panel",
+                fluidRow(
+                  column(12 ,
+                  #fullscreen_this(NGLVieweROutput("structure", width = "100%", height = "600px"), click_id = "fullscreen")
+                  NGLVieweROutput("structure", width = "100%", height = "75vh")
+                  )
+                  ),
                 fluidRow(
                   column(3, uiOutput("selection_pdb")),
                   column(3, uiOutput("cavity_color")),
                   column(3, uiOutput("protein_rep")),
                   column(3, uiOutput("protein_color_scheme"))
-                  
                 ),
                 fluidRow(
                   column(3, uiOutput("show_interface")),
-                  column(3, uiOutput("protein_color")),
+                  column(2, uiOutput("protein_color")),
                   column(3, uiOutput("bg_color")),
-                  column(3, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot"))
+                  column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
+                  column(2, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
                 )
+              ),click_id = "fullscreen")
               )
+              
             )
           ),
+          
+          
           
           #2nd tab -> Get latest results
           tabItem(tabName = "check_kv_sidebar",
@@ -216,8 +226,9 @@ app_ui <- function(request) {
                     ),
                     column(
                       7,
+                      fullscreen_this(tags$div(id = "view_panel_pg2",
                       fluidRow(
-                        NGLVieweROutput("structure_pg2", width = "100%", height = "400px")
+                        NGLVieweROutput("structure_pg2", width = "100%", height = "600px")
                       ),
                       fluidRow(
                         column(3, uiOutput("selection_pdb_pg2")),
@@ -228,16 +239,13 @@ app_ui <- function(request) {
                       ),
                       fluidRow(
                         column(3, uiOutput("show_interface_pg2")),
-                        column(3, uiOutput("protein_color_pg2")),
+                        column(2, uiOutput("protein_color_pg2")),
                         column(3, uiOutput("bg_color_pg2")),
-                        column(
-                          3,
-                          align = "center",
-                          uiOutput("snapshot_title_pg2"),
-                          uiOutput("snapshot_pg2")
-                        )
+                        column(2, align = "center", uiOutput("snapshot_title_pg2"), uiOutput("snapshot_pg2")),
+                        column(2, align = "center", uiOutput("fullscreen_title_pg2"), uiOutput("fullscreen_pg2"))
                       )
-                    )
+                    ), click_id = "fullscreen_pg2")
+                  )
                   )),
           
           #3th tab -> Help page

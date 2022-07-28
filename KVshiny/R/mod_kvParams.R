@@ -44,7 +44,7 @@ kv_params <- function(id, input_type){
                   min = 0,
                   max = 50000,
                   step = 1,
-                  width = 60)
+                  width = 100)
     return(num_input)
   }
 
