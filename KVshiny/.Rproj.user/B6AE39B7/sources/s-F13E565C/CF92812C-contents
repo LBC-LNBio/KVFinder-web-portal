@@ -4,7 +4,6 @@
 #' @param output shiny output
 #' @param result_pdb_list a list returned by check function
 #' @param is_pg2 logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page). 
-#' @param scheme_color_list scheme_color_list
 #' 
 #' @import shiny
 #' @import NGLVieweR
@@ -13,7 +12,7 @@
 #' @export
 #' 
 
-create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_color_list){
+create_init_scene <- function(input, output, result_pdb_list, is_pg2){
   if(is_pg2 == TRUE){
     structure <- "structure_pg2"
     selection_pdb <-"selection_pdb_pg2"

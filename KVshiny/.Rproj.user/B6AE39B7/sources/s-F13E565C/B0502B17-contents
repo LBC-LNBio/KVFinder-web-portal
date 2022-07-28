@@ -308,7 +308,7 @@ app_server <- function( input, output, session ) {
     protein_col_scheme_list <<- c(protein_col_scheme_list, "Residue index")
     #protein_col_list <<- c(protein_col_list, "white")
     #Create initial scene
-    create_init_scene(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list)
+    create_init_scene(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
     # Show all elements that were hided
     showElement(
       id = "structure",
@@ -377,7 +377,7 @@ app_server <- function( input, output, session ) {
     #create a list of representations 
     protein_rep_list <<- c(protein_rep_list, current_rep)
     #Create a work scene
-    create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list)
+    create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE)
     
     #clean protein color selector
     updateSelectInput(session,'input_protein_color', #This update is made to clean the protein color selector
@@ -399,7 +399,7 @@ app_server <- function( input, output, session ) {
   #change biomolecular structure color
   observeEvent(input$input_protein_color_scheme, {
     #print("hereScheme")
-    protein_col_scheme_list <<- change_str_color_scheme(input = input, output = output, protein_col_scheme_list = protein_col_scheme_list,protein_rep_list = protein_rep_list, is_pg2 = FALSE, scheme_color_list = scheme_color_list)
+    protein_col_scheme_list <<- change_str_color_scheme(input = input, output = output, protein_col_scheme_list = protein_col_scheme_list,protein_rep_list = protein_rep_list, is_pg2 = FALSE)
     #print(protein_col_scheme_list)
     updateSelectInput(session,'input_protein_color',
                      # choices = c("","white", "red", "blue", "green","yellow"),
@@ -428,7 +428,7 @@ app_server <- function( input, output, session ) {
     #protein_col_scheme_list <<- c(protein_col_scheme_list, "white")
     
     #Create initial scene
-    create_init_scene(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE,scheme_color_list = scheme_color_list )
+    create_init_scene(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE)
     # Show visualization states and buttons if they are hided by the previous results checking
     showElement(
       id = "structure_pg2",
@@ -490,7 +490,7 @@ app_server <- function( input, output, session ) {
     #create a list of representations 
     protein_rep_list <<- c(protein_rep_list, current_rep)
     #Create work scene
-    create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list)
+    create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE)
     
     #clean protein color selector
     updateSelectInput(session,'input_protein_color_pg2', #This updation is made to clean the protein color selector 
@@ -507,7 +507,7 @@ app_server <- function( input, output, session ) {
     }, ignoreInit = F, ignoreNULL = T)
     #change biomolecular structure color
     observeEvent(input$input_protein_color_scheme_pg2, {
-      protein_col_scheme_list <<- change_str_color_scheme(input = input, output = output, protein_col_scheme_list = protein_col_scheme_list, is_pg2 = TRUE, scheme_color_list= scheme_color_list)
+      protein_col_scheme_list <<- change_str_color_scheme(input = input, output = output, protein_col_scheme_list = protein_col_scheme_list, is_pg2 = TRUE)
       updateSelectInput(session,'input_protein_color_pg2', #This updation is made to clean the protein color selector 
                         # choices = c("","white", "red", "blue", "green","yellow"),
                         selected = '') 

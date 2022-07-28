@@ -7,14 +7,13 @@
 #' @param protein_col_scheme_list
 #' @param result_pdb_list a list returned by check function
 #' @param is_pg2 logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page). 
-#' @param scheme_color_list scheme_color_list
 #' @import shiny
 #' @import NGLVieweR
 #'
 #' @export
 #' 
 
-create_work_scene <- function(input, output, protein_rep_list, protein_col_list, protein_col_scheme_list, result_pdb_list, is_pg2, scheme_color_list){
+create_work_scene <- function(input, output, protein_rep_list, protein_col_list, protein_col_scheme_list, result_pdb_list, is_pg2){
   if(is_pg2 == TRUE){
     input_protein_rep <- "input_protein_rep_pg2"
     structure <- "structure_pg2"

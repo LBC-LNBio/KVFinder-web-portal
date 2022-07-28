@@ -1,0 +1,26 @@
+{
+    "id": "015F7B79",
+    "path": "~/Projetos/github/KVshiny-docker/KVshiny/R/mod_ui_kvAbout.R",
+    "project_path": "R/mod_ui_kvAbout.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1657067038872.0,
+    "source_on_save": false,
+    "relative_order": 12,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "67,42",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1657067318,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1657067318256,
+    "read_only": false,
+    "read_only_alternatives": []
+}
