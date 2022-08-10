@@ -1,4 +1,4 @@
-                                                                                        #' KVserver User-Interface
+#' KVserver User-Interface
 #' 
 #' @param request Internal parameter for `{shiny}`. 
 #'     DO NOT REMOVE.
@@ -18,11 +18,6 @@ app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
-    # titlePanel(
-    #   windowTitle = "KVFinder",
-    #   title = tags$head(tags$link(rel="shortcut icon",
-    #                               href="www/kvfinder_favicon.png"))),
-  
     #____________________________________________________________
     dashboardPage(
       #Header----------------------------------------------------
@@ -150,10 +145,10 @@ app_ui <- function(request) {
               
               column(
                 7,
+                #function to fulscreen the entire div that contains the NGL viewer and all the othe buttons
                 fullscreen_this(tags$div(id = "view_panel",
                 fluidRow(
                   column(12 ,
-                  #fullscreen_this(NGLVieweROutput("structure", width = "100%", height = "600px"), click_id = "fullscreen")
                   NGLVieweROutput("structure", width = "100%", height = "75vh")
                   )
                   ),
@@ -175,9 +170,7 @@ app_ui <- function(request) {
               
             )
           ),
-          
-          
-          
+    
           #2nd tab -> Get latest results
           tabItem(tabName = "check_kv_sidebar",
                   fluidRow(
@@ -235,7 +228,6 @@ app_ui <- function(request) {
                         column(3, uiOutput("cavity_color_pg2")),
                         column(3, uiOutput("protein_rep_pg2")),
                         column(3, uiOutput("protein_color_scheme_pg2")),
-                        #column(3, uiOutput("protein_color_pg2"))
                       ),
                       fluidRow(
                         column(3, uiOutput("show_interface_pg2")),
@@ -255,12 +247,10 @@ app_ui <- function(request) {
           #4th tab -> About page
           tabItem(tabName = "about_kv_sidebar",
                   kv_about())
-          
         )
       )
     )
   )
-  
 }
 
 #' Add external Resources to the Application
@@ -276,14 +266,9 @@ app_ui <- function(request) {
 
 golem_add_external_resources <- function() {
   add_resource_path('www', app_sys('app/www'))
-# 
   tags$head(tags$link(rel="shortcut icon",href="www/new_icon/kvfinder_favicon_v2.png"),
             bundle_resources(path = app_sys('app/www'),
                              app_title = 'KVfinder'))
-# 
-#   # Add here other external resources
-#   # for example, you can add shinyalert::useShinyalert() )
-#   #ico = "favicon",resources_path = "www", ext = "ico"
 }
 
 
