@@ -1,4 +1,4 @@
-#' Create jumbotron of the main Run KVFinder page
+#' Function that creates the jumbotron of the main Run KVFinder page
 #'
 #' @import shiny
 #'
