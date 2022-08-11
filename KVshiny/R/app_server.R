@@ -57,29 +57,16 @@ app_server <- function( input, output, session ) {
   #------------------------------------------------------
   #Upload PDB section 
   observeEvent(input$input_pdb, {
+    #run process_upload of mod_server_upload module to create boxes and buttons of run mode
     process_upload(input = input, output = output)
-    
-    #run_mode_list <<- c()
-    #lig_name_list <<- c()
-
-  #   if(input$run_mode == "lig_mode"){
-  #     #process PDB according to ligand mode
-  #     process_upload_ligmode(input = input, output = output)
-  #   } else { #not ligand mode
-  #     #process PDB according to all the other modes: default, customized and box mode.
-  #     process_upload(input = input, output = output)
-  #   }
-  #   
    })
   #-----------------------------------------------------
   
   #-----------------------------------------------------
   #Fetch PDB section
   observeEvent(input$send_pdb_id, {
-    #run_mode_list <<- c()
-    #lig_name_list <<- c()
+    #save number of clicks in load button
     pdb_name_click_load <<- input$pdb_id
-    
     #check if the PDB code is valid by using get_nonstand  
     showModal(modalDialog("Loading and checking PDB...", footer=NULL,fade = FALSE))
     get_nonstand_check <- report_nonstand(pdb_input = input$pdb_id)
@@ -89,16 +76,8 @@ app_server <- function( input, output, session ) {
     } else{
       print("PDB ID ok")
     }
-    
+    #run process_fetch of mod_server_fetch module to create boxes and buttons of run mode
     process_fetch(input = input, output = output)
-    
-    # if(input$run_mode == "lig_mode"){
-    #   #process PDB according to ligand mode
-    #   process_fetch_ligmode(input = input, output = output)
-    # } else { #not ligand mode
-    #   #process PDB according to all the other modes: default, customized and box mode.
-    #   process_fetch(input = input, output = output)
-    # }
   })
   
   #----------------------------------------------------

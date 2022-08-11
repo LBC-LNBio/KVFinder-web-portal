@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_upload.R
 \name{process_upload}
 \alias{process_upload}
-\title{Steps to process  uploaded PDB in default, customized or box mode}
+\title{Function that creates the boxes and buttons of the run mode in upload mode}
 \usage{
 process_upload(input, output)
 }
@@ -12,5 +12,5 @@ process_upload(input, output)
 \item{output}{shiny output}
 }
 \description{
-Steps to process  uploaded PDB in default, customized or box mode
+Function that creates the boxes and buttons of the run mode in upload mode
 }

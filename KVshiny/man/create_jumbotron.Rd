@@ -2,10 +2,10 @@
 % Please edit documentation in R/mod_ui_jumbotron.R
 \name{create_jumbotron}
 \alias{create_jumbotron}
-\title{Create jumbotron of main Run KVFinder page}
+\title{Function that creates the jumbotron of the main Run KVFinder page}
 \usage{
 create_jumbotron()
 }
 \description{
-Create jumbotron of main Run KVFinder page
+Function that creates the jumbotron of the main Run KVFinder page
 }

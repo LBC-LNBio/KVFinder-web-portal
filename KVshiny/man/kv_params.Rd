@@ -2,10 +2,10 @@
 % Please edit documentation in R/mod_kvParams.R
 \name{kv_params}
 \alias{kv_params}
-\title{Create radio buttons of the run mode in main Run KVFinder page}
+\title{Function that creates radio buttons of the KVFinder parameters}
 \usage{
 kv_params(id, input_type)
 }
 \description{
-Create radio buttons of the run mode in main Run KVFinder page
+Function that creates radio buttons of the KVFinder parameters
 }
