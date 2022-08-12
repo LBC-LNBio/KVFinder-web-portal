@@ -4,7 +4,7 @@
 #' @param output shiny output
 #' @param result_pdb_list a list returned by check results function
 #' @param is_pg2 logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page). 
-#' @param scheme_color_list list of protein color schemes
+#' @param scheme_color_list a named list of possible protein color schemes
 #' 
 #' @import shiny
 #' @import NGLVieweR

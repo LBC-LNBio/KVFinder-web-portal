@@ -11,7 +11,7 @@
 app_server <- function( input, output, session ) {
   
   #-----------------------------------------------
-  #create global variables
+  #initialize global variables to be used inside some funtions 
   pdb_str <- NULL
   retrieve_input_pdb <- NULL
   cav_out_names <- NULL
@@ -28,22 +28,17 @@ app_server <- function( input, output, session ) {
   protein_col_scheme_list <- c()
   current_prot_color <- c()
   current_prot_color_scheme <- c()
-  
   current_run_id <- c()
   result_pdb <- c()
-  
   include_list <- c()
   get_nonstand <- NULL
-  
   pdb_name_click_load <- "init"
-  
   scheme_color_list <- list("Residue index" = "residueindex",
                             "Chain ID" = "chainid", 
                             "Hidrophobicity" = "hydrophobicity", 
                             "Secondary Structure" = "sstruc")
   #---------------------------------------------
-  
-  
+
   #Point to KV help page when click in "More" button in main page 
   observeEvent(input$more_button,{
     updateTabItems(session = session, inputId = "sidebarmenu", selected = "help_kv_sidebar") 
@@ -490,6 +485,4 @@ app_server <- function( input, output, session ) {
   })
   
   #----------------------------------------------------
-  
-  
 }

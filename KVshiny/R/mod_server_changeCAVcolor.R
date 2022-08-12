@@ -1,4 +1,4 @@
-#' Change color of cavities
+#' Function that changes color of the cavities in NGL viewer
 #' 
 #' @param input shiny input
 #' @param output shiny output
