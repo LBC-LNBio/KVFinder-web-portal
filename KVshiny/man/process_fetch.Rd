@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_fetch.R
 \name{process_fetch}
 \alias{process_fetch}
-\title{Steps to process  PDB from fetch in default, customized or box mode}
+\title{Function that creates the boxes and buttons of the run mode in fetch mode}
 \usage{
 process_fetch(input, output)
 }
@@ -12,5 +12,5 @@ process_fetch(input, output)
 \item{output}{shiny output}
 }
 \description{
-Steps to process  PDB from fetch in default, customized or box mode
+Function that creates the boxes and buttons of the run mode in fetch mode
 }

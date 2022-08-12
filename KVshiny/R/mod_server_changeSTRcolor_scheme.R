@@ -5,6 +5,7 @@
 #' @param protein_col_scheme_list list of previous selected colors
 #' @param protein_rep_list used only to monitor if the scene is a initial or a work scene
 #' @param is_pg2 logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page). 
+#' @param scheme_color_list scheme_color_list
 #' 
 #' @import shiny
 #' @import NGLVieweR
@@ -12,7 +13,7 @@
 #' @export
 #' 
 
-change_str_color_scheme <- function(input, output, protein_col_scheme_list, protein_rep_list, is_pg2){
+change_str_color_scheme <- function(input, output, protein_col_scheme_list, protein_rep_list, is_pg2, scheme_color_list){
   if(is_pg2 == TRUE){
     input_protein_color_scheme <- "input_protein_color_scheme_pg2"
     structure <- "structure_pg2"

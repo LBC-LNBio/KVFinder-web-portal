@@ -1,9 +1,9 @@
-#' Steps to process uploaded or fetched PDB 
+#' Function that process the uploaded or fetched PDB. This function is called in mod_server_submitJob module. 
 #' 
 #' @param input shiny input
 #' @param output shiny output
-#' @param get_nonstand get_nonstand
-#' @param mode upload or fetch 
+#' @param get_nonstand vector of non-standard residues from the input PDB 
+#' @param mode select between "upload" or "fetch" modes 
 #' 
 #' @import shiny
 #' @import shinyalert
@@ -11,23 +11,27 @@
 #' @export
 #' 
 pdb_process <- function(input, output, get_nonstand, mode){
+  #if the PDB was uploaded
   if(mode == "upload"){
+    #path of the pdb input
     pdb_input = input$input_pdb$datapath
+    #list of non-standard residues that will be included in the analysis
     include_list = input$select_nonstand1
-  } else{
+  } else{ #if the PDB was fetched by the ID
+    #get the pdb ID
     pdb_input = input$pdb_id
+    #list of non-standard residues that will be included in the analysis
     include_list = input$select_nonstand2
   }
-  
+  #create a processed PDB for each run mode: default, customized, ligand or box mode
   if(input$run_mode == "mode_def"){
     pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input,nonstand_list = get_nonstand, include_list = include_list)
-    #print(pdb_processed)
     pdb_processed <- list(pdb_processed = pdb_processed)
   } else if(input$run_mode == "mode_cust"){
     pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input,nonstand_list = get_nonstand, include_list = include_list)
     pdb_processed <- list(pdb_processed = pdb_processed)
   } else if(input$run_mode == "box_mode"){
-    #check the target resides if KVFinder is running in box mode
+    #in the case of running the box mode, we have to check if the target residues are correctly in the PDB input
     check_residues = check_residues_name(pdb_input = pdb_input, target_residues = input$box_residues)
     if(check_residues == FALSE){
       shinyalert("Oops!", "Please insert a valid list of residues for box mode run.", type = "error")
@@ -36,21 +40,14 @@ pdb_process <- function(input, output, get_nonstand, mode){
       pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input,nonstand_list = get_nonstand, include_list = include_list)
       pdb_processed <- list(pdb_processed = pdb_processed)
     }
-  } else { #lig mode
-    #get lig pdb 
+  } else { #enter in the ligand mode
+    #extract ligand pdb 
     pdb_ligand_processed <- get_ligand_pdb(pdb_input = pdb_input, ligand_name = input$lig_name)
-    #update nonstand to does not include lig 
-    get_nonstand_noLig <- setdiff(get_nonstand,input$lig_name) #get all non stand but the ligand
+    #update nonstandard residues list to exclude the ligand 
+    get_nonstand_noLig <- setdiff(get_nonstand,input$lig_name) #get all non-standand but the ligand
     #by default remove all non standards residues and the ligand 
     pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input,nonstand_list = c(get_nonstand,input$lig_name), include_list = include_list)
-    #->>>>>>>>>>>> #pdb_processed <<- deal_sele_nonstand(pdb_input = input$input_pdb$datapath,nonstand_list = input$lig_name, include_list = NULL) #remove ligand ????????????????
     pdb_processed <- list(pdb_processed = pdb_processed, pdb_lig_processed = pdb_ligand_processed)
   }
-  
-
-    return(pdb_processed)  
-
-  
-  
-  
+  return(pdb_processed)  
 }

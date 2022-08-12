@@ -11,7 +11,8 @@ create_work_scene(
   protein_col_list,
   protein_col_scheme_list,
   result_pdb_list,
-  is_pg2
+  is_pg2,
+  scheme_color_list
 )
 }
 \arguments{
@@ -23,9 +24,13 @@ create_work_scene(
 
 \item{protein_col_list}{list of previous biomolecular structure colors}
 
+\item{protein_col_scheme_list}{list of protein color schemes}
+
 \item{result_pdb_list}{a list returned by check function}
 
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
+
+\item{scheme_color_list}{a named list of possible protein color schemes}
 }
 \description{
 Create work scene to allow changes in NGL viewer

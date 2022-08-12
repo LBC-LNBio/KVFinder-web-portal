@@ -2,19 +2,21 @@
 % Please edit documentation in R/mod_server_createINITscene.R
 \name{create_init_scene}
 \alias{create_init_scene}
-\title{Create initial scene in NGL viewer}
+\title{Create an initial scene in NGL viewer}
 \usage{
-create_init_scene(input, output, result_pdb_list, is_pg2)
+create_init_scene(input, output, result_pdb_list, is_pg2, scheme_color_list)
 }
 \arguments{
 \item{input}{shiny input}
 
 \item{output}{shiny output}
 
-\item{result_pdb_list}{a list returned by check function}
+\item{result_pdb_list}{a list returned by check results function}
 
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
+
+\item{scheme_color_list}{list of protein color schemes}
 }
 \description{
-Create initial scene in NGL viewer
+Create an initial scene in NGL viewer
 }

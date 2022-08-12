@@ -1,0 +1,26 @@
+{
+    "id": "D1EFD8E6",
+    "path": "~/Projetos/github/KVshiny-docker/KVshiny/R/mod_server_changeSTRcolor.R",
+    "project_path": "R/mod_server_changeSTRcolor.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1654451051214.0,
+    "source_on_save": false,
+    "relative_order": 18,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "27,23",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1656625585,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1656625585815,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -2,10 +2,10 @@
 % Please edit documentation in R/mod_kvHelp.R
 \name{kv_help}
 \alias{kv_help}
-\title{Create radio buttons of the run mode in main Run KVFinder page}
+\title{Function that creates the help page of the KVFinder server}
 \usage{
 kv_help()
 }
 \description{
-Create radio buttons of the run mode in main Run KVFinder page
+Function that creates the help page of the KVFinder server
 }

@@ -9,7 +9,8 @@ change_str_color_scheme(
   output,
   protein_col_scheme_list,
   protein_rep_list,
-  is_pg2
+  is_pg2,
+  scheme_color_list
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ change_str_color_scheme(
 \item{protein_rep_list}{used only to monitor if the scene is a initial or a work scene}
 
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
+
+\item{scheme_color_list}{scheme_color_list}
 }
 \description{
 Change color scheme of biomolecular structure

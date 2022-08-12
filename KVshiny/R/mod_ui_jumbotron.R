@@ -1,4 +1,4 @@
-#' Create jumbotron of main Run KVFinder page
+#' Function that creates the jumbotron of the main Run KVFinder page
 #'
 #' @import shiny
 #'
@@ -13,7 +13,6 @@ create_jumbotron <- function() {
         "Welcome to the KVFinder-web service!",
         style = "margin-left: .5rem;"
       ),
-      #img(class = "col-sm-8" , src = "https://lnbio.cnpem.br/wp-content/uploads/2022/01/space-segmentation.png"),
       img(class = "col-sm-8" , src = "www/cover_all3.png"),
       h5(
         "A web service for cavity detection and characterization in any type of biomolecular structure",
