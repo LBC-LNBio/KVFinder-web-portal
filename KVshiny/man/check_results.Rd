@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_checkResults.R
 \name{check_results}
 \alias{check_results}
-\title{Check results}
+\title{Function that check and ouput results in the KVFinder interface}
 \usage{
 check_results(input, output, run_id, is_pg2)
 }
@@ -16,5 +16,5 @@ check_results(input, output, run_id, is_pg2)
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
 }
 \description{
-Check results
+Function that check and ouput results in the KVFinder interface
 }

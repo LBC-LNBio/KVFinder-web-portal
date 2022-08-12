@@ -1,10 +1,10 @@
-#' Create initial scene in NGL viewer
+#' Create an initial scene in NGL viewer
 #' 
 #' @param input shiny input
 #' @param output shiny output
-#' @param result_pdb_list a list returned by check function
+#' @param result_pdb_list a list returned by check results function
 #' @param is_pg2 logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page). 
-#' @param scheme_color_list scheme_color_list
+#' @param scheme_color_list list of protein color schemes
 #' 
 #' @import shiny
 #' @import NGLVieweR
@@ -14,6 +14,7 @@
 #' 
 
 create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_color_list){
+  #if in secondary page ("get latest results" page)
   if(is_pg2 == TRUE){
     structure <- "structure_pg2"
     selection_pdb <-"selection_pdb_pg2"
@@ -29,8 +30,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     interface_res <- "interface_res_pg2"
     fullscreen <- "fullscreen_pg2"
     fullscreen_title <- "fullscreen_title_pg2"
-    
-    
+    #if in the main page
   } else{
     structure <- "structure"
     selection_pdb <- "selection_pdb"
@@ -49,80 +49,69 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     
   }
   
-  print("inside_InitScene")
   #-------------------------------------------------------------------------------------------------------
-  #Create structure view 
+  #Create structure viewer 
   #This initial scene is only created to start a structure Representation (invisible - except cavities) that will be updated and changes in view_create_work_scene 
   output[[structure]] <- renderNGLVieweR({
-  #load pdb with protein and cavities
-  pdb_all <- paste(result_pdb_list$retrieve_input_pdb, result_pdb_list$result_pdb_cav,sep = "\n")
-  #create initial scene
-  NGLVieweR(pdb_all,format = "pdb") %>%
-    addRepresentation("cartoon",
-                      param = list(name = "protein_init_cartoon", colorScheme = "residueindex", visible = TRUE)
-    ) %>%
-    addRepresentation("point", param = list(sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
-    ) %>%
-    stageParameters(backgroundColor = "black") %>%
-    setQuality("high") %>%
-    setFocus(0)
+    #get input protein PDB with output cavities
+    pdb_all <- paste(result_pdb_list$retrieve_input_pdb, result_pdb_list$result_pdb_cav,sep = "\n")
+    #create initial scene
+    NGLVieweR(pdb_all,format = "pdb") %>%
+      #start protein with visible cartoon representation and name that representation as "protein_init_cartoon"
+      addRepresentation("cartoon",
+                        param = list(name = "protein_init_cartoon", colorScheme = "residueindex", visible = TRUE)
+      ) %>%
+      #start cavity with points
+      addRepresentation("point", param = list(sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
+      ) %>%
+      stageParameters(backgroundColor = "black") %>%
+      setQuality("high") %>%
+      setFocus(0)
   })
-
+  
   #---------------------------------------------------------------------------------------------------------
-  #create view buttons
+  #create viewer buttons
+  #select cavity button
   output[[selection_pdb]] <- renderUI({
     div(style = "font-size:12px;",
         selectInput(inputId = select_cavity, label = div(style = "font-size:12px", "Show cavity"), 
                     choices = c("All",result_pdb_list$result_cav_names)))})
-  
-
-    output[[show_interface]] <- renderUI({
-      div(style = "font-size:12px;",
-          checkboxInput(inputId = interface_res, label = div(style = "font-size:12px;display:inline-block", "Show interface residues")))})
-    
-
-  
+  #show interface button
+  output[[show_interface]] <- renderUI({
+    div(style = "font-size:12px;",
+        checkboxInput(inputId = interface_res, label = div(style = "font-size:12px;display:inline-block", "Show interface residues")))})
+  #protein color scheme selector
   output[[protein_color_scheme]] <- renderUI({ div(style = "font-size:12px;",
-                                         selectInput(inputId = paste("input_",protein_color_scheme, sep = ""), label = div(style = "font-size:12px", "Protein color scheme"),
-                                                     choices = names(scheme_color_list)))})
+                                                   selectInput(inputId = paste("input_",protein_color_scheme, sep = ""), label = div(style = "font-size:12px", "Protein color scheme"),
+                                                               choices = names(scheme_color_list)))})
+  #protein color selector
   output[[protein_color]] <- renderUI({ div(style = "font-size:12px;",
-                                           #selectInput(inputId = paste("input_",protein_color, sep = ""), label = div(style = "font-size:12px", "Protein color"), 
-                                          #             choices = c("","white", "red", "blue", "green","yellow"))
-                                          # colorSelectorDrop(
-                                          #   inputId = paste("input_",protein_color, sep = ""), label = div(style = "font-size:12px", "Protein color"),
-                                          #   choices = c("", "#FF00FF",
-                                          #               "0xFF0000", "0xFF0000",
-                                          #               "0xFF0000"),
-                                          #   display_label = TRUE,
-                                          #   circle = FALSE,
-                                          #   ncol=1,
-                                          #   up=TRUE)
-                                          colourpicker::colourInput(paste("input_",protein_color, sep = ""), 
-                                                                    label = div(style = "font-size:12px", "Protein color"),
-                                                                    value = "white",
-                                                                    showColour = "background",
-                                                                    palette = "limited")
-                                           )})
-  
+                                            colourpicker::colourInput(paste("input_",protein_color, sep = ""), 
+                                                                      label = div(style = "font-size:12px", "Protein color"),
+                                                                      value = "white",
+                                                                      showColour = "background",
+                                                                      palette = "limited"))})
+  #cavity color selector
   output[[cavity_color]] <- renderUI({ div(style = "font-size:12px;",
-                                        selectInput(inputId = paste("input_",cavity_color, sep = ""), label = div(style = "font-size:12px", "Cavity color"), 
-                                                    choices = c( "white","red", "blue", "green","yellow")))})
-  
+                                           selectInput(inputId = paste("input_",cavity_color, sep = ""), label = div(style = "font-size:12px", "Cavity color"), 
+                                                       choices = c( "white","red", "blue", "green","yellow")))})
+  #protein representation selector
   output[[protein_rep]] <- renderUI({ div(style = "font-size:12px;",
-                                       selectInput(inputId = paste("input_", protein_rep, sep = ""), label = div(style = "font-size:12px", "Protein representation"), 
-                                                   choices = c("cartoon","point", "ball+stick", "line", "ribbon","spacefill", "surface")))})
-  
+                                          selectInput(inputId = paste("input_", protein_rep, sep = ""), label = div(style = "font-size:12px", "Protein representation"), 
+                                                      choices = c("cartoon","point", "ball+stick", "line", "ribbon","spacefill", "surface")))})
+  #background color selector
   output[[bg_color]] <- renderUI({ div(style = "font-size:12px;",
-                                    selectInput(inputId = paste("input_", bg_color, sep = ""), label = div(style = "font-size:12px", "Background color"), 
-                                                choices = c( "black","white")))})
+                                       selectInput(inputId = paste("input_", bg_color, sep = ""), label = div(style = "font-size:12px", "Background color"), 
+                                                   choices = c( "black","white")))})
+  #snapshot button
   output[[snapshot_title]] <-  renderUI({ div(style = "font-size:12px;font-weight: bold", "Snapshot")})
-  
   output[[snapshot]] <- renderUI({ div(style = "font-size:12px;",
-                                    actionButton(inputId = paste("input_", snapshot, sep = ""), label = "", 
-                                                 width = 40, icon = icon("camera")))})
+                                       actionButton(inputId = paste("input_", snapshot, sep = ""), label = "", 
+                                                    width = 40, icon = icon("camera")))})
+  #fullscreen button
   output[[fullscreen_title]] <-  renderUI({ div(style = "font-size:12px;font-weight: bold", "Fullscreen")})
   output[[fullscreen]] <- renderUI({ div(style = "font-size:12px;",
-                                       actionButton(inputId = paste("input_", fullscreen, sep = ""), label = "", 
-                                                    width = 40, icon = icon("fullscreen",lib = "glyphicon")))})
+                                         actionButton(inputId = paste("input_", fullscreen, sep = ""), label = "", 
+                                                      width = 40, icon = icon("fullscreen",lib = "glyphicon")))})
   #----------------------------------------------------------------------------------------------------------------
 }

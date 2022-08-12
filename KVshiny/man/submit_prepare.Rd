@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_prepareSubmission.R
 \name{submit_prepare}
 \alias{submit_prepare}
-\title{Prepare the input file for server submission}
+\title{Function that creates a list containing the parameters to KVFinder server submission. It is called in mod_server_submitJob module.}
 \usage{
 submit_prepare(
   pdb_path,
@@ -19,6 +19,31 @@ submit_prepare(
   lig_cutoff
 )
 }
+\arguments{
+\item{pdb_path}{pdb path.}
+
+\item{ligand_path}{ligand path.}
+
+\item{whole_protein_mode}{logical. True if the run mode use the entire protein.}
+
+\item{ligand_mode}{logical. True if the ligand mode is chosen.}
+
+\item{box_mode}{logical. True if the box mode is chosen.}
+
+\item{box_residues}{list of residues used in box mode.}
+
+\item{probe_in}{probe in value.}
+
+\item{probe_out}{probe out value.}
+
+\item{volume_cutoff}{cutoff volume value.}
+
+\item{removal_distance}{removal distance value}
+
+\item{padding}{padding value}
+
+\item{lig_cutoff}{cutoff ligand value}
+}
 \description{
-Prepare the input file for server submission
+Function that creates a list containing the parameters to KVFinder server submission. It is called in mod_server_submitJob module.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_submitJob.R
 \name{submit_job}
 \alias{submit_job}
-\title{Submit job}
+\title{Function that submits the KVFinder job to the server}
 \usage{
 submit_job(input, output, pdb_name_click_load)
 }
@@ -11,8 +11,8 @@ submit_job(input, output, pdb_name_click_load)
 
 \item{output}{shiny output}
 
-\item{pdb_name_click_load}{pdb_name_click_load}
+\item{pdb_name_click_load}{variable of the number of clicks on load button}
 }
 \description{
-Submit job
+Function that submits the KVFinder job to the server
 }

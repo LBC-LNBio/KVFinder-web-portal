@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_pdbProcess.R
 \name{pdb_process}
 \alias{pdb_process}
-\title{Steps to process uploaded or fetched PDB}
+\title{Function that process the uploaded or fetched PDB. This function is called in mod_server_submitJob module.}
 \usage{
 pdb_process(input, output, get_nonstand, mode)
 }
@@ -11,10 +11,10 @@ pdb_process(input, output, get_nonstand, mode)
 
 \item{output}{shiny output}
 
-\item{get_nonstand}{get_nonstand}
+\item{get_nonstand}{vector of non-standard residues from the input PDB}
 
-\item{mode}{upload or fetch}
+\item{mode}{select between "upload" or "fetch" modes}
 }
 \description{
-Steps to process uploaded or fetched PDB
+Function that process the uploaded or fetched PDB. This function is called in mod_server_submitJob module.
 }
