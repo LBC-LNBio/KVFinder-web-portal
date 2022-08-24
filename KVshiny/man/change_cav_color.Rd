@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_changeCAVcolor.R
 \name{change_cav_color}
 \alias{change_cav_color}
-\title{Change color of cavities}
+\title{Function that changes color of the cavities in NGL viewer}
 \usage{
 change_cav_color(input, output, is_pg2)
 }
@@ -14,5 +14,5 @@ change_cav_color(input, output, is_pg2)
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
 }
 \description{
-Change color of cavities
+Function that changes color of the cavities in NGL viewer
 }

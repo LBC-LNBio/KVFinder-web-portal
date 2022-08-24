@@ -1,4 +1,4 @@
-#' Change background color
+#' Function that change background color in NGL viewer
 #' 
 #' @param input shiny input
 #' @param output shiny output
@@ -18,7 +18,7 @@ change_bg_color <- function(input, output, is_pg2){
     input_bg_color <- "input_bg_color"
     structure <- "structure"
   }
-      NGLVieweR_proxy(structure) %>%
-        updateStage(
-          param = list("backgroundColor" = input[[input_bg_color]]))
+  NGLVieweR_proxy(structure) %>%
+    updateStage(
+      param = list("backgroundColor" = input[[input_bg_color]]))
 }

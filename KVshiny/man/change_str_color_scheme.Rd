@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_changeSTRcolor_scheme.R
 \name{change_str_color_scheme}
 \alias{change_str_color_scheme}
-\title{Change color scheme of biomolecular structure}
+\title{Function that changes the color scheme of biomolecular structure in NGL viewer}
 \usage{
 change_str_color_scheme(
   input,
@@ -24,8 +24,8 @@ change_str_color_scheme(
 
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
 
-\item{scheme_color_list}{scheme_color_list}
+\item{scheme_color_list}{a named list of possible protein color schemes}
 }
 \description{
-Change color scheme of biomolecular structure
+Function that changes the color scheme of biomolecular structure in NGL viewer
 }

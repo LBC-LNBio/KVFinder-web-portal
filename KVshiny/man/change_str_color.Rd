@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_changeSTRcolor.R
 \name{change_str_color}
 \alias{change_str_color}
-\title{Change color of biomolecular structure}
+\title{Function that changes the color of the biomolecular structure in NGL viewer}
 \usage{
 change_str_color(input, output, protein_col_list, is_pg2)
 }
@@ -16,5 +16,5 @@ change_str_color(input, output, protein_col_list, is_pg2)
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
 }
 \description{
-Change color of biomolecular structure
+Function that changes the color of the biomolecular structure in NGL viewer
 }

@@ -15,7 +15,7 @@ create_init_scene(input, output, result_pdb_list, is_pg2, scheme_color_list)
 
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
 
-\item{scheme_color_list}{list of protein color schemes}
+\item{scheme_color_list}{a named list of possible protein color schemes}
 }
 \description{
 Create an initial scene in NGL viewer

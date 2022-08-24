@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_server_changeBGcolor.R
 \name{change_bg_color}
 \alias{change_bg_color}
-\title{Change background color}
+\title{Function that change background color in NGL viewer}
 \usage{
 change_bg_color(input, output, is_pg2)
 }
@@ -14,5 +14,5 @@ change_bg_color(input, output, is_pg2)
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
 }
 \description{
-Change background color
+Function that change background color in NGL viewer
 }
