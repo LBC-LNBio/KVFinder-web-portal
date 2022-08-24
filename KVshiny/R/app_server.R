@@ -67,7 +67,8 @@ app_server <- function( input, output, session ) {
     get_nonstand_check <- report_nonstand(pdb_input = input$pdb_id)
     removeModal()
     if (is.na(get_nonstand_check)){
-      shinyalert("Oops!", "Please insert a valid PDB ID.", type = "error")
+      shinyWidgets::sendSweetAlert(title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
+      #shinyalert("Oops!", "Please insert a valid PDB ID.", type = "error")
     } else{
       print("PDB ID ok")
     }
