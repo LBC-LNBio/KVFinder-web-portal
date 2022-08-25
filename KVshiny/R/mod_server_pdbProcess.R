@@ -4,13 +4,14 @@
 #' @param output shiny output
 #' @param get_nonstand vector of non-standard residues from the input PDB 
 #' @param mode select between "upload" or "fetch" modes 
+#' @param session
 #' 
 #' @import shiny
-#' @import shinyalert
+#' @import shinyWidgets
 #' 
 #' @export
 #' 
-pdb_process <- function(input, output, get_nonstand, mode){
+pdb_process <- function(input, output, get_nonstand, mode, session){
   #if the PDB was uploaded
   if(mode == "upload"){
     #path of the pdb input
@@ -34,7 +35,7 @@ pdb_process <- function(input, output, get_nonstand, mode){
     #in the case of running the box mode, we have to check if the target residues are correctly in the PDB input
     check_residues = check_residues_name(pdb_input = pdb_input, target_residues = input$box_residues)
     if(check_residues == FALSE){
-      shinyalert("Oops!", "Please insert a valid list of residues for box mode run.", type = "error")
+      shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text = "Please insert a valid list of residues for box mode run.", type = "error")
       pdb_processed <- "wrong_target_res"
     } else{
       pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input,nonstand_list = get_nonstand, include_list = include_list)

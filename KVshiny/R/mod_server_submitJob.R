@@ -3,18 +3,20 @@
 #' @param input shiny input
 #' @param output shiny output
 #' @param pdb_name_click_load variable of the number of clicks on load button
-#' @url_address url address to conexion 
+#' @param url_address url address to conexion 
+#' @param session
 #' 
 #' @import shiny
 #' @import rjson
 #' @import jsonlite
 #' @import rlang
 #' @import httr
+#' @import shinyWidgets
 #' 
 #' @export
 #' 
 
-submit_job <- function(input, output, pdb_name_click_load, url_address){
+submit_job <- function(input, output, pdb_name_click_load, url_address, session){
   #-------------------------------------------------------------------
   #Get KVFinder parameters from the user interface 
   probein_input <- input[[paste(input$run_mode, "Pin_input", sep = "_")]]
@@ -28,24 +30,24 @@ submit_job <- function(input, output, pdb_name_click_load, url_address){
   
   #check if probe in is smaller than probe out
   if(probein_input > probeout_input){
-    shinyalert("Oops!", "Probe In must be smaller than Probe Out.", type = "error")
+    shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text = "Probe In must be smaller than Probe Out.", type = "error")
     # check if user uploaded a PDB or fetched a PDB ID before to submit
   } else if(is.null(input$input_pdb) & input$pdb_id == ""){ 
-    shinyalert("Oops!", "Please load from PDB or upload a PDB file before to submit.", type = "error")
+    shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text = "Please load from PDB or upload a PDB file before to submit.", type = "error")
     #Check if the user that is using the fetch mode clicked on the Load button before to submit
   } else if(pdb_name_click_load != "init" & pdb_name_click_load != input$pdb_id){ #
-    shinyalert("Oops!", "Please after input PDB ID in Choose input section, be sure you loaded the PDB by clicking on the Load button.", type = "error")
+    shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text = "Please after input PDB ID in Choose input section, be sure you loaded the PDB by clicking on the Load button.", type = "error")
     # Just another check if user uploaded a PDB or fetched a PDB ID before to submit
   } else if(length(input$pdb_id) > 0 & input$send_pdb_id == 0){ 
-    shinyalert("Oops!", "Please load from PDB or upload a PDB file before to submit.", type = "error")
+    shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text = "Please load from PDB or upload a PDB file before to submit.", type = "error")
   } else {
     #if pass through the above checks...
     #get pdb_processed from upload mode
     if(input$input_type == 'pdb_from_file'){
-      pdb_processed <- pdb_process(input = input, output = output, get_nonstand = get_nonstand, mode = "upload")
+      pdb_processed <- pdb_process(input = input, output = output, get_nonstand = get_nonstand, mode = "upload", session = session)
       #get pdb_processed from fetch mode
     } else{
-      pdb_processed <- pdb_process(input = input, output = output, get_nonstand = get_nonstand, mode = "fetch")
+      pdb_processed <- pdb_process(input = input, output = output, get_nonstand = get_nonstand, mode = "fetch", session = session)
     }
     #check if the list of residues in "target residues" field is appropriated. The function pdb_process (in mod_server_pdbProcess.R) returns "wrong_target_res" if the input is not in the required format 
     if(pdb_processed != "wrong_target_res"){ 
@@ -57,7 +59,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address){
       }
       #check if user inserted a valid PDB before do submit
       if(length(pdb_path) == 0){
-        shinyalert("Oops!", "Please insert a valid PDB before to submit.", type = "error")
+        shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text ="Please insert a valid PDB before to submit.", type = "error")
       } else {
         #Create a KVFinder input file based on the specific target mode to be submitted to the server using submit_prepare function
         #Whole protein (default parameters)
@@ -93,7 +95,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address){
           #return the job id 
           return(get_run_id)
         } else{ # if the submission status is other than 200
-          shinyalert("Oops!", "An error occurred when submitting your job. Perhaps the input file is larger than what our server allows or the input parameters are outside the allowed limits. Please read our Help page and if the problem persist please contact us", type = "error")
+          shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text ="An error occurred when submitting your job. Perhaps the input file is larger than what our server allows or the input parameters are outside the allowed limits. Please read our Help page and if the problem persist please contact us.", type = "error")
         }
       }
     }

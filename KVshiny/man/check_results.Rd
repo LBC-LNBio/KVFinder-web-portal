@@ -4,7 +4,7 @@
 \alias{check_results}
 \title{Function that check and ouput results in the KVFinder interface}
 \usage{
-check_results(input, output, run_id, is_pg2)
+check_results(input, output, run_id, is_pg2, url_address, session)
 }
 \arguments{
 \item{input}{shiny input}
@@ -14,6 +14,10 @@ check_results(input, output, run_id, is_pg2)
 \item{run_id}{current run id}
 
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
+
+\item{url_address}{url address to conexion}
+
+\item{session}{}
 }
 \description{
 Function that check and ouput results in the KVFinder interface
