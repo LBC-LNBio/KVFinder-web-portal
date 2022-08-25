@@ -4,7 +4,7 @@
 \alias{submit_job}
 \title{Function that submits the KVFinder job to the server}
 \usage{
-submit_job(input, output, pdb_name_click_load)
+submit_job(input, output, pdb_name_click_load, url_address, session)
 }
 \arguments{
 \item{input}{shiny input}
@@ -12,6 +12,10 @@ submit_job(input, output, pdb_name_click_load)
 \item{output}{shiny output}
 
 \item{pdb_name_click_load}{variable of the number of clicks on load button}
+
+\item{url_address}{url address to conexion}
+
+\item{session}{}
 }
 \description{
 Function that submits the KVFinder job to the server

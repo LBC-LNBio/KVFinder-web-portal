@@ -4,17 +4,19 @@
 #' @param output shiny output
 #' @param run_id current run id
 #' @param is_pg2 logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page). 
-#' @url_address url address to conexion 
+#' @param url_address url address to conexion 
+#' @param session
 #' 
 #' @import shiny
 #' @import RcppTOML
 #' @import data.table
 #' @import DT
 #' @import blogdown
+#' @import shinyWidgets
 #' @export
 #' 
 
-check_results <- function(input, output, run_id, is_pg2, url_address){
+check_results <- function(input, output, run_id, is_pg2, url_address, session){
   #check which page to output the results (main page or get latest results page - pg2)
   #this block was created to allow the use of this function in the main or secondary page
   if(is_pg2 == TRUE){ #get latest results page
@@ -74,7 +76,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address){
       result_toml <- parseTOML(input = content_get_output$output$report,fromFile = FALSE,escape = TRUE)$RESULTS
       #check if the at least one cavity was found
       if(length(result_toml$AREA) == 0){
-        shinyalert("Oops!", "No cavity found. Please check the input parameters and try again.", type = "warning")
+        shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text = "No cavity found. Please check the input parameters and try again.", type = "warning")
       } else{ #if cavities were found
         #create result table
         output[[results_table]] <- renderUI({

@@ -4,7 +4,6 @@
 #' @param output shiny output
 #' 
 #' @import shiny
-#' @import shinyalert
 #' 
 #' @export
 #' 
