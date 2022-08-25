@@ -3,6 +3,7 @@
 #' @param input shiny input
 #' @param output shiny output
 #' @param pdb_name_click_load variable of the number of clicks on load button
+#' @url_address url address to conexion 
 #' 
 #' @import shiny
 #' @import rjson
@@ -13,7 +14,7 @@
 #' @export
 #' 
 
-submit_job <- function(input, output, pdb_name_click_load){
+submit_job <- function(input, output, pdb_name_click_load, url_address){
   #-------------------------------------------------------------------
   #Get KVFinder parameters from the user interface 
   probein_input <- input[[paste(input$run_mode, "Pin_input", sep = "_")]]
@@ -75,7 +76,7 @@ submit_job <- function(input, output, pdb_name_click_load){
         
         #submit to parKVFinder server
         #post_output <- POST(url = "http://10.0.0.123:8081/create",body = input_list, encode = "json")
-        post_output <- POST(url = "http://localhost:8081/create",body = input_list, encode = "json") #using localhost
+        post_output <- POST(url = paste(address,"create",sep=""),body = input_list, encode = "json") #using localhost
         
         #check status for submission error 
         if(post_output$status_code == 200){ #job is running successfully
