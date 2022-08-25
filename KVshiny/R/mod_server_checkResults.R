@@ -4,6 +4,7 @@
 #' @param output shiny output
 #' @param run_id current run id
 #' @param is_pg2 logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page). 
+#' @url_address url address to conexion 
 #' 
 #' @import shiny
 #' @import RcppTOML
@@ -13,7 +14,7 @@
 #' @export
 #' 
 
-check_results <- function(input, output, run_id, is_pg2){
+check_results <- function(input, output, run_id, is_pg2, url_address){
   #check which page to output the results (main page or get latest results page - pg2)
   #this block was created to allow the use of this function in the main or secondary page
   if(is_pg2 == TRUE){ #get latest results page
@@ -40,7 +41,7 @@ check_results <- function(input, output, run_id, is_pg2){
   
   #obtain results from the server 
   #get_output <- GET(url = paste("http://10.0.0.123:8081/", run_id, sep = ""))
-  get_output <- GET(url = paste("http://localhost:8081/", run_id, sep = "")) #use localhost
+  get_output <- GET(url = paste(url_address, run_id, sep = "")) #use localhost
   
   #check if the status is 200 and process the output 
   if(get_output$status_code == 200){
@@ -64,7 +65,7 @@ check_results <- function(input, output, run_id, is_pg2){
       
       #retrieve the input PDB to be used in the ouput visualization
       #retrieve_get <- GET(url = paste("http://10.0.0.123:8081/retrieve-input/", run_id, sep = ""))
-      retrieve_get <- GET(url = paste("http://localhost:8081/retrieve-input/", run_id, sep = "")) #use local host
+      retrieve_get <- GET(url = paste(url_address, "retrieve-input/", run_id, sep = "")) #use local host
       #get content
       retrieve_content <- content(retrieve_get)
       #get retrivied input PDB
