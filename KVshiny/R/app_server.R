@@ -72,9 +72,10 @@ app_server <- function( input, output, session ) {
       shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
     } else{
       print("PDB ID ok")
+      process_fetch(input = input, output = output)
     }
     #run process_fetch of mod_server_fetch module to create boxes and buttons of run mode
-    process_fetch(input = input, output = output)
+    #process_fetch(input = input, output = output)
   })
   
   #----------------------------------------------------

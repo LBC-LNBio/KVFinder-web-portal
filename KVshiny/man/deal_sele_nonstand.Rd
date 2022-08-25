@@ -4,7 +4,7 @@
 \alias{deal_sele_nonstand}
 \title{Process PDB file according to the selected non-standard residues}
 \usage{
-deal_sele_nonstand(pdb_input, nonstand_list, include_list)
+deal_sele_nonstand(pdb_input, nonstand_list, include_list, session = session)
 }
 \arguments{
 \item{pdb_input}{Pdb path}
@@ -12,6 +12,8 @@ deal_sele_nonstand(pdb_input, nonstand_list, include_list)
 \item{nonstand_list}{List of non-standard residues}
 
 \item{include_list}{List of non-standard residues that must be maintained in the PDB}
+
+\item{session}{}
 }
 \description{
 Process PDB file according to the selected non-standard residues
