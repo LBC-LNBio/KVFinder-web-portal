@@ -78,8 +78,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
         
         #submit to parKVFinder server
         #post_output <- POST(url = "http://10.0.0.123:8081/create",body = input_list, encode = "json")
-        post_output <- POST(url = paste(address,"create",sep=""),body = input_list, encode = "json") #using localhost
-        
+        post_output <- POST(url = paste(url_address,"create",sep=""),body = input_list, encode = "json") #using localhost
         #check status for submission error 
         if(post_output$status_code == 200){ #job is running successfully
           #get ID of the submitted job
