@@ -339,6 +339,7 @@ kv_tutorial <- function() {
     fluidRow(
       column(12, align = "center", tags$img(src = "www/tutorial-retrieve-job.png", align = "center")),
     ),
+    tags$br(),
 
     ### Job exist
     tags$p(
@@ -349,6 +350,7 @@ kv_tutorial <- function() {
     fluidRow(
       column(12, align = "center", tags$img(src = "www/tutorial-retrieve-job-results.png", align = "center")),
     ),
+    tags$br(),
 
     ### Job does not exist
     tags$p("Otherwise, the job does not exist or is not available in the KVFinder-web service anymore. In both situation, a error message will appear in the Job status field."),
