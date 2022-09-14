@@ -32,7 +32,7 @@ choose_run_mode <- function() {
           condition = "input.run_mode == 'mode_def'",
           column(8,
             align = "center",
-            tags$h5("KVFinder parameters")
+            tags$h5("KVFinder-web parameters")
           ),
           splitLayout(
             disabled(
@@ -71,7 +71,7 @@ choose_run_mode <- function() {
           condition = "input.run_mode == 'mode_cust'",
           column(8,
             align = "center",
-            tags$h5("KVFinder parameters")
+            tags$h5("KVFinder-web parameters")
           ),
           splitLayout(
             bs4Dash::tooltip(
@@ -109,7 +109,7 @@ choose_run_mode <- function() {
           ),
           column(8,
             align = "center",
-            tags$h5("KVFinder parameters")
+            tags$h5("KVFinder-web parameters")
           ),
           splitLayout(
             bs4Dash::tooltip(
@@ -127,7 +127,7 @@ choose_run_mode <- function() {
               min = 0,
               max = 1000,
               step = 1,
-              width = 60
+              width = 100
             ), title = "Defines the search radius from the ligand structure.", placement = "bottom")
           ),
           splitLayout(
@@ -152,7 +152,7 @@ choose_run_mode <- function() {
           ),
           column(8,
             align = "center",
-            tags$h5("KVFinder parameters")
+            tags$h5("KVFinder-web parameters")
           ),
           splitLayout(
             bs4Dash::tooltip(
@@ -167,10 +167,10 @@ choose_run_mode <- function() {
               inputId = "padding_value",
               label = "Padding (Å):",
               value = 3.5,
-              min = 0,
-              max = 5,
-              step = 1,
-              width = 60
+              min = 0.0,
+              max = 5.0,
+              step = 1.0,
+              width = 100
             ),
             title = "Defines padding around the selection which the box will be created.", placement = "bottom"
             )
@@ -192,8 +192,8 @@ choose_run_mode <- function() {
     sidebar = boxSidebar(
       id = "sidebar_run_mode",
       p("In this box you need to set the mode of your KVFinder run."),
-      p("In Whole Structure mode with default parameters, a preset of KVFinder parameters will be used to detect cavities in the whole biomolecular structure."),
-      p("In Whole Structure mode with customized parameters, you can modify the KVFinder parameters to detect cavities in the whole structure. A help text is available when the you moves the mouse over the parameter."),
+      p("In Whole Structure mode with default parameters, a preset of KVFinder-web parameters will be used to detect cavities in the whole biomolecular structure."),
+      p("In Whole Structure mode with customized parameters, you can modify the KVFinder-web parameters to detect cavities in the whole structure. A help text is available when the you moves the mouse over the parameter."),
       p("The cavity detection can be focused on the region of the structure occupied by a target molecule. This mode limits the search space around a target molecule."),
       p("The cavity detection can also be focused on specific regions and residues of the target structure. This mode explores closed regions with a custom box, which is drawn by selecting residues of the target structure."),
       icon = icon("info")

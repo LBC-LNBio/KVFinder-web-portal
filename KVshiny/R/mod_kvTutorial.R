@@ -331,7 +331,7 @@ kv_tutorial <- function() {
       ". After, you must fill a Job ID (e.g.,",
       em("6524504029010759880"),
       "- ID of our first job in this tutorial) in the ",
-      strong("Insert the run ID to get results"),
+      strong("Insert the job ID to get results"),
       "text box and click on .",
       strong("Get results"),
       "button."

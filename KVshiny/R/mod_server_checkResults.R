@@ -84,8 +84,8 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         })
         output[[table_out]] <- DT::renderDataTable(data.table(
           `Cavity ID` = names(result_toml$AREA),
-          `Area (A^2)` = unlist(result_toml$AREA),
-          `Volume (A^3)` = unlist(result_toml$VOLUME)
+          `Area (A²)` = unlist(result_toml$AREA),
+          `Volume (A³)` = unlist(result_toml$VOLUME)
         ),
         filter = c("none"),
         style = "auto",
@@ -150,7 +150,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
   } else { # in case of job error
     output[[output_status]] <- renderValueBox({
       valueBox(
-        value = paste("An error occurred.", "Please check your run ID.", "If the problem persist, please contact us."),
+        value = paste("An error occurred.", "Please check your job ID.", "If the problem persist, please contact us."),
         subtitle = paste("Job ID:", run_id, sep = ""),
         icon = icon("exclamation-triangle"),
         color = "danger"

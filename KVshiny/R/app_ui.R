@@ -203,7 +203,7 @@ app_ui <- function(request) {
                   width = 11,
                   textInput(
                     inputId = "insert_ID",
-                    label = "Insert the run ID to get results",
+                    label = "Insert the job ID to get results",
                     placeholder = "ID number"
                   ),
                   actionButton(
@@ -236,7 +236,7 @@ app_ui <- function(request) {
                   sidebar = boxSidebar(
                     id = "help_get_results_pg2",
                     icon = icon("info"),
-                    p("Here, you can insert a run ID to get or check your latest results.")
+                    p("Here, you can insert a job ID to get or check your latest results.")
                   )
                 )
               ),

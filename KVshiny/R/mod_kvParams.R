@@ -40,7 +40,7 @@ kv_params <- function(id, input_type) {
   } else {
     num_input <- numericInput(
       inputId = paste(id, "VC_input", sep = "_"),
-      label = "Volume cutoff (Å):",
+      label = "Volume cutoff (Å³):",
       value = 5,
       min = 0,
       max = 50000,
