@@ -9,7 +9,7 @@ kv_help <- function() {
   fluidPage(
     # Help topic
     fluidRow(
-      column(12, align = "center", tags$h3("KVFinder help page"))
+      column(12, align = "center", tags$h3("KVFinder-web help page"))
     ),
     tags$br(),
     tags$br(),

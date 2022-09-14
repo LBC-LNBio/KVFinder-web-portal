@@ -62,6 +62,11 @@ app_ui <- function(request) {
             icon = icon("angle-double-right")
           ),
           menuItem(
+            "Tutorial",
+            tabName = "tutorial_kv_sidebar",
+            icon = icon("question-circle")
+          ),
+          menuItem(
             "Help",
             tabName = "help_kv_sidebar",
             icon = icon("question-circle")
@@ -91,7 +96,7 @@ app_ui <- function(request) {
       body = dashboardBody(
         useShinyjs(),
         tabItems(
-          # 1st tab -> Run KVFinder
+          # 1st tab: Run KVFinder-web
           tabItem(
             tabName = "run_kv_sidebar",
             # Create jumbotron
@@ -180,7 +185,7 @@ app_ui <- function(request) {
             )
           ),
 
-          # 2nd tab -> Get latest results
+          # 2nd tab: Get latest results
           tabItem(
             tabName = "check_kv_sidebar",
             fluidRow(
@@ -260,13 +265,19 @@ app_ui <- function(request) {
             )
           ),
 
-          # 3th tab -> Help page
+          # 3rd tab: Tutorial page
+          tabItem(
+            tabName = "tutorial_kv_sidebar",
+            kv_tutorial()
+          ),
+
+          # 4th tab: Help page
           tabItem(
             tabName = "help_kv_sidebar",
             kv_help()
           ),
 
-          # 4th tab -> About page
+          # 5th tab: About page
           tabItem(
             tabName = "about_kv_sidebar",
             kv_about()
@@ -297,7 +308,7 @@ golem_add_external_resources <- function() {
     ),
     bundle_resources(
       path = app_sys("app/www"),
-      app_title = "KVFinder-web service"
+      app_title = "KVFinder-web"
     )
   )
 }

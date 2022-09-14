@@ -72,7 +72,7 @@ choose_input <- function() {
       icon = icon("info"),
       p("The cavity detection can be performed by uploading a PDB file from your computer or by fetching the Protein Data Bank using a PDB ID."),
       p("In both cases the input is checked for non-standard protein or nucleic residues, for example water (HOH), ligands and ions molecules."),
-      p("By default, kVFinder removes all non-standard protein residues from the input. For instance, if a target pocket is occupied by a ligand, that ligand is removed before computing the cavity."),
+      p("By default, KVFinder-web removes all non-standard protein residues from the input. For instance, if a target pocket is occupied by a ligand, that ligand is removed before computing the cavity."),
       p("In specific situations, users may be interested in evaluating a portion of a cavity that is occupied by a ligand, water or a ions. In this case, users can use Include option to include the non-standard residue in the analysis.")
     )
   )
