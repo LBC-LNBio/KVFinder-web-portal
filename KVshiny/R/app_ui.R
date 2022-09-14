@@ -84,7 +84,7 @@ app_ui <- function(request) {
       ),
       
       #Footer-----------------------------------------------------
-      #footer = dashboardFooter(right = ("Developed by...")),
+      # footer = dashboardFooter(right = ("Developed by LBC-LNBio")),
       
       
       #Dashboard body-----------------------------------------------
@@ -266,8 +266,5 @@ golem_add_external_resources <- function() {
   add_resource_path('www', app_sys('app/www'))
   tags$head(tags$link(rel="shortcut icon",href="www/new_icon/kvfinder_favicon_v2.png"),
             bundle_resources(path = app_sys('app/www'),
-                             app_title = 'KVfinder'))
+                             app_title = 'KVFinder-web service'))
 }
-
-
-
