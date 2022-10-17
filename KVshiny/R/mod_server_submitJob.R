@@ -38,8 +38,9 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
   } else if (pdb_name_click_load != "init" & pdb_name_click_load != input$pdb_id) { #
     shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please after input PDB ID in Choose input section, be sure you loaded the PDB by clicking on the Load button.", type = "error")
     # Just another check if user uploaded a PDB or fetched a PDB ID before to submit
-  } else if (length(input$pdb_id) > 0 & input$send_pdb_id == 0) {
-    shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please load from PDB or upload a PDB file before to submit.", type = "error")
+} else if(length(input$pdb_id) > 0 & input$send_pdb_id == 0 & input$input_type != 'pdb_from_file'){ 
+    print("here1")
+    shinyWidgets::sendSweetAlert(session = session,title = "Oops!", text = "Please load from PDB or upload a PDB file before to submit.", type = "error")
   } else {
     # if pass through the above checks...
     # get pdb_processed from upload mode
