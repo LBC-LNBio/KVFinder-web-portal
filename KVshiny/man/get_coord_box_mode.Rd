@@ -14,6 +14,3 @@ get_coord_box_mode(pdb_input, box_residues)
 \description{
 Get box coordinates in box mode
 }
-\examples{
-
-}

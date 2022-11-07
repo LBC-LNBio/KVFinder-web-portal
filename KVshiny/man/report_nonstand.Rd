@@ -12,6 +12,3 @@ report_nonstand(pdb_input)
 \description{
 Get non standard protein/nucleic residues from PDB
 }
-\examples{
-
-}

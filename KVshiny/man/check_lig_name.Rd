@@ -14,6 +14,3 @@ check_lig_name(pdb_input, target_ligand)
 \description{
 Check if target ligand is in the PDB file
 }
-\examples{
-
-}
