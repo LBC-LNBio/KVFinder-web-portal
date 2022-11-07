@@ -13,7 +13,7 @@ create_jumbotron <- function() {
         "Welcome to the KVFinder-web service!",
         style = "margin-left: .5rem;"
       ),
-      img(class = "col-sm-8" , src = "www/cover_all3.png"),
+      img(class = "col-sm-8", src = "www/cover_all3.png"),
       h5(
         "A web service for cavity detection and characterization in any type of biomolecular structure",
         style = "margin: 1rem;"
