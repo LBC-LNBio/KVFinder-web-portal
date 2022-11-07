@@ -24,7 +24,7 @@ kv_about <- function() {
 
     ## KVFinder-web service description
     tags$h5(strong("KVFinder-web service")),
-    tags$p("KVFinder-web service is a RESTful web service that runs parKVFinder software to detect and chacterize cavities. The web service has Web-Queue-Worker architecture style and each of these modules is built in a separated Docker container, making available to execute on different platforms and Cloud services."),
+    tags$p("KVFinder-web service is a RESTful web service that runs parKVFinder software to detect and characterize cavities. The web service has Web-Queue-Worker architecture style and each of these modules is built in a separate Docker container, making it available to execute on different platforms and Cloud services."),
     tags$p("The KVFinder-web service interface was developed using Shiny R package. Structure preprocessing is performed with Bio3D R package and molecular visualization uses the NGLVieweR engine."),
     tags$p(
       strong("Citing:"),
@@ -42,7 +42,7 @@ kv_about <- function() {
     ## parKVFinder description
     tags$h5(strong("parKVFinder")),
     tags$p(
-      "Parallel KVFinder (parKVFinder) is open-source (GPL v3.0) software designed for detection and spatial characterization of any type of biomolecular cavity. ParKVFinder inserts the target biomolecule in a 3D grid divided by regular voxels and applies a dual-probe algorithm, originally implemented in KVFinder. parKVFinder provides accurate, fast and efficient steered detection and spatial characterization (shape, volume, area and surrounding residues), with a multithreaded parallelization implemented with OpenMP. Cavity detection relies on a set of intuitive customizable parameters, which user may interact via a graphical user interface (GUI) or a command-line interface.",
+      "Parallel KVFinder (parKVFinder) is open-source (GPL v3.0) software designed for detection and spatial characterization of any type of biomolecular cavity. ParKVFinder inserts the target biomolecule in a 3D grid divided by regular voxels and applies a dual-probe algorithm, originally implemented in KVFinder. parKVFinder provides accurate, fast and efficient steered detection and spatial characterization (shape, volume, area and surrounding residues), with a multithreaded parallelization implemented with OpenMP. Cavity detection relies on a set of intuitive customizable parameters, which users may interact via a graphical user interface (GUI) or a command-line interface.",
       style = "text-align:justify"
     ),
     tags$p(
