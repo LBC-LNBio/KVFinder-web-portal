@@ -4,12 +4,14 @@
 \alias{process_upload}
 \title{Function that creates the boxes and buttons of the run mode in upload mode}
 \usage{
-process_upload(input, output)
+process_upload(input, output, session)
 }
 \arguments{
 \item{input}{shiny input}
 
 \item{output}{shiny output}
+
+\item{session}{}
 }
 \description{
 Function that creates the boxes and buttons of the run mode in upload mode

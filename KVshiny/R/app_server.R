@@ -57,7 +57,7 @@ app_server <- function(input, output, session) {
   # Upload PDB section
   observeEvent(input$input_pdb, {
     # run process_upload of mod_server_upload module to create boxes and buttons of run mode
-    process_upload(input = input, output = output)
+    process_upload(input = input, output = output, session = session)
   })
   #-----------------------------------------------------
 
@@ -70,7 +70,7 @@ app_server <- function(input, output, session) {
     showModal(modalDialog("Loading and checking PDB...", footer = NULL, fade = FALSE))
     get_nonstand_check <- report_nonstand(pdb_input = input$pdb_id)
     removeModal()
-    if (is.na(get_nonstand_check)) {
+    if (length(which(is.na(get_nonstand_check))) != 0) {
       shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
     } else {
       print("PDB ID ok")

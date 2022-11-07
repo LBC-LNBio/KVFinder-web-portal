@@ -2,13 +2,14 @@
 #'
 #' @param input shiny input
 #' @param output shiny output
+#' @param session
 #'
 #' @import shiny
 #'
 #' @export
 #'
 
-process_upload <- function(input, output) {
+process_upload <- function(input, output, session) {
   # get nonstandard residues from the input PDB
   get_nonstand <<- report_nonstand(pdb_input = input$input_pdb$datapath)
   # if there is any nonstand residue in PDB...

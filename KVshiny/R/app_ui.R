@@ -52,12 +52,12 @@ app_ui <- function(request) {
         sidebarMenu(
           id = "sidebarmenu",
           menuItem(
-            "Run KVFinder",
+            "Run Cavity Analysis",
             tabName = "run_kv_sidebar",
             icon = icon("angle-double-right")
           ),
           menuItem(
-            "Get lastest results",
+            "Retrieve results",
             tabName = "check_kv_sidebar",
             icon = icon("angle-double-right")
           ),
@@ -78,19 +78,6 @@ app_ui <- function(request) {
           )
         )
       ),
-      # Control bar -----------------------------------------------
-      controlbar = dashboardControlbar(
-        disable = FALSE,
-        width = 250,
-        collapsed = TRUE,
-        overlay = TRUE,
-        skin = "dark",
-        pinned = NULL
-      ),
-
-      # Footer-----------------------------------------------------
-      # footer = dashboardFooter(right = ("Developed by LBC-LNBio")),
-
 
       # Dashboard body-----------------------------------------------
       body = dashboardBody(

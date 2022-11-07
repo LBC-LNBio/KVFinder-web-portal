@@ -14,6 +14,3 @@ get_ligand_pdb(pdb_input, ligand_name)
 \description{
 Separate from protein/nucleic PDB the target ligand
 }
-\examples{
-
-}

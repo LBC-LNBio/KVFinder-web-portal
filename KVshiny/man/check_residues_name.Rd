@@ -14,6 +14,3 @@ check_residues_name(pdb_input, target_residues)
 \description{
 Check if residues name are in the PDB file
 }
-\examples{
-
-}

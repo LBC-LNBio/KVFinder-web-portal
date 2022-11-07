@@ -18,6 +18,3 @@ deal_sele_nonstand(pdb_input, nonstand_list, include_list, session = session)
 \description{
 Process PDB file according to the selected non-standard residues
 }
-\examples{
-
-}
