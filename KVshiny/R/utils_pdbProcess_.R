@@ -19,9 +19,9 @@ report_nonstand <- function(pdb_input) {
       return(NA)
     }
   )
-  if (!is.na(pdb)) { 
+  if (class(pdb)[1] == "pdb") { 
     #check multimodels
-    if(!is.na(pdb) & dim(pdb$xyz)[1] > 1){
+    if(class(pdb)[1] == "pdb" & dim(pdb$xyz)[1] > 1){
       shinyWidgets::sendSweetAlert(title = "Oops!", text = "A multimodel structure was detected as input: Using only the first structure from the multimodel...", type = "warning")
     } 
     # get protein
