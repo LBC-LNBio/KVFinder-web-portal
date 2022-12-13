@@ -50,7 +50,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
       pdb_processed <- pdb_process(input = input, output = output, get_nonstand = get_nonstand, mode = "fetch", session = session)
     }
     # check if the list of residues in "target residues" field is appropriated. The function pdb_process (in mod_server_pdbProcess.R) returns "wrong_target_res" if the input is not in the required format
-    if (pdb_processed != "wrong_target_res") {
+    if (pdb_processed[[1]] != "wrong_target_res") {
       # get the path of the pdb processed
       if (is.null(pdb_processed$pdb_processed)) {
         pdb_path <- input$input_pdb$datapath
