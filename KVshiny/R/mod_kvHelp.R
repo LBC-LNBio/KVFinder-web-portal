@@ -131,6 +131,10 @@ kv_help <- function() {
         tags$li(
           "Cavity representation will be always filtered (cavity files will consume less space on the web service)."
         )
+      ),
+      tags$p(
+        "This website is free and open to all users and there is no login requirement.",
+        style = "text-align:justify"
       )
     )
   )
