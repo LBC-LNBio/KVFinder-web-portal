@@ -113,7 +113,7 @@ kv_about <- function() {
           "Request for a new feature"
         ),
       ),
-    )
+    ),
     tags$br(),
     tags$p(
       "Only make sure the bug or request has not already been reported. Click on “Search” and enter some keywords to search.",
@@ -139,7 +139,7 @@ kv_about <- function() {
       tags$li("Helder Veras Ribeiro-Filho"),
       tags$li("José Geraldo de Carvalho Pereira"),
       tags$li("Paulo Sergio Lopes-de-Oliveira (Principal Investigator)"),
-    )
+    ),
     tags$br(),
     tags$p(
       "Computational Biology Laboratory (",
@@ -170,7 +170,7 @@ kv_about <- function() {
       tags$li("Leandro Oliveira Bortot"),
       tags$li("Luiz Fernando Giolo Alves"),
       tags$li("Paulo Sergio Lopes de Oliveira (Principal Investigator)"),
-    )
+    ),
     tags$br(),
     tags$br(),
 
