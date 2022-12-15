@@ -100,18 +100,20 @@ kv_about <- function() {
       "KVFinder-web service uses of GitHub for project management. Please help us by reporting any problems or requests."
     ),
     tags$p("On Issues page, you can file a:"),
-    tags$li(
-      tags$a(
-        href = "https://github.com/LBC-LNBio/KVshiny-docker/issues/new?assignees=&labels=&template=bug_report.md&title=",
-        "Bug Report"
+    tags$ul(
+      tags$li(
+        tags$a(
+          href = "https://github.com/LBC-LNBio/KVshiny-docker/issues/new?assignees=&labels=&template=bug_report.md&title=",
+          "Bug Report"
+        ),
       ),
-    ),
-    tags$li(
-      tags$a(
-        href = "https://github.com/LBC-LNBio/KVshiny-docker/issues/new?assignees=&labels=&template=feature_request.md&title=",
-        "Request for a new feature"
+      tags$li(
+        tags$a(
+          href = "https://github.com/LBC-LNBio/KVshiny-docker/issues/new?assignees=&labels=&template=feature_request.md&title=",
+          "Request for a new feature"
+        ),
       ),
-    ),
+    )
     tags$br(),
     tags$p(
       "Only make sure the bug or request has not already been reported. Click on “Search” and enter some keywords to search.",
@@ -132,10 +134,12 @@ kv_about <- function() {
       "KVFinder-web service is developed by:",
       style = "text-align:justify"
     ),
-    tags$li("João Victor da Silva Guerra"),
-    tags$li("Helder Veras Ribeiro-Filho"),
-    tags$li("José Geraldo de Carvalho Pereira"),
-    tags$li("Paulo Sergio Lopes-de-Oliveira (Principal Investigator)"),
+    tags$ul(
+      tags$li("João Victor da Silva Guerra"),
+      tags$li("Helder Veras Ribeiro-Filho"),
+      tags$li("José Geraldo de Carvalho Pereira"),
+      tags$li("Paulo Sergio Lopes-de-Oliveira (Principal Investigator)"),
+    )
     tags$br(),
     tags$p(
       "Computational Biology Laboratory (",
@@ -158,13 +162,15 @@ kv_about <- function() {
     ),
     tags$br(),
     tags$h5("Laboratory of Computational Biology - Staff"),
-    tags$li("Gabriel Ernesto Jara"),
-    tags$li("Helder Veras Ribeiro Filho"),
-    tags$li("João Victor da Silva Guerra"),
-    tags$li("José Geraldo de Carvalho Pereira"),
-    tags$li("Leandro Oliveira Bortot"),
-    tags$li("Luiz Fernando Giolo Alves"),
-    tags$li("Paulo Sergio Lopes de Oliveira (Principal Investigator)"),
+    tags$ul(
+      tags$li("Gabriel Ernesto Jara"),
+      tags$li("Helder Veras Ribeiro Filho"),
+      tags$li("João Victor da Silva Guerra"),
+      tags$li("José Geraldo de Carvalho Pereira"),
+      tags$li("Leandro Oliveira Bortot"),
+      tags$li("Luiz Fernando Giolo Alves"),
+      tags$li("Paulo Sergio Lopes de Oliveira (Principal Investigator)"),
+    )
     tags$br(),
     tags$br(),
 
@@ -197,6 +203,8 @@ kv_about <- function() {
       "The KVFinder-web software was supported by Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP) [Grant Number 2018/00629-0], Brazilian Biosciences National Laboratory (LNBio) and Brazilian Center for Research in Energy and Materials (CNPEM).",
       style = "text-align:justify"
     ),
+    tags$br(),
+    tags$br(),
 
     # License topic
     fluidRow(
