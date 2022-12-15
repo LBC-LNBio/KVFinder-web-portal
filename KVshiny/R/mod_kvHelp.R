@@ -57,7 +57,7 @@ kv_help <- function() {
     ),
     tags$br(),
     fluidRow(
-      column(12, align = "center", tags$img(src = "www/fig_dualprobe.png", height = 400, width = 700, align = "center")),
+      column(12, align = "center", tags$img(src = "www/help_probe_schema.png", height = 400, width = 700, align = "center")),
     ),
     tags$br(),
 
@@ -72,7 +72,7 @@ kv_help <- function() {
     tags$p("A schematic representation of the removal distance routine is shown below."),
     tags$br(),
     fluidRow(
-      column(12, align = "center", tags$img(src = "www/fig_removaldist.png", height = 400, width = 1000, align = "center")),
+      column(12, align = "center", tags$img(src = "www/help_rd_schema.png", height = 400, width = 1000, align = "center")),
     ),
     tags$br(),
 
@@ -108,7 +108,7 @@ kv_help <- function() {
       style = "text-align:justify"
     ),
     fluidRow(
-      column(12, align = "center", tags$img(src = "www/fig_kv_adenosine.png", height = 220, width = 730, align = "center"))
+      column(12, align = "center", tags$img(src = "www/help_cav_adn.png", height = 220, width = 730, align = "center"))
     ),
     tags$br(),
     tags$br(),

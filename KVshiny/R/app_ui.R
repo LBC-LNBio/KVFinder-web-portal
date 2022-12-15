@@ -291,7 +291,7 @@ golem_add_external_resources <- function() {
   tags$head(
     tags$link(
       rel = "shortcut icon",
-      href = "www/new_icon/kvfinder_favicon_v2.png"
+      href = "www/kvfinder-web.ico"
     ),
     bundle_resources(
       path = app_sys("app/www"),
