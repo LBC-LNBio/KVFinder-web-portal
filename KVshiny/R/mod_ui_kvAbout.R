@@ -196,7 +196,7 @@ kv_about <- function() {
     tags$p(
       "The KVFinder-web software was supported by Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP) [Grant Number 2018/00629-0], Brazilian Biosciences National Laboratory (LNBio) and Brazilian Center for Research in Energy and Materials (CNPEM).",
       style = "text-align:justify"
-    )
+    ),
 
     # License topic
     fluidRow(
