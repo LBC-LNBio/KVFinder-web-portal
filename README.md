@@ -59,3 +59,5 @@ KVFinder-web interface was supported by Fundação de Amparo à Pesquisa do Esta
 ## License
 
 The software is licensed under the terms of the Apache-2.0 License and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the Apache-2.0 License for more details.
+
+---
