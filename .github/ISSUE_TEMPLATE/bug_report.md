@@ -20,8 +20,8 @@ filtered by the "bug" label and verify the issue you're about to submit isn't a 
 
 ### Setup
 <!-- Please complete the following information. -->
- - OS: [e.g. Linux/MacOS/Windows]
- - Browser: [e.g. Firefox/Chrome/Microsoft Edge]
+- OS: [e.g. Linux/MacOS/Windows]
+- Browser: [e.g. Firefox/Chrome/Microsoft Edge]
 
 ### Steps to reproduce
 
@@ -43,4 +43,3 @@ filtered by the "bug" label and verify the issue you're about to submit isn't a 
 ### Possible fixes
 
 <!-- If you can, link to the line of code that might be responsible for the problem. -->
-
