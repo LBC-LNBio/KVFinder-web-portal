@@ -10,13 +10,13 @@ RUN apt-get update && apt-get install -y \
 RUN install2.r shiny pkgload remotes devtools bio3d bs4Dash config data.table DT golem NGLVieweR RcppTOML readr rjson shinyjs blogdown colourpicker shinyfullscreen shinycssloaders shinyWidgets
 
 # Copy the app directory into the image
-COPY ./KVFinderWebPortal/ /srv/shiny-server/KVFinderWebPortal/
+COPY ./kvfinder-web-portal/ /srv/shiny-server/kvfinder-web-portal/
 
 # Define work directory
-WORKDIR /srv/shiny-server/KVFinderWebPortal
+WORKDIR /srv/shiny-server/kvfinder-web-portal
 
 # Expose port 3838
 EXPOSE 3838
 
 # Run Shiny Web App
-CMD ["Rscript", "/srv/shiny-server/KVFinderWebPortal/app.R"]
+CMD ["Rscript", "/srv/shiny-server/kvfinder-web-portal/app.R"]

@@ -19,7 +19,7 @@
 ## to change the name in the app_sys() function in app_config.R /!\
 ## 
 golem::fill_desc(
-  pkg_name = "KVFinderWebPortal", # The Name of the package containing the App 
+  pkg_name = "kvfinder-web-portal", # The Name of the package containing the App 
   pkg_title = "KVFinder-web portal", # The Title of the package containing the App 
   pkg_description = "A Shiny Web App for interacting with KVFinder-web service.", # The Description of the package containing the App 
   author_first_name = "Helder", # Your First Name
