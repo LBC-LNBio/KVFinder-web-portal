@@ -32,13 +32,13 @@ sudo apt install docker-compose
 After the docker-compose installation and clone of this repository. First, you have to build our KVFinder-web interface:
 
 ```bash
-sudo docker build -t kvserver .
+sudo docker build -t kvfinderwebportal .
 ```
 
 To start KVFinder-web interface:
 
 ```bash
-sudo docker run -p 3838:3838 kvserver
+sudo docker run -p 3838:3838 kvfinderwebportal
 ```
 
 ### PyMOL KVFinder-web Tools

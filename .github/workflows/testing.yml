@@ -1,0 +1,24 @@
+name: Build and test Docker image
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build docker container
+        run: |
+          docker build . --file Dockerfile --tag kvfinderwebportal:latest 
+
+      - name: Test docker container
+        run: |
+          docker run --detach -p 3838:3838 kvfinderwebportal 
+          docker ps
+          docker kill $(docker ps -q)
+          docker ps
