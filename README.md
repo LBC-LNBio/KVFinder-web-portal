@@ -1,5 +1,8 @@
 # KVFinder-web portal
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/LBC-LNBio/KVFinder-web-portal?color=informational)
+![GitHub](https://img.shields.io/github/license/LBC-LNBio/KVFinder-web-portal)
+
 Welcome to the KVFinder-web portal, this page was built to help you get started with our web portal for [KVFinder-web service](https://github.com/LBC-LNBio/KVFinder-web-service).
 
 ## KVFinder-web
