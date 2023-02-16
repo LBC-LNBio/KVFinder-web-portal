@@ -16,7 +16,7 @@ The KVFinder-web application has two independent components:
   - [PyMOL KVFinder-web Tools](https://github.com/LBC-LNBio/PyMOL-KVFinder-web-Tools): a graphical PyMOL plugin.
 - a RESTful web service: [KVFinder-web service](https://github.com/LBC-LNBio/KVFinder-web-service);
 
-The full KVFinder-web documentation can be found here: <http://lbc-lnbio.github.io/KVFinder-web>.
+The full KVFinder-web documentation can be found here: [http://lbc-lnbio.github.io/KVFinder-web](http://lbc-lnbio.github.io/KVFinder-web).
 
 ### KVFinder-web portal
 
@@ -35,18 +35,18 @@ sudo apt install docker-compose
 After the docker-compose installation and clone of this repository. First, you have to build our KVFinder-web interface:
 
 ```bash
-sudo docker build -t kvfinderwebportal .
+sudo docker build -t kvfinder-web-portal .
 ```
 
 To start KVFinder-web interface:
 
 ```bash
-sudo docker run -p 3838:3838 kvfinderwebportal
+sudo docker run -p 3838:3838 kvfinder-web-portal
 ```
 
 ### PyMOL KVFinder-web Tools
 
-The PyMOL KVFinder-web Tools, written in Python and Qt, is a PyMOL v2.x plugin for detecting and characterizing biomolecular cavities at a KVFinder-web service with functionalities similar to [PyMOL parKVFinder Tools](https://github.com/LBC-LNBio/parKVFinder/wiki/parKVFinder-Tutorial#pymol2-parkvfinder-tools), which is natively configured to our publicly available web service (<http://kvfinder-web.cnpem.br>).
+The PyMOL KVFinder-web Tools, written in Python and Qt, is a PyMOL v2.x plugin for detecting and characterizing biomolecular cavities at a KVFinder-web service with functionalities similar to [PyMOL parKVFinder Tools](https://github.com/LBC-LNBio/parKVFinder/wiki/parKVFinder-Tutorial#pymol2-parkvfinder-tools), which is natively configured to our publicly available web service ([http://kvfinder-web.cnpem.br](http://kvfinder-web.cnpem.br)).
 
 ### KVFinder-web service
 

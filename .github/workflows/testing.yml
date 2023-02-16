@@ -14,11 +14,11 @@ jobs:
 
       - name: Build docker container
         run: |
-          docker build . --file Dockerfile --tag kvfinderwebportal:latest 
+          docker build . --file Dockerfile --tag kvfinder-web-portal:latest 
 
       - name: Test docker container
         run: |
-          docker run --detach -p 3838:3838 kvfinderwebportal 
+          docker run --detach -p 3838:3838 kvfinder-web-portal 
           docker ps
           docker kill $(docker ps -q)
           docker ps
