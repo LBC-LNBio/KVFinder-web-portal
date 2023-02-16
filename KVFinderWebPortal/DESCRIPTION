@@ -1,0 +1,53 @@
+Package: KVFinderWebPortal
+Title: KVFinder-web portal
+Version: 1.0.0
+Authors@R: 
+    c(
+        person(
+            given = "Helder",
+            family = "Ribeiro-Filho",
+            role = c("aut", "cre"),
+            email = "helder.ribeiro@lnbio.cnpem.br",
+        ),
+        person(
+            given = "João",
+            family = "Guerra",
+            role = c("ctb"),
+        ),
+        person(
+            given = "José",
+            family = "Pereira",
+            role = c("ctb"),
+        ),
+        person(
+            given = "Paulo",
+            family = "Lopes-de-Oliveira",
+            role = c("ctb"),
+        ),
+    )
+Description: A Shiny Web App for interacting with KVFinder-web service.
+License: Apache License 2
+Imports: 
+    bio3d,
+    blogdown,
+    bs4Dash,
+    colourpicker,
+    config (>= 0.3.1),
+    data.table,
+    DT,
+    golem (>= 0.3.1),
+    httr,
+    jsonlite,
+    NGLVieweR,
+    RcppTOML,
+    readr,
+    rjson,
+    rlang,
+    shiny (>= 1.7.1),
+    shinycssloaders,
+    shinyfullscreen,
+    shinyjs,
+    shinyWidgets
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2

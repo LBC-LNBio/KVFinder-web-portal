@@ -82,15 +82,16 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         output[[results_table]] <- renderUI({
           DT::dataTableOutput(table_out)
         })
-        output[[table_out]] <- DT::renderDataTable(data.table(
-          `Cavity ID` = names(result_toml$AREA),
-          `Area (A²)` = unlist(result_toml$AREA),
-          `Volume (A³)` = unlist(result_toml$VOLUME)
-        ),
-        filter = c("none"),
-        style = "auto",
-        options = list(dom = "lBfrtip", buttons = c("excel", "pdf")),
-        extensions = "Buttons"
+        output[[table_out]] <- DT::renderDataTable(
+          data.table(
+            `Cavity ID` = names(result_toml$AREA),
+            `Area (A²)` = unlist(result_toml$AREA),
+            `Volume (A³)` = unlist(result_toml$VOLUME)
+          ),
+          filter = c("none"),
+          style = "auto",
+          options = list(dom = "lBfrtip", buttons = c("excel", "pdf")),
+          extensions = "Buttons"
         )
         # save cavities name
         cav_out_names <- names(result_toml$AREA)

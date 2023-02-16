@@ -44,7 +44,7 @@ usethis::use_test( "app" )
 # Documentation
 
 ## Vignette ----
-usethis::use_vignette("KVserver")
+usethis::use_vignette("KVFinderWebPortal")
 devtools::build_vignettes()
 
 ## Code Coverage----

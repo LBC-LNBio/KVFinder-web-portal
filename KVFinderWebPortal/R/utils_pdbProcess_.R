@@ -19,11 +19,11 @@ report_nonstand <- function(pdb_input) {
       return(NA)
     }
   )
-  if (class(pdb)[1] == "pdb") { 
-    #check multimodels
-    if(class(pdb)[1] == "pdb" & dim(pdb$xyz)[1] > 1){
+  if (class(pdb)[1] == "pdb") {
+    # check multimodels
+    if (class(pdb)[1] == "pdb" & dim(pdb$xyz)[1] > 1) {
       shinyWidgets::sendSweetAlert(title = "Oops!", text = "A multimodel structure was detected as input: Using only the first structure from the multimodel...", type = "warning")
-    } 
+    }
     # get protein
     indx_p <- atom.select(pdb, string = "protein", inverse = TRUE)
     # get nucleic

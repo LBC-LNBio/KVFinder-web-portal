@@ -196,10 +196,10 @@ app_server <- function(input, output, session) {
     # Create a 'observe' to monitor the results by checking and automatically updating the status each 5s when in queued or running
     observe({
       result_pdb <<- check_results(input = input, output = output, run_id = current_run_id, is_pg2 = FALSE, url_address = url_address, session = session)
-      if (length(result_pdb) == 1 ) { #if results_pdb corresponds to output status and not kvfinder results
+      if (length(result_pdb) == 1) { # if results_pdb corresponds to output status and not kvfinder results
         print(result_pdb)
-        if (result_pdb %in% c("queued", "running")){
-          invalidateLater(5000) # means 5 seconds  
+        if (result_pdb %in% c("queued", "running")) {
+          invalidateLater(5000) # means 5 seconds
         }
       } else { # in case of status completed or error, the check_results will not be updated each 5s
         # the hidden elements are also showed

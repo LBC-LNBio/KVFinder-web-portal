@@ -1,4 +1,4 @@
-#' KVserver User-Interface
+#' KVFinderWebPortal User-Interface
 #'
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.

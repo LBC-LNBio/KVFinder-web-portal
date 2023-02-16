@@ -19,13 +19,13 @@
 ## to change the name in the app_sys() function in app_config.R /!\
 ## 
 golem::fill_desc(
-  pkg_name = "KVserver", # The Name of the package containing the App 
-  pkg_title = "PKG_TITLE", # The Title of the package containing the App 
-  pkg_description = "PKG_DESC.", # The Description of the package containing the App 
-  author_first_name = "AUTHOR_FIRST", # Your First Name
-  author_last_name = "AUTHOR_LAST", # Your Last Name
-  author_email = "AUTHOR@MAIL.COM", # Your Email
-  repo_url = NULL # The URL of the GitHub Repo (optional) 
+  pkg_name = "KVFinderWebPortal", # The Name of the package containing the App 
+  pkg_title = "KVFinder-web portal", # The Title of the package containing the App 
+  pkg_description = "A Shiny Web App for interacting with KVFinder-web service.", # The Description of the package containing the App 
+  author_first_name = "Helder", # Your First Name
+  author_last_name = "Ribeiro-Filho", # Your Last Name
+  author_email = "helder.ribeiro@lnbio.cnpem.br", # Your Email
+  repo_url = "https://github.com/LBC-LNBio/KVFinder-web-portal" # The URL of the GitHub Repo (optional) 
 )     
 
 ## Set {golem} options ----
@@ -36,7 +36,7 @@ golem::set_golem_options()
 usethis::use_mit_license( "Golem User" )  # You can set another license here
 usethis::use_readme_rmd( open = FALSE )
 usethis::use_code_of_conduct()
-usethis::use_lifecycle_badge( "Experimental" )
+usethis::use_lifecycle_badge( "Stable" )
 usethis::use_news_md( open = FALSE )
 
 ## Use git ----

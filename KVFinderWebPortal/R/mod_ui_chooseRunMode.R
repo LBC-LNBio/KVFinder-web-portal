@@ -163,16 +163,17 @@ choose_run_mode <- function() {
               kv_params(id = "box_mode", input_type = "probe_out"),
               title = "A larger probe that rolls around the target protein, which depending on the characteristics of the target structure, user may adjust probe size. Probe out must be larger than probe in.", placement = "bottom"
             ),
-            bs4Dash::tooltip(numericInput(
-              inputId = "padding_value",
-              label = "Padding (Å):",
-              value = 3.5,
-              min = 0.0,
-              max = 5.0,
-              step = 1.0,
-              width = 100
-            ),
-            title = "Defines padding around the selection which the box will be created.", placement = "bottom"
+            bs4Dash::tooltip(
+              numericInput(
+                inputId = "padding_value",
+                label = "Padding (Å):",
+                value = 3.5,
+                min = 0.0,
+                max = 5.0,
+                step = 1.0,
+                width = 100
+              ),
+              title = "Defines padding around the selection which the box will be created.", placement = "bottom"
             )
           ),
           splitLayout(
