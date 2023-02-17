@@ -13,7 +13,7 @@ kv_tutorial <- function() {
     ),
     tags$br(),
     tags$br(),
-    tags$p("This section is an introductory overview of KVFinder-web service features. Here, we are going to demonstrate how to use this KVFinder-web interface with our publicly available KVFinder-web service (",
+    tags$p("This section is an introductory overview of KVFinder-web service features. Here, we are going to demonstrate how to use this KVFinder-web portal with our publicly available KVFinder-web service (",
       tags$a(href = "https://kvfinder-web.cnpem.br", "kvfinder-web.cnpem.br"),
       ").",
       style = "text-align:justify"
@@ -46,7 +46,7 @@ kv_tutorial <- function() {
     tags$p(
       "After, you must load a target biomolecular structure into the ",
       strong("Step 1. Choose input"),
-      ". For example, you could load human PPAR-gamma (1PRG) into KVFinder-web interface.",
+      ". For example, you could load human PPAR-gamma (1PRG) into KVFinder-web portal.",
       "The ",
       strong("Type of input"),
       "must be set to 'Fetch from PDB'. Then, you must type '1PRG' in the ",
