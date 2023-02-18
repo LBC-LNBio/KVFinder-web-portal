@@ -42,7 +42,7 @@ app_server <- function(input, output, session) {
     "Secondary Structure" = "sstruc"
   )
   #---------------------------------------------
-
+  #teste
   # Point to KV help page when click in "More" button in main page
   observeEvent(input$more_button, {
     updateTabItems(session = session, inputId = "sidebarmenu", selected = "help_kv_sidebar")
