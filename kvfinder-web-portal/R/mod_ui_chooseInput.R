@@ -25,20 +25,34 @@ choose_input <- function() {
           "Upload PDB file" = "pdb_from_file"
         )
       )),
-      # Fetch mode
+      # Upload mode
       column(
         8, conditionalPanel(
           condition = "input.input_type == 'pdb_from_file'",
+          fixedRow(
+          column(
+            6,
           fileInput(
             inputId = "input_pdb",
             label = "Upload PDB file",
             accept = ".pdb",
             width = 250
+          )
+          ),
+          column(
+            3, div(style = "margin-top: 27px;"),
+            actionButton(
+              inputId = "show_preview_upload",
+              label = "Preview",
+              icon = icon("search"),
+              width = 110
+            )           
+          )
           ),
           uiOutput("note_text1"),
           uiOutput("checkbox_nostand1", width = 800)
         ),
-        # Upload mode
+        # Fetch mode
         conditionalPanel(
           condition = "input.input_type == 'pdb_from_id'",
           fixedRow(
@@ -52,14 +66,23 @@ choose_input <- function() {
               )
             ),
             column(
-              1, div(style = "margin-top: 27px;"),
+              3, div(style = "margin-top: 27px;"),
               actionButton(
                 inputId = "send_pdb_id",
                 label = "Load",
                 icon = icon("share-square"),
-                width = 90
-              )
-            )
+                width = 110
+              )           
+            ),
+            column(
+              1, div(style = "margin-top: 27px;"),
+              actionButton(
+                inputId = "show_preview_fetch",
+                label = "Preview",
+                icon = icon("search"),
+                width = 110
+              )           
+            ),
           ),
           uiOutput("note_text2"),
           uiOutput("checkbox_nostand2", width = 800)

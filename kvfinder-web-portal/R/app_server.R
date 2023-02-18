@@ -42,7 +42,7 @@ app_server <- function(input, output, session) {
     "Secondary Structure" = "sstruc"
   )
   #---------------------------------------------
-  #teste
+
   # Point to KV help page when click in "More" button in main page
   observeEvent(input$more_button, {
     updateTabItems(session = session, inputId = "sidebarmenu", selected = "help_kv_sidebar")
@@ -58,17 +58,52 @@ app_server <- function(input, output, session) {
   observeEvent(input$input_pdb, {
     # run process_upload of mod_server_upload module to create boxes and buttons of run mode
     process_upload(input = input, output = output, session = session)
+    get_nonstand_check_upload <<- report_nonstand(pdb_input =input$input_pdb$datapath)
   })
+  
+  observeEvent(input$show_preview_upload, {
+    print(input$input_pdb$datapath)
+    print(pdb_name_click_load)
+    print(get_nonstand)
+    showModal(modalDialog(
+      #title = tags$a('Structure preview', style = "text-align: right;" ),
+      #NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
+      if(!is.null(input$input_pdb)){
+        #print(get_nonstand_check)
+        renderNGLVieweR({
+          # get input protein PDB with output cavities
+          pdb <- input$input_pdb$datapath
+          # create initial scene
+          NGLVieweR(pdb) %>%
+            # start protein with visible cartoon representation 
+            addRepresentation("cartoon") %>%
+            addRepresentation("ball+stick", param = list(sele = paste(get_nonstand_check_upload, collapse = " or "))) %>%
+            # start cavity with points
+            stageParameters(backgroundColor = "black") %>%
+            setQuality("high") %>%
+            setFocus(0)
+        })
+      }else{
+        "No loaded structure to preview"
+      },
+      easyClose = TRUE,
+      footer = NULL,
+      size = 'l'
+    ))
+  })
+  
   #-----------------------------------------------------
 
   #-----------------------------------------------------
   # Fetch PDB section
   observeEvent(input$send_pdb_id, {
+    print(input$pdb_id)
     # save number of clicks in load button
     pdb_name_click_load <<- input$pdb_id
     # check if the PDB code is valid by using get_nonstand
     showModal(modalDialog("Loading and checking PDB...", footer = NULL, fade = FALSE))
-    get_nonstand_check <- report_nonstand(pdb_input = input$pdb_id)
+    get_nonstand_check <<- report_nonstand(pdb_input = input$pdb_id)
+    print(get_nonstand_check)
     removeModal()
     if (length(which(is.na(get_nonstand_check))) != 0) {
       shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
@@ -78,6 +113,35 @@ app_server <- function(input, output, session) {
     }
     # run process_fetch of mod_server_fetch module to create boxes and buttons of run mode
     # process_fetch(input = input, output = output)
+  })
+
+  observeEvent(input$show_preview_fetch, {
+    print(pdb_name_click_load)
+    showModal(modalDialog(
+      #title = tags$a('Structure preview', style = "text-align: right;" ),
+      #NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
+      if(pdb_name_click_load != 'init'){
+        print(get_nonstand_check)
+        renderNGLVieweR({
+          # get input protein PDB with output cavities
+          pdb <- input$pdb_id
+          # create initial scene
+          NGLVieweR(pdb) %>%
+            # start protein with visible cartoon representation 
+            addRepresentation("cartoon") %>%
+            addRepresentation("ball+stick", param = list(sele = paste(get_nonstand_check, collapse = " or "))) %>%
+            # start cavity with points
+            stageParameters(backgroundColor = "black") %>%
+            setQuality("high") %>%
+            setFocus(0)
+        })
+      }else{
+        "No loaded structure to preview"
+      },
+      easyClose = TRUE,
+      footer = NULL,
+      size = 'l'
+    ))
   })
 
   #----------------------------------------------------
