@@ -40,6 +40,8 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
     # Just another check if user uploaded a PDB or fetched a PDB ID before to submit
   } else if (length(input$pdb_id) > 0 & input$send_pdb_id == 0 & input$input_type != "pdb_from_file") {
     shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please load from PDB or upload a PDB file before to submit.", type = "error")
+  } else if (removal_dist_input == 0 & vol_cutoff_input ==0) {
+    shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Removal distance and volume cutoff cannot be zero at the same time.", type = "error")
   } else {
     # if pass through the above checks...
     # get pdb_processed from upload mode

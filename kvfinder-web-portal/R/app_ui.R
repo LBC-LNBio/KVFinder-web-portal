@@ -155,18 +155,22 @@ app_ui <- function(request) {
                     )
                   ),
                   fluidRow(
-                    column(3, uiOutput("selection_pdb")),
-                    column(3, uiOutput("cavity_color")),
-                    column(3, uiOutput("protein_rep")),
-                    column(3, uiOutput("protein_color_scheme"))
+                    column(2, uiOutput("selection_pdb")),
+                    column(2, uiOutput("cavity_rep")),
+                    column(2, uiOutput("cavity_color")),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_deep"))),
+                    column(4, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface"))),
                   ),
                   fluidRow(
-                    column(3, uiOutput("show_interface")),
+                    column(2, uiOutput("protein_rep")),
                     column(2, uiOutput("protein_color")),
-                    column(3, uiOutput("bg_color")),
+                    column(3, uiOutput("protein_color_scheme")),
+                    column(2, uiOutput("bg_color")),
                     column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
-                    column(2, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
-                  )
+                    column(1, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
+                    #column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
+                    #column(2, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
+                  ),
                 ), click_id = "fullscreen")
               )
             )
@@ -187,7 +191,7 @@ app_ui <- function(request) {
                   solidHeader = TRUE,
                   elevation = 2,
                   headerBorder = TRUE,
-                  width = 11,
+                  width = 12,
                   textInput(
                     inputId = "insert_ID",
                     label = "Insert the job ID to get results",
@@ -235,17 +239,19 @@ app_ui <- function(request) {
                     NGLVieweROutput("structure_pg2", width = "100%", height = "600px")
                   ),
                   fluidRow(
-                    column(3, uiOutput("selection_pdb_pg2")),
-                    column(3, uiOutput("cavity_color_pg2")),
-                    column(3, uiOutput("protein_rep_pg2")),
-                    column(3, uiOutput("protein_color_scheme_pg2")),
+                    column(2, uiOutput("selection_pdb_pg2")),
+                    column(2, uiOutput("cavity_rep_pg2")),
+                    column(2, uiOutput("cavity_color_pg2")),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_deep_pg2"))),
+                    column(4, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface_pg2"))),
                   ),
                   fluidRow(
-                    column(3, uiOutput("show_interface_pg2")),
+                    column(2, uiOutput("protein_rep_pg2")),
                     column(2, uiOutput("protein_color_pg2")),
-                    column(3, uiOutput("bg_color_pg2")),
+                    column(3, uiOutput("protein_color_scheme_pg2")),
+                    column(2, uiOutput("bg_color_pg2")),
                     column(2, align = "center", uiOutput("snapshot_title_pg2"), uiOutput("snapshot_pg2")),
-                    column(2, align = "center", uiOutput("fullscreen_title_pg2"), uiOutput("fullscreen_pg2"))
+                    column(1, align = "center", uiOutput("fullscreen_title_pg2"), uiOutput("fullscreen_pg2"))
                   )
                 ), click_id = "fullscreen_pg2")
               )

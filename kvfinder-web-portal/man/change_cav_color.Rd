@@ -4,7 +4,7 @@
 \alias{change_cav_color}
 \title{Function that changes color of the cavities in NGL viewer}
 \usage{
-change_cav_color(input, output, is_pg2)
+change_cav_color(input, output, is_pg2, cav_rep_list)
 }
 \arguments{
 \item{input}{shiny input}
@@ -12,6 +12,8 @@ change_cav_color(input, output, is_pg2)
 \item{output}{shiny output}
 
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
+
+\item{cav_rep_list}{}
 }
 \description{
 Function that changes color of the cavities in NGL viewer

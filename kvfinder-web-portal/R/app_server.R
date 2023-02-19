@@ -20,6 +20,7 @@ app_server <- function(input, output, session) {
   cav_list <- NULL
   result_toml <- NULL
   protein_rep_list <- c()
+  cav_rep_list <- c()
   pdb_processed <- NULL
   pdb_ligand_processed <- NULL
   run_mode_list <- c()
@@ -58,17 +59,52 @@ app_server <- function(input, output, session) {
   observeEvent(input$input_pdb, {
     # run process_upload of mod_server_upload module to create boxes and buttons of run mode
     process_upload(input = input, output = output, session = session)
+    get_nonstand_check_upload <<- report_nonstand(pdb_input =input$input_pdb$datapath)
   })
+  
+  observeEvent(input$show_preview_upload, {
+    print(input$input_pdb$datapath)
+    print(pdb_name_click_load)
+    print(get_nonstand)
+    showModal(modalDialog(
+      #title = tags$a('Structure preview', style = "text-align: right;" ),
+      #NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
+      if(!is.null(input$input_pdb)){
+        #print(get_nonstand_check)
+        renderNGLVieweR({
+          # get input protein PDB with output cavities
+          pdb <- input$input_pdb$datapath
+          # create initial scene
+          NGLVieweR(pdb) %>%
+            # start protein with visible cartoon representation 
+            addRepresentation("cartoon") %>%
+            addRepresentation("ball+stick", param = list(sele = paste(get_nonstand_check_upload, collapse = " or "))) %>%
+            # start cavity with points
+            stageParameters(backgroundColor = "black") %>%
+            setQuality("high") %>%
+            setFocus(0)
+        })
+      }else{
+        "No loaded structure to preview"
+      },
+      easyClose = TRUE,
+      footer = NULL,
+      size = 'l'
+    ))
+  })
+  
   #-----------------------------------------------------
 
   #-----------------------------------------------------
   # Fetch PDB section
   observeEvent(input$send_pdb_id, {
+    print(input$pdb_id)
     # save number of clicks in load button
     pdb_name_click_load <<- input$pdb_id
     # check if the PDB code is valid by using get_nonstand
     showModal(modalDialog("Loading and checking PDB...", footer = NULL, fade = FALSE))
-    get_nonstand_check <- report_nonstand(pdb_input = input$pdb_id)
+    get_nonstand_check <<- report_nonstand(pdb_input = input$pdb_id)
+    print(get_nonstand_check)
     removeModal()
     if (length(which(is.na(get_nonstand_check))) != 0) {
       shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
@@ -78,6 +114,35 @@ app_server <- function(input, output, session) {
     }
     # run process_fetch of mod_server_fetch module to create boxes and buttons of run mode
     # process_fetch(input = input, output = output)
+  })
+
+  observeEvent(input$show_preview_fetch, {
+    print(pdb_name_click_load)
+    showModal(modalDialog(
+      #title = tags$a('Structure preview', style = "text-align: right;" ),
+      #NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
+      if(pdb_name_click_load != 'init'){
+        print(get_nonstand_check)
+        renderNGLVieweR({
+          # get input protein PDB with output cavities
+          pdb <- input$pdb_id
+          # create initial scene
+          NGLVieweR(pdb) %>%
+            # start protein with visible cartoon representation 
+            addRepresentation("cartoon") %>%
+            addRepresentation("ball+stick", param = list(sele = paste(get_nonstand_check, collapse = " or "))) %>%
+            # start cavity with points
+            stageParameters(backgroundColor = "black") %>%
+            setQuality("high") %>%
+            setFocus(0)
+        })
+      }else{
+        "No loaded structure to preview"
+      },
+      easyClose = TRUE,
+      footer = NULL,
+      size = 'l'
+    ))
   })
 
   #----------------------------------------------------
@@ -168,6 +233,14 @@ app_server <- function(input, output, session) {
       )
       hideElement(
         id = "fullscreen_title",
+        time = 0
+      )
+      hideElement(
+        id = "cavity_rep",
+        time = 0
+      )
+      hideElement(
+        id = "cavity_deep",
         time = 0
       )
     }
@@ -272,6 +345,14 @@ app_server <- function(input, output, session) {
       id = "fullscreen_title_pg2",
       time = 0
     )
+    hideElement(
+      id = "cavity_rep_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "cavity_deep_pg2",
+      time = 0
+    )
   })
   #----------------------------------------------------
 
@@ -283,6 +364,7 @@ app_server <- function(input, output, session) {
   observeEvent(input$view_str,
     {
       protein_rep_list <<- c() # always initialize an empty list of protein representations when clicking on view button
+      cav_rep_list <<- c()
       protein_col_scheme_list <<- c() # always initialize an empty list of protein color scheme when clicking on view button
       # use "residue index" as the first protein color scheme
       protein_col_scheme_list <<- c(protein_col_scheme_list, "Residue index")
@@ -337,6 +419,14 @@ app_server <- function(input, output, session) {
         id = "fullscreen_title",
         time = 0
       )
+      showElement(
+        id = "cavity_rep",
+        time = 0
+      )
+      showElement(
+        id = "cavity_deep",
+        time = 0
+      )
       # disable view button to avoid user to click on it multiple times
       disable("view_str")
     },
@@ -352,7 +442,7 @@ app_server <- function(input, output, session) {
       # fed the protein list of representations
       protein_rep_list <<- c(protein_rep_list, current_rep)
       # Create the work scene
-      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list)
+      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list, prot_or_cav = 'prot', cav_rep_list='')
       # clean protein color selector
       updateSelectInput(session, "input_protein_color", # This update is made to clean the protein color selector
         selected = ""
@@ -361,11 +451,38 @@ app_server <- function(input, output, session) {
     ignoreNULL = TRUE,
     ignoreInit = TRUE
   )
+  
+  # Create a work scene every time users click on cavity representation selector and change biomolecular structure representation
+  observeEvent(input$input_cavity_rep,
+               {
+                 # save the current representation
+                 current_rep_cav <- input$input_cavity_rep
+                 # fed the protein list of representations
+                 cav_rep_list <<- c(cav_rep_list, current_rep_cav)
+                 print(cav_rep_list)
+                 # Create the work scene
+                 create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list, prot_or_cav = 'cav', cav_rep_list=cav_rep_list)
+                 # clean protein color selector
+                 # updateSelectInput(session, "input_protein_color", # This update is made to clean the protein color selector
+                 #                   selected = ""
+                 # )
+               },
+               ignoreNULL = TRUE,
+               ignoreInit = TRUE
+  )
+  
 
   # Select cavity to be visualized from clicking on cavity selector button
   observeEvent(input$select_cavity, {
+    print('exeuting select')
     select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
   })
+  
+  observeEvent(input$interface_res, {
+    print('exeuting select')
+    interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
+  })
+  
 
   # change biomolecular structure color
   observeEvent(input$input_protein_color, {
@@ -385,7 +502,7 @@ app_server <- function(input, output, session) {
 
   # change cavity color
   observeEvent(input$input_cavity_color, {
-    change_cav_color(input = input, output = output, is_pg2 = FALSE)
+    change_cav_color(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list)
   })
 
   # change background color
@@ -396,6 +513,10 @@ app_server <- function(input, output, session) {
   # take a snapshot
   observeEvent(input$input_snapshot, {
     take_snapshot(input = input, output = output, is_pg2 = FALSE)
+  })
+  
+  observeEvent(input$input_cavity_deep, {
+    color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
   })
 
 
@@ -463,6 +584,14 @@ app_server <- function(input, output, session) {
       id = "fullscreen_title_pg2",
       time = 0
     )
+    showElement(
+      id = "cavity_rep_pg2",
+      time = 0
+    )
+    showElement(
+      id = "cavity_deep_pg2",
+      time = 0
+    )
     disable("view_str_pg2")
   })
 
@@ -476,7 +605,7 @@ app_server <- function(input, output, session) {
       # create a list of representations
       protein_rep_list <<- c(protein_rep_list, current_rep)
       # Create work scene
-      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list)
+      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list,  prot_or_cav = 'prot', cav_rep_list='')
 
       # clean protein color selector
       updateSelectInput(session, "input_protein_color_pg2", # This updation is made to clean the protein color selector
@@ -486,6 +615,28 @@ app_server <- function(input, output, session) {
     ignoreNULL = TRUE,
     ignoreInit = FALSE
   )
+  
+  
+  # Create a work scene every time users click on cavity representation selector and change biomolecular structure representation
+  observeEvent(input$input_cavity_rep_pg2,
+               {
+                 print('Inside cav rep pg2')
+                 # save the current representation
+                 current_rep_cav <- input$input_cavity_rep_pg2
+                 # fed the protein list of representations
+                 cav_rep_list <<- c(cav_rep_list, current_rep_cav)
+                 #print(cav_rep_list)
+                 # Create the work scene
+                 create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list, prot_or_cav = 'cav', cav_rep_list=cav_rep_list)
+                 # clean protein color selector
+                 # updateSelectInput(session, "input_protein_color", # This update is made to clean the protein color selector
+                 #                   selected = ""
+                 # )
+               },
+               ignoreNULL = TRUE,
+               ignoreInit = TRUE
+  )
+  
 
   # Select cavity to be visualized from clicking on cavity selector button
   observeEvent(input$select_cavity_pg2, {
@@ -508,7 +659,7 @@ app_server <- function(input, output, session) {
   })
   # change cavity color
   observeEvent(input$input_cavity_color_pg2, {
-    change_cav_color(input = input, output = output, is_pg2 = TRUE)
+    change_cav_color(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list)
   })
   # change background color
   observeEvent(input$input_bg_color_pg2, {
@@ -517,6 +668,10 @@ app_server <- function(input, output, session) {
   # take a snapshot
   observeEvent(input$input_snapshot_pg2, {
     take_snapshot(input = input, output = output, is_pg2 = TRUE)
+  })
+  
+  observeEvent(input$input_cavity_deep_pg2, {
+    color_cavity_deepth(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
   })
 
   #----------------------------------------------------
