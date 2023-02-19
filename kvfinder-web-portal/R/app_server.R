@@ -477,6 +477,12 @@ app_server <- function(input, output, session) {
     print('exeuting select')
     select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
   })
+  
+  observeEvent(input$interface_res, {
+    print('exeuting select')
+    interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
+  })
+  
 
   # change biomolecular structure color
   observeEvent(input$input_protein_color, {
