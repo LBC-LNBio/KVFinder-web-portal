@@ -12,7 +12,9 @@ create_work_scene(
   protein_col_scheme_list,
   result_pdb_list,
   is_pg2,
-  scheme_color_list
+  scheme_color_list,
+  prot_or_cav,
+  cav_rep_list
 )
 }
 \arguments{
@@ -31,6 +33,8 @@ create_work_scene(
 \item{is_pg2}{logical TRUE/FALSE. If TRUE, we calling to create result in page 2 (get latest results page).}
 
 \item{scheme_color_list}{a named list of possible protein color schemes}
+
+\item{prot_or_cav}{'prot' or 'cav'}
 }
 \description{
 Create work scene to allow changes in NGL viewer

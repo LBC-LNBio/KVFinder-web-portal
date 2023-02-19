@@ -30,6 +30,8 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     interface_res <- "interface_res_pg2"
     fullscreen <- "fullscreen_pg2"
     fullscreen_title <- "fullscreen_title_pg2"
+    cavity_rep <- "cavity_rep_pg2"
+    cavity_deep <- "cavity_deep_pg2"
     # if in the main page
   } else {
     structure <- "structure"
@@ -46,6 +48,8 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     interface_res <- "interface_res"
     fullscreen <- "fullscreen"
     fullscreen_title <- "fullscreen_title"
+    cavity_rep <- "cavity_rep"
+    cavity_deep <- "cavity_deep"
   }
 
   #-------------------------------------------------------------------------------------------------------
@@ -74,7 +78,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     div(
       style = "font-size:12px;",
       selectInput(
-        inputId = select_cavity, label = div(style = "font-size:12px", "Show cavity"),
+        inputId = select_cavity, label = div(style = "font-size:12px", "Select cavity"),
         choices = c("All", result_pdb_list$result_cav_names)
       )
     )
@@ -123,7 +127,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     div(
       style = "font-size:12px;",
       selectInput(
-        inputId = paste("input_", protein_rep, sep = ""), label = div(style = "font-size:12px", "Protein representation"),
+        inputId = paste("input_", protein_rep, sep = ""), label = div(style = "font-size:12px", "Protein"),
         choices = c("cartoon", "point", "ball+stick", "line", "ribbon", "spacefill", "surface")
       )
     )
@@ -133,7 +137,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     div(
       style = "font-size:12px;",
       selectInput(
-        inputId = paste("input_", bg_color, sep = ""), label = div(style = "font-size:12px", "Background color"),
+        inputId = paste("input_", bg_color, sep = ""), label = div(style = "font-size:12px", "Background"),
         choices = c("black", "white")
       )
     )
@@ -162,6 +166,25 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
         inputId = paste("input_", fullscreen, sep = ""), label = "",
         width = 40, icon = icon("fullscreen", lib = "glyphicon")
       )
+    )
+  })
+  
+  # show interface button
+  output[[cavity_rep]] <- renderUI({
+    div(
+      style = "font-size:12px;",
+      selectInput(
+        inputId = paste("input_", cavity_rep, sep = ""), label = div(style = "font-size:12px", "Cavity"),
+        choices = c( "point",  "surface")
+      )
+    )
+  })
+  
+  # show interface button
+  output[[cavity_deep]] <- renderUI({
+    div(
+      style = "font-size:12px;",
+      checkboxInput(inputId = paste("input_", cavity_deep, sep = ""), label = div(style = "font-size:12px;display:inline-block", "Cavity depth"))
     )
   })
   #----------------------------------------------------------------------------------------------------------------

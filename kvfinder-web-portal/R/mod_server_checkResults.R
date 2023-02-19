@@ -74,6 +74,8 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
       retrieve_input_pdb <- retrieve_content$input$pdb
       # table with results
       result_toml <- parseTOML(input = content_get_output$output$report, fromFile = FALSE, escape = TRUE)$RESULTS
+      #print(names(result_toml))
+      #print(result_toml$MAX_DEPTH)
       # check if the at least one cavity was found
       if (length(result_toml$AREA) == 0) {
         shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "No cavity found. Please check the input parameters and try again.", type = "warning")
@@ -86,11 +88,17 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
           data.table(
             `Cavity ID` = names(result_toml$AREA),
             `Area (A²)` = unlist(result_toml$AREA),
-            `Volume (A³)` = unlist(result_toml$VOLUME)
+            `Volume (A³)` = unlist(result_toml$VOLUME),
+            `Avg Depth  (A)` = unlist(result_toml$AVG_DEPTH)
           ),
           filter = c("none"),
           style = "auto",
-          options = list(dom = "lBfrtip", buttons = c("excel", "pdf")),
+          options = list(dom = "lBfrtip", 
+                         buttons = c("excel", "pdf"), 
+                         autoWidth = TRUE,
+                         scrollX = TRUE,
+                         columnDefs = list(list(targets=c(4), visible=TRUE, width='75'))
+                         ),
           extensions = "Buttons"
         )
         # save cavities name
