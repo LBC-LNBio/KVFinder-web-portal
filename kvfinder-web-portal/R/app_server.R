@@ -243,6 +243,10 @@ app_server <- function(input, output, session) {
         id = "cavity_deep",
         time = 0
       )
+      hideElement(
+        id = "cavity_hyd",
+        time = 0
+      )
     }
   })
   #----------------------------------------------------
@@ -353,6 +357,10 @@ app_server <- function(input, output, session) {
       id = "cavity_deep_pg2",
       time = 0
     )
+    hideElement(
+      id = "cavity_hyd_pg2",
+      time = 0
+    )
   })
   #----------------------------------------------------
 
@@ -425,6 +433,10 @@ app_server <- function(input, output, session) {
       )
       showElement(
         id = "cavity_deep",
+        time = 0
+      )
+      showElement(
+        id = "cavity_hyd",
         time = 0
       )
       # disable view button to avoid user to click on it multiple times
@@ -519,7 +531,32 @@ app_server <- function(input, output, session) {
     color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
   })
 
-
+  observeEvent(input$input_cavity_hyd, {
+    color_cavity_hyd(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
+    output$scale_plot <- renderPlot({
+      EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
+                               -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
+                               -0.12,0.18,0.05, -0.83, -0.27, -1.11)
+      df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
+      p <- ggplot(data = df, aes(x = x, y = y, colour = y)) + 
+        geom_point() +
+        scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
+        theme(plot.title = element_text(hjust = 0.5),
+              legend.position = "bottom",
+              legend.key.width= unit(0.2, 'npc'),
+              #legend.spacing = unit(0.25,"cm"),
+              legend.title = element_text(hjust = 0.5),
+              legend.justification = "center") +
+        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
+               size = guide_legend(title.position="top", title.hjust = 0.5))
+      
+      # ggpubr does this for you
+      leg <- get_legend(p)
+      as_ggplot(leg)
+      
+    }) #, height =50, width = '100%'
+  })
+  
   ##### View in Get latest results page (pg2)
 
   # Click view in the secondary page to initialize the result visualization with the NGL engine
@@ -590,6 +627,10 @@ app_server <- function(input, output, session) {
     )
     showElement(
       id = "cavity_deep_pg2",
+      time = 0
+    )
+    showElement(
+      id = "cavity_hyd_pg2",
       time = 0
     )
     disable("view_str_pg2")
@@ -672,6 +713,10 @@ app_server <- function(input, output, session) {
   
   observeEvent(input$input_cavity_deep_pg2, {
     color_cavity_deepth(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
+  })
+  
+  observeEvent(input$input_cavity_hyd_pg2, {
+    color_cavity_hyd(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
   })
 
   #----------------------------------------------------

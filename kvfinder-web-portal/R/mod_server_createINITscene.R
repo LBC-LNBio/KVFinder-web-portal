@@ -32,6 +32,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     fullscreen_title <- "fullscreen_title_pg2"
     cavity_rep <- "cavity_rep_pg2"
     cavity_deep <- "cavity_deep_pg2"
+    cavity_hyd <- "cavity_hyd_pg2"
     # if in the main page
   } else {
     structure <- "structure"
@@ -50,6 +51,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
     fullscreen_title <- "fullscreen_title"
     cavity_rep <- "cavity_rep"
     cavity_deep <- "cavity_deep"
+    cavity_hyd <- "cavity_hyd"
   }
 
   #-------------------------------------------------------------------------------------------------------
@@ -87,7 +89,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
   output[[show_interface]] <- renderUI({
     div(
       style = "font-size:12px;",
-      checkboxInput(inputId = interface_res, label = div(style = "font-size:12px;display:inline-block", "Show interface residues"))
+      checkboxInput(inputId = interface_res, label = div(style = "font-size:12px;display:inline-block", "Interface AA"))
     )
   })
   # protein color scheme selector
@@ -184,7 +186,14 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
   output[[cavity_deep]] <- renderUI({
     div(
       style = "font-size:12px;",
-      checkboxInput(inputId = paste("input_", cavity_deep, sep = ""), label = div(style = "font-size:12px;display:inline-block", "Cavity depth"))
+      checkboxInput(inputId = paste("input_", cavity_deep, sep = ""), label = div(style = "font-size:12px;display:inline-block", "Depth"))
+    )
+  })
+  
+  output[[cavity_hyd]] <- renderUI({
+    div(
+      style = "font-size:12px;",
+      checkboxInput(inputId = paste("input_", cavity_hyd, sep = ""), label = div(style = "font-size:12px;display:inline-block", "Hydropathy"))
     )
   })
   #----------------------------------------------------------------------------------------------------------------

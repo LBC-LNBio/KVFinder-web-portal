@@ -142,6 +142,7 @@ app_ui <- function(request) {
                 tags$br(),
                 uiOutput("results_table"),
                 tags$br(),
+                htmlOutput("table_footer")
               ),
               column(
                 7,
@@ -154,12 +155,20 @@ app_ui <- function(request) {
                       NGLVieweROutput("structure", width = "100%", height = "75vh")
                     )
                   ),
+                  conditionalPanel(
+                    condition="input.input_cavity_hyd==1",
+                  fluidRow(
+                    column(12, align='center',
+                           plotOutput("scale_plot", height = '50', width = '50%'))
+                  )
+                    ),
                   fluidRow(
                     column(2, uiOutput("selection_pdb")),
                     column(2, uiOutput("cavity_rep")),
                     column(2, uiOutput("cavity_color")),
                     column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_deep"))),
-                    column(4, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface"))),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_hyd"))),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface"))),
                   ),
                   fluidRow(
                     column(2, uiOutput("protein_rep")),
@@ -243,7 +252,8 @@ app_ui <- function(request) {
                     column(2, uiOutput("cavity_rep_pg2")),
                     column(2, uiOutput("cavity_color_pg2")),
                     column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_deep_pg2"))),
-                    column(4, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface_pg2"))),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_hyd_pg2"))),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface_pg2"))),
                   ),
                   fluidRow(
                     column(2, uiOutput("protein_rep_pg2")),

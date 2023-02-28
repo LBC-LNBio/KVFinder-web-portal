@@ -86,10 +86,11 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         })
         output[[table_out]] <- DT::renderDataTable(
           data.table(
-            `Cavity ID` = names(result_toml$AREA),
+            `ID` = names(result_toml$AREA),
             `Area (A²)` = unlist(result_toml$AREA),
-            `Volume (A³)` = unlist(result_toml$VOLUME),
-            `Avg Depth  (A)` = unlist(result_toml$AVG_DEPTH)
+            `Vol. (A³)` = unlist(result_toml$VOLUME),
+            `Dep. (A)` = unlist(result_toml$AVG_DEPTH),
+            `Hyd.` = unlist(result_toml$AVG_HYDROPATHY)
           ),
           filter = c("none"),
           style = "auto",
@@ -97,7 +98,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
                          buttons = c("excel", "pdf"), 
                          autoWidth = TRUE,
                          scrollX = TRUE,
-                         columnDefs = list(list(targets=c(4), visible=TRUE, width='75'))
+                         columnDefs = list(list(targets=c(5), visible=TRUE, width='60'))
                          ),
           extensions = "Buttons"
         )
@@ -130,10 +131,15 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
             write_toml(param_list, output = filename)
           }
         )
-
         # create visualization button
         output[[view_output]] <- renderUI({
           actionButton(inputId = view_str, label = "View", icon = icon("eye"), style = "color: #fff; background-color: #6c757d; border-color: #6c757d")
+        })
+        
+        output$table_footer <- renderText({
+          paste(
+            p("ID: Cavity ID, Area: Cavity area, Vol: Cavity volume, Dep: Cavity average depth, Hyd: Cavity average hydropathy.")
+          )
         })
         # create list to store results
         result_list <- list(
