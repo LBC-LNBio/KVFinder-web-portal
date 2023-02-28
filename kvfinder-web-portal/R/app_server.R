@@ -562,7 +562,7 @@ app_server <- function(input, output, session) {
       
       # ggpubr does this for you
       leg <- ggpubr::get_legend(p)
-      as_ggplot(leg)
+      ggpubr::as_ggplot(leg)
       
     }) #, height =50, width = '100%'
   })
