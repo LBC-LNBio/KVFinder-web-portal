@@ -556,7 +556,11 @@ app_server <- function(input, output, session) {
               legend.key.width= unit(0.2, 'npc'),
               #legend.spacing = unit(0.25,"cm"),
               legend.title = element_text(hjust = 0.5),
-              legend.justification = "center") +
+              legend.justification = "center",
+              panel.background = element_rect(fill='transparent'),
+              plot.background = element_rect(fill='transparent'),
+              legend.background = element_rect(fill='transparent'),
+              legend.box.background = element_rect(fill='transparent'))+
         guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
                size = guide_legend(title.position="top", title.hjust = 0.5))
       
@@ -564,7 +568,7 @@ app_server <- function(input, output, session) {
       leg <- ggpubr::get_legend(p)
       ggpubr::as_ggplot(leg)
       
-    }) #, height =50, width = '100%'
+    }, bg="transparent") #, height =50, width = '100%'
   })
   
   ##### View in Get latest results page (pg2)
