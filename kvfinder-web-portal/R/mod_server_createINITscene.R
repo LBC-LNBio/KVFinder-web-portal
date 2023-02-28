@@ -89,7 +89,7 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
   output[[show_interface]] <- renderUI({
     div(
       style = "font-size:12px;",
-      checkboxInput(inputId = interface_res, label = div(style = "font-size:12px;display:inline-block", "Show interface residues"))
+      checkboxInput(inputId = interface_res, label = div(style = "font-size:12px;display:inline-block", "Interface AA"))
     )
   })
   # protein color scheme selector
@@ -186,14 +186,14 @@ create_init_scene <- function(input, output, result_pdb_list, is_pg2, scheme_col
   output[[cavity_deep]] <- renderUI({
     div(
       style = "font-size:12px;",
-      checkboxInput(inputId = paste("input_", cavity_deep, sep = ""), label = div(style = "font-size:12px;display:inline-block", "Cavity depth"))
+      checkboxInput(inputId = paste("input_", cavity_deep, sep = ""), label = div(style = "font-size:12px;display:inline-block", "Depth"))
     )
   })
   
   output[[cavity_hyd]] <- renderUI({
     div(
       style = "font-size:12px;",
-      checkboxInput(inputId = paste("input_", cavity_hyd, sep = ""), label = div(style = "font-size:12px;display:inline-block", "Cavity hydropathy"))
+      checkboxInput(inputId = paste("input_", cavity_hyd, sep = ""), label = div(style = "font-size:12px;display:inline-block", "Hydropathy"))
     )
   })
   #----------------------------------------------------------------------------------------------------------------

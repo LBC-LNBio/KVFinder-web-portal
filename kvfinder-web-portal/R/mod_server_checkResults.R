@@ -138,7 +138,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         
         output$table_footer <- renderText({
           paste(
-            p("ID: Cavity ID, Area: Cavity area, Vol: Cavity volume, Dep: Cavity depth, Hyd: Cavity hydropathy.")
+            p("ID: Cavity ID, Area: Cavity area, Vol: Cavity volume, Dep: Cavity average depth, Hyd: Cavity average hydropathy.")
           )
         })
         # create list to store results
