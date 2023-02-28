@@ -154,6 +154,13 @@ app_ui <- function(request) {
                       NGLVieweROutput("structure", width = "100%", height = "75vh")
                     )
                   ),
+                  conditionalPanel(
+                    condition="input.input_cavity_hyd==1",
+                  fluidRow(
+                    column(12, align='center',
+                           plotOutput("scale_plot", height = '50', width = '50%'))
+                  )
+                    ),
                   fluidRow(
                     column(2, uiOutput("selection_pdb")),
                     column(2, uiOutput("cavity_rep")),
