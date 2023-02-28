@@ -90,7 +90,8 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
             `ID` = names(result_toml$AREA),
             `Area (A²)` = unlist(result_toml$AREA),
             `Vol. (A³)` = unlist(result_toml$VOLUME),
-            `Dep. (A)` = unlist(result_toml$AVG_DEPTH),
+            `Avg Dep. (A)` = unlist(result_toml$AVG_DEPTH),
+            `Max Dep. (A)` = unlist(result_toml$MAX_DEPTH),
             `Hyd.` = unlist(result_toml$AVG_HYDROPATHY[names(result_toml$AVG_HYDROPATHY) != 'EisenbergWeiss'])
           ),
           filter = c("none"),
@@ -99,7 +100,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
                          buttons = c("excel", "pdf"), 
                          autoWidth = TRUE,
                          scrollX = TRUE,
-                         columnDefs = list(list(targets=c(5), visible=TRUE, width='10%'))
+                         columnDefs = list(list(targets=c(1), visible=TRUE, width='10%'))
                          ),
           extensions = "Buttons"
         )
