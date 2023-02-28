@@ -159,7 +159,8 @@ app_ui <- function(request) {
                     column(2, uiOutput("cavity_rep")),
                     column(2, uiOutput("cavity_color")),
                     column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_deep"))),
-                    column(4, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface"))),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_hyd"))),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface"))),
                   ),
                   fluidRow(
                     column(2, uiOutput("protein_rep")),
@@ -243,7 +244,8 @@ app_ui <- function(request) {
                     column(2, uiOutput("cavity_rep_pg2")),
                     column(2, uiOutput("cavity_color_pg2")),
                     column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_deep_pg2"))),
-                    column(4, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface_pg2"))),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_hyd_pg2"))),
+                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface_pg2"))),
                   ),
                   fluidRow(
                     column(2, uiOutput("protein_rep_pg2")),

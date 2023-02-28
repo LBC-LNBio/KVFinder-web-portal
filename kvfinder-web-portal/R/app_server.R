@@ -243,6 +243,10 @@ app_server <- function(input, output, session) {
         id = "cavity_deep",
         time = 0
       )
+      hideElement(
+        id = "cavity_hyd",
+        time = 0
+      )
     }
   })
   #----------------------------------------------------
@@ -353,6 +357,10 @@ app_server <- function(input, output, session) {
       id = "cavity_deep_pg2",
       time = 0
     )
+    hideElement(
+      id = "cavity_hyd_pg2",
+      time = 0
+    )
   })
   #----------------------------------------------------
 
@@ -425,6 +433,10 @@ app_server <- function(input, output, session) {
       )
       showElement(
         id = "cavity_deep",
+        time = 0
+      )
+      showElement(
+        id = "cavity_hyd",
         time = 0
       )
       # disable view button to avoid user to click on it multiple times
@@ -519,7 +531,10 @@ app_server <- function(input, output, session) {
     color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
   })
 
-
+  observeEvent(input$input_cavity_hyd, {
+    color_cavity_hyd(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
+  })
+  
   ##### View in Get latest results page (pg2)
 
   # Click view in the secondary page to initialize the result visualization with the NGL engine
@@ -590,6 +605,10 @@ app_server <- function(input, output, session) {
     )
     showElement(
       id = "cavity_deep_pg2",
+      time = 0
+    )
+    showElement(
+      id = "cavity_hyd_pg2",
       time = 0
     )
     disable("view_str_pg2")
@@ -672,6 +691,10 @@ app_server <- function(input, output, session) {
   
   observeEvent(input$input_cavity_deep_pg2, {
     color_cavity_deepth(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
+  })
+  
+  observeEvent(input$input_cavity_hyd_pg2, {
+    color_cavity_hyd(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
   })
 
   #----------------------------------------------------
