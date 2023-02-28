@@ -142,6 +142,7 @@ app_ui <- function(request) {
                 tags$br(),
                 uiOutput("results_table"),
                 tags$br(),
+                htmlOutput("table_footer")
               ),
               column(
                 7,
