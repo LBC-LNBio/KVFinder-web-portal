@@ -84,13 +84,14 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         output[[results_table]] <- renderUI({
           DT::dataTableOutput(table_out)
         })
+        #print(result_toml$AVG_HYDROPATHY)
         output[[table_out]] <- DT::renderDataTable(
           data.table(
             `ID` = names(result_toml$AREA),
             `Area (A²)` = unlist(result_toml$AREA),
             `Vol. (A³)` = unlist(result_toml$VOLUME),
             `Dep. (A)` = unlist(result_toml$AVG_DEPTH),
-            `Hyd.` = unlist(result_toml$AVG_HYDROPATHY)
+            `Hyd.` = unlist(result_toml$AVG_HYDROPATHY[names(result_toml$AVG_HYDROPATHY) != 'EisenbergWeiss'])
           ),
           filter = c("none"),
           style = "auto",
@@ -98,7 +99,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
                          buttons = c("excel", "pdf"), 
                          autoWidth = TRUE,
                          scrollX = TRUE,
-                         columnDefs = list(list(targets=c(5), visible=TRUE, width='60'))
+                         columnDefs = list(list(targets=c(5), visible=TRUE, width='10%'))
                          ),
           extensions = "Buttons"
         )
