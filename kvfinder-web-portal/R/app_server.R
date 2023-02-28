@@ -175,6 +175,10 @@ app_server <- function(input, output, session) {
         time = 0
       )
       hideElement(
+        id = "table_footer",
+        time = 0
+      )
+      hideElement(
         id = "view_str",
         time = 0
       )
@@ -286,6 +290,10 @@ app_server <- function(input, output, session) {
         )
         showElement(
           id = "download2",
+          time = 0
+        )
+        showElement(
+          id = "table_footer",
           time = 0
         )
       }

@@ -92,7 +92,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
             `Vol. (A³)` = unlist(result_toml$VOLUME),
             `Avg Dep. (A)` = unlist(result_toml$AVG_DEPTH),
             `Max Dep. (A)` = unlist(result_toml$MAX_DEPTH),
-            `Hyd.` = unlist(result_toml$AVG_HYDROPATHY[names(result_toml$AVG_HYDROPATHY) != 'EisenbergWeiss'])
+            `Avg Hyd.` = unlist(result_toml$AVG_HYDROPATHY[names(result_toml$AVG_HYDROPATHY) != 'EisenbergWeiss'])
           ),
           filter = c("none"),
           style = "auto",
@@ -140,7 +140,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         
         output$table_footer <- renderText({
           paste(
-            p("ID: Cavity ID, Area: Cavity area, Vol: Cavity volume, Dep: Cavity average depth, Hyd: Cavity average hydropathy.")
+            p(strong("ID: "), "Cavity ID, ", strong("Area: "), "Cavity area, ", strong("Vol: "), "Cavity volume, ", strong("Avg Dep: "), "Cavity average depth ,", strong("Max Dep: "), "Cavity maximum depth, ", strong("Avg Hyd: "), "Cavity average hydropathy.")
           )
         })
         # create list to store results
