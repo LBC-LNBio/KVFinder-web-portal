@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev
 
 # Install R depedencies
-RUN install2.r shiny pkgload remotes devtools bio3d bs4Dash config data.table DT golem NGLVieweR RcppTOML readr rjson shinyjs blogdown colourpicker shinyfullscreen shinycssloaders shinyWidgets ggplot2
+RUN install2.r shiny pkgload remotes devtools bio3d bs4Dash config data.table DT golem NGLVieweR RcppTOML readr rjson shinyjs blogdown colourpicker shinyfullscreen shinycssloaders shinyWidgets ggplot2 ggpubr
 
 # Copy the app directory into the image
 COPY ./kvfinder-web-portal/ /srv/shiny-server/kvfinder-web-portal/

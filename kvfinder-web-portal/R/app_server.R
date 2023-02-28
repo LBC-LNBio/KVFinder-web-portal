@@ -4,6 +4,8 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @import shinyjs
+#' @import ggplot2
+#' 
 #'
 #' @noRd
 #'
@@ -546,7 +548,7 @@ app_server <- function(input, output, session) {
                                -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
                                -0.12,0.18,0.05, -0.83, -0.27, -1.11)
       df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
-      p <- ggplot(data = df, aes(x = x, y = y, colour = y)) + 
+      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
         geom_point() +
         scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
         theme(plot.title = element_text(hjust = 0.5),
@@ -559,7 +561,7 @@ app_server <- function(input, output, session) {
                size = guide_legend(title.position="top", title.hjust = 0.5))
       
       # ggpubr does this for you
-      leg <- get_legend(p)
+      leg <- ggpubr::get_legend(p)
       as_ggplot(leg)
       
     }) #, height =50, width = '100%'
