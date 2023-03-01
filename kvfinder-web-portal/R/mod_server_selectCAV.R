@@ -39,10 +39,15 @@ select_cav <- function(input, output, result_pdb_list, is_pg2) {
         updateSelection("hyd", sele = input[[select_cavity]]) %>%
         updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
     } else{
-      NGLVieweR_proxy(structure) %>%
-        updateSelection("point", sele = input[[select_cavity]]) %>%
-        updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
-    }
-
+      if(tail(cav_rep_list, n = 1) == 'point'){
+        NGLVieweR_proxy(structure) %>%
+          updateSelection("point", sele = input[[select_cavity]]) %>%
+          updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
+      }
+      if(tail(cav_rep_list, n = 1) == 'surface'){
+        NGLVieweR_proxy(structure) %>%
+          updateSelection("surface", sele = input[[select_cavity]]) %>%
+          updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
+      }
   }
 }

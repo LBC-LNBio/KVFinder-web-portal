@@ -11,8 +11,14 @@
 #'
 
 app_server <- function(input, output, session) {
-  # url address to conexion. This is used in submition and check results functions.
+  # url address to connection. This is used in submition and check results functions.
   url_address <- "http://localhost:8081/"
+
+  # KVFinder-web portal outside KVFinder-web service container
+  # url_address <- "http://<ip>:8081/"
+
+  # KVFinder-web portal inside the same container of KVFinder-web service
+  # url_address <- "http://kv-server:8081/"
 
   #-----------------------------------------------
   # initialize global variables to be used inside some funtions
@@ -520,7 +526,7 @@ app_server <- function(input, output, session) {
 
   # Select cavity to be visualized from clicking on cavity selector button
   observeEvent(input$select_cavity, {
-    select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
+    select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE, cav_rep_list=cav_rep_list)
   })
   
   observeEvent(input$interface_res, {
@@ -571,8 +577,7 @@ app_server <- function(input, output, session) {
       df <- data.frame(x = seq(1,length(depth_scale)), y = depth_scale)
       p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) +
         geom_point() +
-        #scale_colour_gradient2(name = "Deepth (A)", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
-        scale_color_gradientn(name = "Deepth (A)", colours = rev(rainbow(5)))+
+        scale_color_gradientn(name = "Depth (A)", colours = rev(rainbow(5)))+
         theme(plot.title = element_text(hjust = 0.5),
               legend.position = "bottom",
               legend.key.width= unit(0.2, 'npc'),
