@@ -760,6 +760,11 @@ app_server <- function(input, output, session) {
     take_snapshot(input = input, output = output, is_pg2 = TRUE)
   })
   
+  observeEvent(input$interface_res_pg2, {
+    print('exeuting select')
+    interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE)
+  })
+  
   observeEvent(input$input_cavity_deep_pg2, {
     if(input$input_cavity_deep_pg2 == TRUE){
       updateCheckboxInput(session, "input_cavity_hyd_pg2", value = FALSE)  
