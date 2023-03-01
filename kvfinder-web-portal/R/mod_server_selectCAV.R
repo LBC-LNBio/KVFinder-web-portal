@@ -59,8 +59,6 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
           updateSelection("surface", sele = input[[select_cavity]]) %>%
           updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
       }
-
     }
-
   }
 }
