@@ -162,6 +162,13 @@ app_ui <- function(request) {
                            plotOutput("scale_plot", height = '50', width = '50%'))
                   )
                     ),
+                  conditionalPanel(
+                    condition="input.input_cavity_deep==1",
+                    fluidRow(
+                      column(12, align='center',
+                             plotOutput("scale_plot_deep", height = '50', width = '50%'))
+                    )
+                  ),
                   fluidRow(
                     column(2, uiOutput("selection_pdb")),
                     column(2, uiOutput("cavity_rep")),

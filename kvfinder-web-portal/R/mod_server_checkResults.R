@@ -143,12 +143,19 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
             p(strong("ID: "), "Cavity ID, ", strong("Area: "), "Cavity area, ", strong("Vol: "), "Cavity volume, ", strong("Avg Dep: "), "Cavity average depth ,", strong("Max Dep: "), "Cavity maximum depth, ", strong("Avg Hyd: "), "Cavity average hydropathy.")
           )
         })
+        
+        #get values of depth for each atom 
+        str_cav = strsplit(result_pdb_cav, "\n")[[1]]
+        get_atoms = str_cav[sapply(str_cav, function(x) startsWith(x, 'ATOM'))]
+        #print(get_atoms[1:10])
+        list_depth = as.numeric(sapply(get_atoms, function(x) strsplit(x, '\\s+')[[1]][10]))
         # create list to store results
         result_list <- list(
           retrieve_input_pdb = retrieve_input_pdb,
           result_pdb_cav = result_pdb_cav,
           result_cav_names = cav_out_names,
-          result_toml = result_toml
+          result_toml = result_toml,
+          list_depth = list_depth
         )
         return(result_list)
       }

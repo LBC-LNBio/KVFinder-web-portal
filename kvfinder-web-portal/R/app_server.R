@@ -538,10 +538,43 @@ app_server <- function(input, output, session) {
   })
   
   observeEvent(input$input_cavity_deep, {
+    if(input$input_cavity_deep == TRUE){
+      updateCheckboxInput(session, "input_cavity_hyd", value = FALSE)  
+    }
+    
     color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
-  })
+    
+    output$scale_plot_deep <- renderPlot({
+      depth_scale = c(0,result_pdb$list_depth, max(unlist(result_pdb$result_toml$MAX_DEPTH)))
+      df <- data.frame(x = seq(1,length(depth_scale)), y = depth_scale)
+      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) +
+        geom_point() +
+        #scale_colour_gradient2(name = "Deepth (A)", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
+        scale_color_gradientn(name = "Deepth (A)", colours = rev(rainbow(5)))+
+        theme(plot.title = element_text(hjust = 0.5),
+              legend.position = "bottom",
+              legend.key.width= unit(0.2, 'npc'),
+              #legend.spacing = unit(0.25,"cm"),
+              legend.title = element_text(hjust = 0.5),
+              legend.justification = "center",
+              panel.background = element_rect(fill='transparent'),
+              plot.background = element_rect(fill='transparent'),
+              legend.background = element_rect(fill='transparent'),
+              legend.box.background = element_rect(fill='transparent'))+
+        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
+               size = guide_legend(title.position="top", title.hjust = 0.5))
+
+      # ggpubr does this for you
+      leg <- ggpubr::get_legend(p)
+      ggpubr::as_ggplot(leg)
+
+    }, bg="transparent") #, height =50, width = '100%'
+})
 
   observeEvent(input$input_cavity_hyd, {
+    if(input$input_cavity_hyd == TRUE){
+    updateCheckboxInput(session, "input_cavity_deep", value = FALSE)
+    }
     color_cavity_hyd(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
     output$scale_plot <- renderPlot({
       EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
@@ -570,6 +603,8 @@ app_server <- function(input, output, session) {
       
     }, bg="transparent") #, height =50, width = '100%'
   })
+  
+  
   
   ##### View in Get latest results page (pg2)
 
