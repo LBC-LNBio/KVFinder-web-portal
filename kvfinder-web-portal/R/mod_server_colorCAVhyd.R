@@ -16,9 +16,11 @@
 color_cavity_hyd <- function(input, output, is_pg2, cav_rep_list, result_pdb_list) {
   if (is_pg2 == TRUE) {
     input_cavity_hyd <- "input_cavity_hyd_pg2"
+    select_cavity <- "select_cavity_pg2"
     structure <- "structure_pg2"
   } else {
     input_cavity_hyd <- "input_cavity_hyd"
+    select_cavity <- "select_cavity"
     structure <- "structure"
   }
   #print(result_pdb_list$result_toml$MAX_DEPTH)
@@ -28,19 +30,36 @@ color_cavity_hyd <- function(input, output, is_pg2, cav_rep_list, result_pdb_lis
   # After the initial structure is invisible, we can add a new representation to the current scene
   
   if(input[[input_cavity_hyd]] == TRUE){
-    NGLVieweR_proxy(structure) %>%
-      addSelection("point",
-                   param =
-                     list(
-                       name = "hyd", # now the created selection is named "sel3"
-                       sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
-                       colorScheme = 'occupancy',
-                       colorScale = c('blue', 'white', 'yellow'),
-                       colorReverse = TRUE,
-                       colorDomain = c(-1.42, 2.6)
-                       #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
-                     )
-      )
+    if(input[[select_cavity]] == "All"){
+      NGLVieweR_proxy(structure) %>%
+        addSelection("point",
+                     param =
+                       list(
+                         name = "hyd", # now the created selection is named "sel3"
+                         sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                         colorScheme = 'occupancy',
+                         colorScale = c('blue', 'white', 'yellow'),
+                         colorReverse = TRUE,
+                         colorDomain = c(-1.42, 2.6)
+                         #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                       )
+        )  
+    } else {
+      NGLVieweR_proxy(structure) %>%
+        addSelection("point",
+                     param =
+                       list(
+                         name = "hyd", # now the created selection is named "sel3"
+                         sele = input[[select_cavity]],
+                         colorScheme = 'occupancy',
+                         colorScale = c('blue', 'white', 'yellow'),
+                         colorReverse = TRUE,
+                         colorDomain = c(-1.42, 2.6)
+                         #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                       )
+        )
+    }
+    
   } else{
     NGLVieweR_proxy(structure) %>%
       removeSelection(name = "hyd")
