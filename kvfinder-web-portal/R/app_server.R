@@ -765,7 +765,7 @@ app_server <- function(input, output, session) {
 
   # Select cavity to be visualized from clicking on cavity selector button
   observeEvent(input$select_cavity_pg2, {
-    select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE)
+    select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE, cav_rep_list=cav_rep_list)
   })
   # change biomolecular structure color
   observeEvent(input$input_protein_color_pg2,

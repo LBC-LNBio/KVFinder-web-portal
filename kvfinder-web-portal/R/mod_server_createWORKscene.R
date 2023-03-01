@@ -20,10 +20,12 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
   # when it is the secondary page (get latest results - pg2)
   if (is_pg2 == TRUE) {
     input_protein_rep <- "input_protein_rep_pg2"
+    select_cavity <- "select_cavity_pg2"
     structure <- "structure_pg2"
     # in the main page
   } else {
     input_protein_rep <- "input_protein_rep"
+    select_cavity <- "select_cavity"
     structure <- "structure"
   }
   # The work scene is always linked to the input_protein_rep input -> It is the start point
@@ -71,18 +73,35 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
     } else {
       op = 1
     }
-    NGLVieweR_proxy(structure) %>%
-      addSelection(tail(cav_rep_list, n = 1),
-                   param =
-                     list(
-                       name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
-                       sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
-                       surfaceType = 'vws',
-                       probeRadius = 0.3,
-                       opacity = op
-                       #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
-                     )
-      )
+    
+    if(input[[select_cavity]] == "All"){
+      NGLVieweR_proxy(structure) %>%
+        addSelection(tail(cav_rep_list, n = 1),
+                     param =
+                       list(
+                         name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
+                         sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                         surfaceType = 'vws',
+                         probeRadius = 0.3,
+                         opacity = op
+                         #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                       )
+        )
+    } else{
+      NGLVieweR_proxy(structure) %>%
+        addSelection(tail(cav_rep_list, n = 1),
+                     param =
+                       list(
+                         name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
+                         sele = input[[select_cavity]],
+                         surfaceType = 'vws',
+                         probeRadius = 0.3,
+                         opacity = op
+                         #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                       )
+        )
+    }
+
     # In the case of protein representation selector has more than one representation, i.e. was used previously and is not a initial scene
     # We dont need to change the visibility, just remove the latest representation and include a new selection
     # if (length(cav_rep_list) > 1) {

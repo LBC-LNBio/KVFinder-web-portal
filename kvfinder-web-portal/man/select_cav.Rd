@@ -4,7 +4,7 @@
 \alias{select_cav}
 \title{Select cavities to show}
 \usage{
-select_cav(input, output, result_pdb_list, is_pg2)
+select_cav(input, output, result_pdb_list, is_pg2, cav_rep_list)
 }
 \arguments{
 \item{input}{shiny input}
