@@ -27,8 +27,21 @@ select_cav <- function(input, output, result_pdb_list, is_pg2) {
     NGLVieweR_proxy(structure) %>%
       updateSelection("point", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
   } else { # show one cavity to show and zoom it
-    NGLVieweR_proxy(structure) %>%
-      updateSelection("point", sele = input[[select_cavity]]) %>%
-      updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
+    print(input$input_cavity_deep)
+    if(isTRUE(input$input_cavity_deep) | isTRUE(input$input_cavity_deep_pg2)){
+      NGLVieweR_proxy(structure) %>%
+        updateSelection("point", sele = "not all") %>%
+        updateSelection("deepth", sele = input[[select_cavity]]) %>%
+        updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
+    } else if(isTRUE(input$input_cavity_hyd) | isTRUE(input$input_cavity_hyd_pg2)){
+      NGLVieweR_proxy(structure) %>%
+        updateSelection("hyd", sele = input[[select_cavity]]) %>%
+        updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
+    } else{
+      NGLVieweR_proxy(structure) %>%
+        updateSelection("point", sele = input[[select_cavity]]) %>%
+        updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
+    }
+
   }
 }
