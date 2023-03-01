@@ -254,6 +254,20 @@ app_ui <- function(request) {
                   fluidRow(
                     NGLVieweROutput("structure_pg2", width = "100%", height = "600px")
                   ),
+                  conditionalPanel(
+                    condition="input.input_cavity_hyd_pg2==1",
+                    fluidRow(
+                      column(12, align='center',
+                             plotOutput("scale_plot_pg2", height = '50', width = '50%'))
+                    )
+                  ),
+                  conditionalPanel(
+                    condition="input.input_cavity_deep_pg2==1",
+                    fluidRow(
+                      column(12, align='center',
+                             plotOutput("scale_plot_deep_pg2", height = '50', width = '50%'))
+                    )
+                  ),
                   fluidRow(
                     column(2, uiOutput("selection_pdb_pg2")),
                     column(2, uiOutput("cavity_rep_pg2")),
