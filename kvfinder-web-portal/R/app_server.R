@@ -578,9 +578,10 @@ app_server <- function(input, output, session) {
       p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) +
         geom_point() +
         scale_color_gradientn(name = "Depth (A)", colours = rev(rainbow(5)))+
-        theme(plot.title = element_text(hjust = 0.5),
+        theme(plot.title = element_text(hjust = 0.5, size=11),
               legend.position = "bottom",
               legend.key.width= unit(0.2, 'npc'),
+              legend.text = element_text(size = 11),
               #legend.spacing = unit(0.25,"cm"),
               legend.title = element_text(hjust = 0.5),
               legend.justification = "center",
@@ -610,10 +611,11 @@ app_server <- function(input, output, session) {
       df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
       p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
         geom_point() +
-        scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
-        theme(plot.title = element_text(hjust = 0.5),
+        scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59, breaks = seq(-1,2.5,0.5))+
+        theme(plot.title = element_text(hjust = 0.5, size=11),
               legend.position = "bottom",
               legend.key.width= unit(0.2, 'npc'),
+              legend.text = element_text(size = 11),
               #legend.spacing = unit(0.25,"cm"),
               legend.title = element_text(hjust = 0.5),
               legend.justification = "center",
@@ -628,7 +630,7 @@ app_server <- function(input, output, session) {
       leg <- ggpubr::get_legend(p)
       ggpubr::as_ggplot(leg)
       
-    }, bg="transparent") #, height =50, width = '100%'
+    }, bg="transparent") #, height =50, 
   })
   
   
@@ -811,11 +813,11 @@ app_server <- function(input, output, session) {
       df <- data.frame(x = seq(1,length(depth_scale)), y = depth_scale)
       p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) +
         geom_point() +
-        #scale_colour_gradient2(name = "Deepth (A)", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
-        scale_color_gradientn(name = "Deepth (A)", colours = rev(rainbow(5)))+
-        theme(plot.title = element_text(hjust = 0.5),
+        scale_color_gradientn(name = "Depth (A)", colours = rev(rainbow(5)))+
+        theme(plot.title = element_text(hjust = 0.5, size=11),
               legend.position = "bottom",
               legend.key.width= unit(0.2, 'npc'),
+              legend.text = element_text(size = 11),
               #legend.spacing = unit(0.25,"cm"),
               legend.title = element_text(hjust = 0.5),
               legend.justification = "center",
@@ -850,10 +852,11 @@ app_server <- function(input, output, session) {
       df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
       p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
         geom_point() +
-        scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
-        theme(plot.title = element_text(hjust = 0.5),
+        scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59, breaks = seq(-1,2.5,0.5))+
+        theme(plot.title = element_text(hjust = 0.5, size=11),
               legend.position = "bottom",
               legend.key.width= unit(0.2, 'npc'),
+              legend.text = element_text(size = 11),
               #legend.spacing = unit(0.25,"cm"),
               legend.title = element_text(hjust = 0.5),
               legend.justification = "center",
