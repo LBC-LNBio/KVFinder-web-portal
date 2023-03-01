@@ -4,6 +4,8 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @import shinyjs
+#' @import ggplot2
+#' 
 #'
 #' @noRd
 #'
@@ -175,6 +177,10 @@ app_server <- function(input, output, session) {
         time = 0
       )
       hideElement(
+        id = "table_footer",
+        time = 0
+      )
+      hideElement(
         id = "view_str",
         time = 0
       )
@@ -247,6 +253,14 @@ app_server <- function(input, output, session) {
         id = "cavity_hyd",
         time = 0
       )
+      hideElement(
+        id = "scale_plot_deep",
+        time = 0
+      )
+      hideElement(
+        id = "scale_plot",
+        time = 0
+      )
     }
   })
   #----------------------------------------------------
@@ -286,6 +300,10 @@ app_server <- function(input, output, session) {
         )
         showElement(
           id = "download2",
+          time = 0
+        )
+        showElement(
+          id = "table_footer",
           time = 0
         )
       }
@@ -359,6 +377,14 @@ app_server <- function(input, output, session) {
     )
     hideElement(
       id = "cavity_hyd_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "scale_plot_deep",
+      time = 0
+    )
+    hideElement(
+      id = "scale_plot",
       time = 0
     )
   })
@@ -439,6 +465,14 @@ app_server <- function(input, output, session) {
         id = "cavity_hyd",
         time = 0
       )
+      showElement(
+        id = "scale_plot_deep",
+        time = 0
+      )
+      showElement(
+        id = "scale_plot",
+        time = 0
+      )
       # disable view button to avoid user to click on it multiple times
       disable("view_str")
     },
@@ -486,12 +520,10 @@ app_server <- function(input, output, session) {
 
   # Select cavity to be visualized from clicking on cavity selector button
   observeEvent(input$select_cavity, {
-    print('exeuting select')
     select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
   })
   
   observeEvent(input$interface_res, {
-    print('exeuting select')
     interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
   })
   
@@ -528,17 +560,50 @@ app_server <- function(input, output, session) {
   })
   
   observeEvent(input$input_cavity_deep, {
+    if(input$input_cavity_deep == TRUE){
+      updateCheckboxInput(session, "input_cavity_hyd", value = FALSE)  
+    }
+    
     color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
-  })
+    
+    output$scale_plot_deep <- renderPlot({
+      depth_scale = c(0,result_pdb$list_depth, max(unlist(result_pdb$result_toml$MAX_DEPTH)))
+      df <- data.frame(x = seq(1,length(depth_scale)), y = depth_scale)
+      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) +
+        geom_point() +
+        #scale_colour_gradient2(name = "Deepth (A)", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
+        scale_color_gradientn(name = "Deepth (A)", colours = rev(rainbow(5)))+
+        theme(plot.title = element_text(hjust = 0.5),
+              legend.position = "bottom",
+              legend.key.width= unit(0.2, 'npc'),
+              #legend.spacing = unit(0.25,"cm"),
+              legend.title = element_text(hjust = 0.5),
+              legend.justification = "center",
+              panel.background = element_rect(fill='transparent'),
+              plot.background = element_rect(fill='transparent'),
+              legend.background = element_rect(fill='transparent'),
+              legend.box.background = element_rect(fill='transparent'))+
+        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
+               size = guide_legend(title.position="top", title.hjust = 0.5))
+
+      # ggpubr does this for you
+      leg <- ggpubr::get_legend(p)
+      ggpubr::as_ggplot(leg)
+
+    }, bg="transparent") #, height =50, width = '100%'
+})
 
   observeEvent(input$input_cavity_hyd, {
+    if(input$input_cavity_hyd == TRUE){
+    updateCheckboxInput(session, "input_cavity_deep", value = FALSE)
+    }
     color_cavity_hyd(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
     output$scale_plot <- renderPlot({
       EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
                                -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
                                -0.12,0.18,0.05, -0.83, -0.27, -1.11)
       df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
-      p <- ggplot(data = df, aes(x = x, y = y, colour = y)) + 
+      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
         geom_point() +
         scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
         theme(plot.title = element_text(hjust = 0.5),
@@ -546,16 +611,22 @@ app_server <- function(input, output, session) {
               legend.key.width= unit(0.2, 'npc'),
               #legend.spacing = unit(0.25,"cm"),
               legend.title = element_text(hjust = 0.5),
-              legend.justification = "center") +
+              legend.justification = "center",
+              panel.background = element_rect(fill='transparent'),
+              plot.background = element_rect(fill='transparent'),
+              legend.background = element_rect(fill='transparent'),
+              legend.box.background = element_rect(fill='transparent'))+
         guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
                size = guide_legend(title.position="top", title.hjust = 0.5))
       
       # ggpubr does this for you
-      leg <- get_legend(p)
-      as_ggplot(leg)
+      leg <- ggpubr::get_legend(p)
+      ggpubr::as_ggplot(leg)
       
-    }) #, height =50, width = '100%'
+    }, bg="transparent") #, height =50, width = '100%'
   })
+  
+  
   
   ##### View in Get latest results page (pg2)
 
@@ -631,6 +702,14 @@ app_server <- function(input, output, session) {
     )
     showElement(
       id = "cavity_hyd_pg2",
+      time = 0
+    )
+    showElement(
+      id = "scale_plot_deep_pg2",
+      time = 0
+    )
+    showElement(
+      id = "scale_plot_pg2",
       time = 0
     )
     disable("view_str_pg2")
@@ -711,12 +790,81 @@ app_server <- function(input, output, session) {
     take_snapshot(input = input, output = output, is_pg2 = TRUE)
   })
   
+  observeEvent(input$interface_res_pg2, {
+    interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE)
+  })
+  
   observeEvent(input$input_cavity_deep_pg2, {
+    if(input$input_cavity_deep_pg2 == TRUE){
+      updateCheckboxInput(session, "input_cavity_hyd_pg2", value = FALSE)  
+    }
+    
     color_cavity_deepth(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
+  
+    output$scale_plot_deep_pg2 <- renderPlot({
+      depth_scale = c(0,result_pdb$list_depth, max(unlist(result_pdb$result_toml$MAX_DEPTH)))
+      df <- data.frame(x = seq(1,length(depth_scale)), y = depth_scale)
+      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) +
+        geom_point() +
+        #scale_colour_gradient2(name = "Deepth (A)", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
+        scale_color_gradientn(name = "Deepth (A)", colours = rev(rainbow(5)))+
+        theme(plot.title = element_text(hjust = 0.5),
+              legend.position = "bottom",
+              legend.key.width= unit(0.2, 'npc'),
+              #legend.spacing = unit(0.25,"cm"),
+              legend.title = element_text(hjust = 0.5),
+              legend.justification = "center",
+              panel.background = element_rect(fill='transparent'),
+              plot.background = element_rect(fill='transparent'),
+              legend.background = element_rect(fill='transparent'),
+              legend.box.background = element_rect(fill='transparent'))+
+        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
+               size = guide_legend(title.position="top", title.hjust = 0.5))
+      
+      # ggpubr does this for you
+      leg <- ggpubr::get_legend(p)
+      ggpubr::as_ggplot(leg)
+      
+    }, bg="transparent") #, height =50, width = '100%'
+    
+    
+    
   })
   
   observeEvent(input$input_cavity_hyd_pg2, {
+    if(input$input_cavity_hyd_pg2 == TRUE){
+      updateCheckboxInput(session, "input_cavity_deep_pg2", value = FALSE)
+    }
+    
     color_cavity_hyd(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
+    
+    output$scale_plot_pg2 <- renderPlot({
+      EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
+                               -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
+                               -0.12,0.18,0.05, -0.83, -0.27, -1.11)
+      df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
+      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
+        geom_point() +
+        scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59,breaks = seq(-1,2.5,0.5))+
+        theme(plot.title = element_text(hjust = 0.5),
+              legend.position = "bottom",
+              legend.key.width= unit(0.2, 'npc'),
+              #legend.spacing = unit(0.25,"cm"),
+              legend.title = element_text(hjust = 0.5),
+              legend.justification = "center",
+              panel.background = element_rect(fill='transparent'),
+              plot.background = element_rect(fill='transparent'),
+              legend.background = element_rect(fill='transparent'),
+              legend.box.background = element_rect(fill='transparent'))+
+        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
+               size = guide_legend(title.position="top", title.hjust = 0.5))
+      
+      # ggpubr does this for you
+      leg <- ggpubr::get_legend(p)
+      ggpubr::as_ggplot(leg)
+      
+    }, bg="transparent") #, height =50, width = '100%'
+    
   })
 
   #----------------------------------------------------

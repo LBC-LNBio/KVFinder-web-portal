@@ -63,7 +63,6 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
   } 
   
   if(prot_or_cav == 'cav' & length(cav_rep_list) >1) { #cav mode
-    print("inside cavity mode")
     NGLVieweR_proxy(structure) %>%
       removeSelection(name = tail(cav_rep_list, n = 2)[1])
     # After the initial structure is invisible, we can add a new representation to the current scene

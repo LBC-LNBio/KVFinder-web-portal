@@ -84,13 +84,15 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         output[[results_table]] <- renderUI({
           DT::dataTableOutput(table_out)
         })
+        #print(result_toml$AVG_HYDROPATHY)
         output[[table_out]] <- DT::renderDataTable(
           data.table(
             `ID` = names(result_toml$AREA),
             `Area (A²)` = unlist(result_toml$AREA),
             `Vol. (A³)` = unlist(result_toml$VOLUME),
-            `Dep. (A)` = unlist(result_toml$AVG_DEPTH),
-            `Hyd.` = unlist(result_toml$AVG_HYDROPATHY)
+            `Avg Dep. (A)` = unlist(result_toml$AVG_DEPTH),
+            `Max Dep. (A)` = unlist(result_toml$MAX_DEPTH),
+            `Avg Hyd.` = unlist(result_toml$AVG_HYDROPATHY[names(result_toml$AVG_HYDROPATHY) != 'EisenbergWeiss'])
           ),
           filter = c("none"),
           style = "auto",
@@ -98,7 +100,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
                          buttons = c("excel", "pdf"), 
                          autoWidth = TRUE,
                          scrollX = TRUE,
-                         columnDefs = list(list(targets=c(5), visible=TRUE, width='60'))
+                         columnDefs = list(list(targets=c(1), visible=TRUE, width='10%'))
                          ),
           extensions = "Buttons"
         )
@@ -138,15 +140,22 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         
         output$table_footer <- renderText({
           paste(
-            p("ID: Cavity ID, Area: Cavity area, Vol: Cavity volume, Dep: Cavity average depth, Hyd: Cavity average hydropathy.")
+            p(strong("ID: "), "Cavity ID, ", strong("Area: "), "Cavity area, ", strong("Vol: "), "Cavity volume, ", strong("Avg Dep: "), "Cavity average depth ,", strong("Max Dep: "), "Cavity maximum depth, ", strong("Avg Hyd: "), "Cavity average hydropathy.")
           )
         })
+        
+        #get values of depth for each atom 
+        str_cav = strsplit(result_pdb_cav, "\n")[[1]]
+        get_atoms = str_cav[sapply(str_cav, function(x) startsWith(x, 'ATOM'))]
+        #print(get_atoms[1:10])
+        list_depth = as.numeric(sapply(get_atoms, function(x) strsplit(x, '\\s+')[[1]][10]))
         # create list to store results
         result_list <- list(
           retrieve_input_pdb = retrieve_input_pdb,
           result_pdb_cav = result_pdb_cav,
           result_cav_names = cav_out_names,
-          result_toml = result_toml
+          result_toml = result_toml,
+          list_depth = list_depth
         )
         return(result_list)
       }

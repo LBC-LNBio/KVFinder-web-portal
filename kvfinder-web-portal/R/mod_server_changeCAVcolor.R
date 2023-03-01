@@ -19,17 +19,14 @@ change_cav_color <- function(input, output, is_pg2, cav_rep_list) {
     input_cavity_color <- "input_cavity_color"
     structure <- "structure"
   }
-  print('inside cav color')
-  print(cav_rep_list)
-  # if(length(cav_rep_list) > 1){
-  #   NGLVieweR_proxy(structure) %>%
-  #     updateColor("point", input[[input_cavity_color]])
-  # } else{
-  #   NGLVieweR_proxy(structure) %>%
-  #     updateColor("sel3", input[[input_cavity_color]])
-  # }
-  # print(cav_rep_list)
-  # print(tail(cav_rep_list,n=1))
-  NGLVieweR_proxy(structure) %>%
+
+  if(!is.null(cav_rep_list)){ #this is to make sure that this will work on the second time loaded page
+    NGLVieweR_proxy(structure) %>%
       updateColor(tail(cav_rep_list,n=1), input[[input_cavity_color]])
+  } else {
+    NGLVieweR_proxy(structure) %>%
+      updateColor("point", input[[input_cavity_color]])
+  }
+  
+
 }
