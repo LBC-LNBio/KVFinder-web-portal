@@ -35,6 +35,7 @@ select_cav <- function(input, output, result_pdb_list, is_pg2) {
         updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
     } else if(isTRUE(input$input_cavity_hyd) | isTRUE(input$input_cavity_hyd_pg2)){
       NGLVieweR_proxy(structure) %>%
+        updateSelection("point", sele = "not all") %>%
         updateSelection("hyd", sele = input[[select_cavity]]) %>%
         updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
     } else{
