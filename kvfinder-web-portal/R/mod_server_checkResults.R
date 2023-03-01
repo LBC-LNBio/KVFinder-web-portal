@@ -98,7 +98,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
           style = "auto",
           options = list(dom = "lBfrtip", 
                          buttons = c("excel", "pdf"), 
-                         autoWidth = TRUE,
+                         #autoWidth = TRUE,
                          scrollX = TRUE,
                          columnDefs = list(list(targets=c(1), visible=TRUE, width='10%'))
                          ),
