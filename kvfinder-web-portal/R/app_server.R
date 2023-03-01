@@ -253,6 +253,14 @@ app_server <- function(input, output, session) {
         id = "cavity_hyd",
         time = 0
       )
+      hideElement(
+        id = "scale_plot_deep",
+        time = 0
+      )
+      hideElement(
+        id = "scale_plot",
+        time = 0
+      )
     }
   })
   #----------------------------------------------------
@@ -371,6 +379,14 @@ app_server <- function(input, output, session) {
       id = "cavity_hyd_pg2",
       time = 0
     )
+    hideElement(
+      id = "scale_plot_deep",
+      time = 0
+    )
+    hideElement(
+      id = "scale_plot",
+      time = 0
+    )
   })
   #----------------------------------------------------
 
@@ -449,6 +465,14 @@ app_server <- function(input, output, session) {
         id = "cavity_hyd",
         time = 0
       )
+      showElement(
+        id = "scale_plot_deep",
+        time = 0
+      )
+      showElement(
+        id = "scale_plot",
+        time = 0
+      )
       # disable view button to avoid user to click on it multiple times
       disable("view_str")
     },
@@ -496,12 +520,10 @@ app_server <- function(input, output, session) {
 
   # Select cavity to be visualized from clicking on cavity selector button
   observeEvent(input$select_cavity, {
-    print('exeuting select')
     select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
   })
   
   observeEvent(input$interface_res, {
-    print('exeuting select')
     interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
   })
   
@@ -682,6 +704,14 @@ app_server <- function(input, output, session) {
       id = "cavity_hyd_pg2",
       time = 0
     )
+    showElement(
+      id = "scale_plot_deep_pg2",
+      time = 0
+    )
+    showElement(
+      id = "scale_plot_pg2",
+      time = 0
+    )
     disable("view_str_pg2")
   })
 
@@ -761,7 +791,6 @@ app_server <- function(input, output, session) {
   })
   
   observeEvent(input$interface_res_pg2, {
-    print('exeuting select')
     interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE)
   })
   
