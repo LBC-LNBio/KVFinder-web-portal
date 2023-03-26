@@ -26,10 +26,11 @@ pdb_process <- function(input, output, get_nonstand, mode, session) {
   }
   # create a processed PDB for each run mode: default, customized, ligand or box mode
   if (input$run_mode == "mode_def") {
-    pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input, nonstand_list = get_nonstand, include_list = include_list, session = session)
+    
+    pdb_processed <- deal_sele_nonstand(input=input,pdb_input = pdb_input, nonstand_list = get_nonstand, include_list = include_list, session = session)
     pdb_processed <- list(pdb_processed = pdb_processed)
   } else if (input$run_mode == "mode_cust") {
-    pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input, nonstand_list = get_nonstand, include_list = include_list, session = session)
+    pdb_processed <- deal_sele_nonstand(input=input,pdb_input = pdb_input, nonstand_list = get_nonstand, include_list = include_list, session = session)
     pdb_processed <- list(pdb_processed = pdb_processed)
   } else if (input$run_mode == "box_mode") {
     # in the case of running the box mode, we have to check if the target residues are correctly in the PDB input
@@ -38,7 +39,7 @@ pdb_process <- function(input, output, get_nonstand, mode, session) {
       shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please insert a valid list of residues for box mode run.", type = "error")
       pdb_processed <- "wrong_target_res"
     } else {
-      pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input, nonstand_list = get_nonstand, include_list = include_list, session = session)
+      pdb_processed <- deal_sele_nonstand(input=input,pdb_input = pdb_input, nonstand_list = get_nonstand, include_list = include_list, session = session)
       pdb_processed <- list(pdb_processed = pdb_processed)
     }
   } else { # enter in the ligand mode
@@ -47,7 +48,7 @@ pdb_process <- function(input, output, get_nonstand, mode, session) {
     # update nonstandard residues list to exclude the ligand
     get_nonstand_noLig <- setdiff(get_nonstand, input$lig_name) # get all non-standand but the ligand
     # by default remove all non standards residues and the ligand
-    pdb_processed <- deal_sele_nonstand(pdb_input = pdb_input, nonstand_list = c(get_nonstand, input$lig_name), include_list = include_list, session = session)
+    pdb_processed <- deal_sele_nonstand(input=input,pdb_input = pdb_input, nonstand_list = c(get_nonstand, input$lig_name), include_list = include_list, session = session)
     pdb_processed <- list(pdb_processed = pdb_processed, pdb_lig_processed = pdb_ligand_processed)
   }
   return(pdb_processed)
