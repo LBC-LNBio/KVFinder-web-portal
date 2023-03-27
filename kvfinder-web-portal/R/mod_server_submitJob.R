@@ -88,9 +88,12 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
           # Show submission message
           output$run_id <- renderText({
             paste(
-              p("Your job was successfully submitted to KVFinder-web server."), p("Your job ID is: "), p(tags$b(get_run_id)),
-              p("The results of this run will be available for 1 day"),
-              p("Save this ID to check results later")
+              br(),
+              p("Your job has been successfully submitted to the KVFinder-web server!"),
+              p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
+              # p("Your job is x in the queue and the estimated time is x min.")
+              p("The results of this run will be available for 1 day."),
+              p("⚠ Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
             )
           })
           # Create check result button
