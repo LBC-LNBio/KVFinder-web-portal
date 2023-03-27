@@ -20,7 +20,7 @@ app_ui <- function(request) {
     dashboardPage(
       # Header----------------------------------------------------
       header = dashboardHeader(
-        title = "KVFinder-web service",
+        title = "KVFinder-web",
         titleWidth = NULL,
         disable = FALSE,
         .list = NULL,

@@ -9,10 +9,11 @@ kv_tutorial <- function() {
   fluidPage(
     # Tutorial topic
     fluidRow(
-      column(12, align = "center", tags$h3("Tutorial"))
+      column(12, align = "center", tags$h3(strong("Tutorial")))
     ),
+
     tags$br(),
-    tags$br(),
+
     tags$p("This section is an introductory overview of KVFinder-web service features. Here, we are going to demonstrate how to use this KVFinder-web portal with our publicly available KVFinder-web service (",
       tags$a(href = "https://kvfinder-web.cnpem.br", "kvfinder-web.cnpem.br"),
       ").",
