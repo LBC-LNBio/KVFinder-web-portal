@@ -4,7 +4,13 @@
 \alias{deal_sele_nonstand}
 \title{Process PDB file according to the selected non-standard residues}
 \usage{
-deal_sele_nonstand(pdb_input, nonstand_list, include_list, session = session)
+deal_sele_nonstand(
+  input,
+  pdb_input,
+  nonstand_list,
+  include_list,
+  session = session
+)
 }
 \arguments{
 \item{pdb_input}{Pdb path}

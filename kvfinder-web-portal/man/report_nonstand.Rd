@@ -4,10 +4,12 @@
 \alias{report_nonstand}
 \title{Get non-standard protein/nucleic residues}
 \usage{
-report_nonstand(pdb_input)
+report_nonstand(pdb_input, show_modal)
 }
 \arguments{
 \item{pdb_input}{Pdb path}
+
+\item{show_modal}{}
 }
 \description{
 Get non standard protein/nucleic residues from PDB

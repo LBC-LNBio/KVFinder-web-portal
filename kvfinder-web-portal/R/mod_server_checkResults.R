@@ -72,8 +72,10 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
       retrieve_content <- content(retrieve_get)
       # get retrivied input PDB
       retrieve_input_pdb <- retrieve_content$input$pdb
+      print(content_get_output$output$report)
       # table with results
       result_toml <- parseTOML(input = content_get_output$output$report, fromFile = FALSE, escape = TRUE)$RESULTS
+      #print(result_toml$AREA)
       #print(names(result_toml))
       #print(result_toml$MAX_DEPTH)
       # check if the at least one cavity was found

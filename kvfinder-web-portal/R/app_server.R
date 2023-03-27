@@ -67,13 +67,10 @@ app_server <- function(input, output, session) {
   observeEvent(input$input_pdb, {
     # run process_upload of mod_server_upload module to create boxes and buttons of run mode
     process_upload(input = input, output = output, session = session)
-    get_nonstand_check_upload <<- report_nonstand(pdb_input =input$input_pdb$datapath)
+    get_nonstand_check_upload <<- report_nonstand(pdb_input =input$input_pdb$datapath, show_modal=TRUE)
   })
   
   observeEvent(input$show_preview_upload, {
-    print(input$input_pdb$datapath)
-    print(pdb_name_click_load)
-    print(get_nonstand)
     showModal(modalDialog(
       #title = tags$a('Structure preview', style = "text-align: right;" ),
       #NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
@@ -82,11 +79,13 @@ app_server <- function(input, output, session) {
         renderNGLVieweR({
           # get input protein PDB with output cavities
           pdb <- input$input_pdb$datapath
+          print(paste("/",as.numeric(input$model_number),sep=""))
           # create initial scene
           NGLVieweR(pdb) %>%
             # start protein with visible cartoon representation 
-            addRepresentation("cartoon") %>%
-            addRepresentation("ball+stick", param = list(sele = paste(get_nonstand_check_upload, collapse = " or "))) %>%
+            addRepresentation("cartoon", param=list(sele = paste("/",as.numeric(input$model_number)-1,sep=""))) %>%
+            addRepresentation("ball+stick", param = list(sele = paste(paste(get_nonstand_check_upload, collapse = " or "),"/",as.numeric(input$model_number)-1,sep=""))) %>%
+            
             # start cavity with points
             stageParameters(backgroundColor = "black") %>%
             setQuality("high") %>%
@@ -111,8 +110,7 @@ app_server <- function(input, output, session) {
     pdb_name_click_load <<- input$pdb_id
     # check if the PDB code is valid by using get_nonstand
     showModal(modalDialog("Loading and checking PDB...", footer = NULL, fade = FALSE))
-    get_nonstand_check <<- report_nonstand(pdb_input = input$pdb_id)
-    print(get_nonstand_check)
+    get_nonstand_check <<- report_nonstand(pdb_input = input$pdb_id, show_modal=TRUE)
     removeModal()
     if (length(which(is.na(get_nonstand_check))) != 0) {
       shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
@@ -137,8 +135,8 @@ app_server <- function(input, output, session) {
           # create initial scene
           NGLVieweR(pdb) %>%
             # start protein with visible cartoon representation 
-            addRepresentation("cartoon") %>%
-            addRepresentation("ball+stick", param = list(sele = paste(get_nonstand_check, collapse = " or "))) %>%
+            addRepresentation("cartoon", param=list(sele = paste("/",as.numeric(input$model_number)-1,sep=""))) %>%
+            addRepresentation("ball+stick", param = list(sele = paste(paste(get_nonstand_check, collapse = " or "),"/",as.numeric(input$model_number)-1,sep=""))) %>%
             # start cavity with points
             stageParameters(backgroundColor = "black") %>%
             setQuality("high") %>%
