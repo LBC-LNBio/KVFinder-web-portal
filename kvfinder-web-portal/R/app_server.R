@@ -633,7 +633,7 @@ app_server <- function(input, output, session) {
     #   list(src = 'www/help_probe_schema.png')
     # }, deleteFile = FALSE)
     output$scale_plot <- renderUI({
-      tags$img(src = "www/hydropathy_scale.svg",height = '40%', width = '60%', align = "center")
+      tags$img(src = "www/hydropathy_scale.svg",height = '50%', width = '60%', align = "center")
     })
    
   })
@@ -879,7 +879,7 @@ app_server <- function(input, output, session) {
     # }, bg="transparent") #, height =50, width = '100%'
     
     output$scale_plot_pg2 <- renderUI({
-      tags$img(src = "www/hydropathy_scale.png",height = '40%', width = '60%', align = "center")
+      tags$img(src = "www/hydropathy_scale.png", height = '50%', width = '60%', align = "center")
     })
     
   })
