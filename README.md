@@ -7,7 +7,7 @@ Welcome to the KVFinder-web portal, this page was built to help you get started 
 
 ## KVFinder-web
 
-KVFinder-web is an open-source web-based application of an updated version of [parKVFinder](https://github.com/LBC-LNBio) software (v1.2.0) cavity detection and characterization of any type of biomolecular structure. The characterization includes spatial, depth, constitutional and hydropathy characterization.
+KVFinder-web is an open-source web-based application of an updated version of [parKVFinder](https://github.com/LBC-LNBio) software (v1.2.0) for cavity detection and characterization of any type of biomolecular structure. The characterization includes spatial, depth, constitutional and hydropathy characterization.
 
 The KVFinder-web has two independent components:
 
@@ -38,13 +38,13 @@ sudo apt install docker-compose
 After the docker-compose installation and clone of this repository. First, you have to build our KVFinder-web interface:
 
 ```bash
-sudo docker build -t kvfinder-web-portal .
+docker build -t kvfinder-web-portal .
 ```
 
 To start KVFinder-web interface:
 
 ```bash
-sudo docker run -p 3838:3838 kvfinder-web-portal
+docker run -p 3838:3838 kvfinder-web-portal
 ```
 
 ### PyMOL KVFinder-web Tools
