@@ -602,33 +602,40 @@ app_server <- function(input, output, session) {
     updateCheckboxInput(session, "input_cavity_deep", value = FALSE)
     }
     color_cavity_hyd(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
-    output$scale_plot <- renderPlot({
-      EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
-                               -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
-                               -0.12,0.18,0.05, -0.83, -0.27, -1.11)
-      df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
-      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
-        geom_point() +
-        scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59, breaks = seq(-1,2.5,0.5))+
-        theme(plot.title = element_text(hjust = 0.5, size=11),
-              legend.position = "bottom",
-              legend.key.width= unit(0.2, 'npc'),
-              legend.text = element_text(size = 11),
-              #legend.spacing = unit(0.25,"cm"),
-              legend.title = element_text(hjust = 0.5),
-              legend.justification = "center",
-              panel.background = element_rect(fill='transparent'),
-              plot.background = element_rect(fill='transparent'),
-              legend.background = element_rect(fill='transparent'),
-              legend.box.background = element_rect(fill='transparent'))+
-        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
-               size = guide_legend(title.position="top", title.hjust = 0.5))
-      
-      # ggpubr does this for you
-      leg <- ggpubr::get_legend(p)
-      ggpubr::as_ggplot(leg)
-      
-    }, bg="transparent") #, height =50, 
+    # output$scale_plot <- renderPlot({
+    #   EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
+    #                            -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
+    #                            -0.12,0.18,0.05, -0.83, -0.27, -1.11)
+    #   df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
+    #   p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
+    #     geom_point() +
+    #     scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59, breaks = seq(-1,2.5,0.5))+
+    #     theme(plot.title = element_text(hjust = 0.5, size=11),
+    #           legend.position = "bottom",
+    #           legend.key.width= unit(0.2, 'npc'),
+    #           legend.text = element_text(size = 11),
+    #           #legend.spacing = unit(0.25,"cm"),
+    #           legend.title = element_text(hjust = 0.5),
+    #           legend.justification = "center",
+    #           panel.background = element_rect(fill='transparent'),
+    #           plot.background = element_rect(fill='transparent'),
+    #           legend.background = element_rect(fill='transparent'),
+    #           legend.box.background = element_rect(fill='transparent'))+
+    #     guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
+    #            size = guide_legend(title.position="top", title.hjust = 0.5))
+    #   
+    #   # ggpubr does this for you
+    #   leg <- ggpubr::get_legend(p)
+    #   ggpubr::as_ggplot(leg)
+    #   
+    # }, bg="transparent") #, height =50, 
+    # output$scale_plot <- renderImage({
+    #   list(src = 'www/help_probe_schema.png')
+    # }, deleteFile = FALSE)
+    output$scale_plot <- renderUI({
+      tags$img(src = "www/hydropathy_scale.svg",height = '40%', width = '60%', align = "center")
+    })
+   
   })
   
   
@@ -843,33 +850,37 @@ app_server <- function(input, output, session) {
     
     color_cavity_hyd(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
     
-    output$scale_plot_pg2 <- renderPlot({
-      EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
-                               -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
-                               -0.12,0.18,0.05, -0.83, -0.27, -1.11)
-      df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
-      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
-        geom_point() +
-        scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59, breaks = seq(-1,2.5,0.5))+
-        theme(plot.title = element_text(hjust = 0.5, size=11),
-              legend.position = "bottom",
-              legend.key.width= unit(0.2, 'npc'),
-              legend.text = element_text(size = 11),
-              #legend.spacing = unit(0.25,"cm"),
-              legend.title = element_text(hjust = 0.5),
-              legend.justification = "center",
-              panel.background = element_rect(fill='transparent'),
-              plot.background = element_rect(fill='transparent'),
-              legend.background = element_rect(fill='transparent'),
-              legend.box.background = element_rect(fill='transparent'))+
-        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
-               size = guide_legend(title.position="top", title.hjust = 0.5))
-      
-      # ggpubr does this for you
-      leg <- ggpubr::get_legend(p)
-      ggpubr::as_ggplot(leg)
-      
-    }, bg="transparent") #, height =50, width = '100%'
+    # output$scale_plot_pg2 <- renderPlot({
+    #   EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
+    #                            -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
+    #                            -0.12,0.18,0.05, -0.83, -0.27, -1.11)
+    #   df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
+    #   p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
+    #     geom_point() +
+    #     scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59, breaks = seq(-1,2.5,0.5))+
+    #     theme(plot.title = element_text(hjust = 0.5, size=11),
+    #           legend.position = "bottom",
+    #           legend.key.width= unit(0.2, 'npc'),
+    #           legend.text = element_text(size = 11),
+    #           #legend.spacing = unit(0.25,"cm"),
+    #           legend.title = element_text(hjust = 0.5),
+    #           legend.justification = "center",
+    #           panel.background = element_rect(fill='transparent'),
+    #           plot.background = element_rect(fill='transparent'),
+    #           legend.background = element_rect(fill='transparent'),
+    #           legend.box.background = element_rect(fill='transparent'))+
+    #     guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
+    #            size = guide_legend(title.position="top", title.hjust = 0.5))
+    #   
+    #   # ggpubr does this for you
+    #   leg <- ggpubr::get_legend(p)
+    #   ggpubr::as_ggplot(leg)
+    #   
+    # }, bg="transparent") #, height =50, width = '100%'
+    
+    output$scale_plot_pg2 <- renderUI({
+      tags$img(src = "www/hydropathy_scale.png",height = '40%', width = '60%', align = "center")
+    })
     
   })
 
