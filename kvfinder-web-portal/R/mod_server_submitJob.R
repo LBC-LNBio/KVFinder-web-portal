@@ -93,7 +93,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
               p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
               # p("Your job is x in the queue and the estimated time is x min.")
               p("The results of this run will be available for 1 day."),
-              p("⚠ Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
+              p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
             )
           })
           # Create check result button
