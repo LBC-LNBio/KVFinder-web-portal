@@ -156,18 +156,28 @@ app_ui <- function(request) {
                     )
                   ),
                   conditionalPanel(
-                    condition="input.input_cavity_hyd==1",
-                  fluidRow(
-                    column(12, align='center',
-                           #plotOutput("scale_plot", height = '50', width = '50%'))
-                           uiOutput(outputId = "scale_plot"))
-                  )
-                    ),
-                  conditionalPanel(
-                    condition="input.input_cavity_deep==1",
+                    condition = "input.input_cavity_hyd==1",
                     fluidRow(
-                      column(12, align='center',
-                             plotOutput("scale_plot_deep", height = '50', width = '50%'))
+                      column(12,
+                        align = "center",
+                        uiOutput(outputId = "scale_plot")
+                      )
+                    )
+                  ),
+                  conditionalPanel(
+                    condition = "input.input_cavity_deep==1",
+                    fluidRow(
+                      column(12,
+                        align = "center",
+                        plotOutput("scale_plot_deep", height = 60, width = "60%"),
+                        tags$head(
+                          tags$style(
+                            HTML(
+                              "#scale_plot_deep { max-width: 600px; align: center; }"
+                            )
+                          )
+                        )
+                      )
                     )
                   ),
                   fluidRow(
@@ -185,8 +195,6 @@ app_ui <- function(request) {
                     column(2, uiOutput("bg_color")),
                     column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
                     column(1, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
-                    #column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
-                    #column(2, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
                   ),
                 ), click_id = "fullscreen")
               )
@@ -256,17 +264,28 @@ app_ui <- function(request) {
                     NGLVieweROutput("structure_pg2", width = "100%", height = "600px")
                   ),
                   conditionalPanel(
-                    condition="input.input_cavity_hyd_pg2==1",
+                    condition = "input.input_cavity_hyd_pg2==1",
                     fluidRow(
-                      column(12, align='center',
-                             plotOutput("scale_plot_pg2", height = '50', width = '50%'))
+                      column(12,
+                        align = "center",
+                        uiOutput(outputId = "scale_plot_pg2")
+                      )
                     )
                   ),
                   conditionalPanel(
-                    condition="input.input_cavity_deep_pg2==1",
+                    condition = "input.input_cavity_deep_pg2==1",
                     fluidRow(
-                      column(12, align='center',
-                             plotOutput("scale_plot_deep_pg2", height = '50', width = '50%'))
+                      column(12,
+                        align = "center",
+                        plotOutput("scale_plot_deep_pg2", height = 60, width = "60%"),
+                        tags$head(
+                          tags$style(
+                            HTML(
+                              "#scale_plot_deep_pg2 { max-width: 600px; align: center; }"
+                            )
+                          )
+                        )
+                      )
                     )
                   ),
                   fluidRow(
