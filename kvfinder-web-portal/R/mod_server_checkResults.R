@@ -66,7 +66,6 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
       })
 
       # retrieve the input PDB to be used in the ouput visualization
-      # retrieve_get <- GET(url = paste("http://10.0.0.123:8081/retrieve-input/", run_id, sep = ""))
       retrieve_get <- GET(url = paste(url_address, "retrieve-input/", run_id, sep = "")) # use local host
       # get content
       retrieve_content <- content(retrieve_get)
@@ -75,9 +74,6 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
       print(content_get_output$output$report)
       # table with results
       result_toml <- parseTOML(input = content_get_output$output$report, fromFile = FALSE, escape = TRUE)$RESULTS
-      #print(result_toml$AREA)
-      #print(names(result_toml))
-      #print(result_toml$MAX_DEPTH)
       # check if the at least one cavity was found
       if (length(result_toml$AREA) == 0) {
         shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "No cavity found. Please check the input parameters and try again.", type = "warning")
@@ -86,7 +82,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         output[[results_table]] <- renderUI({
           DT::dataTableOutput(table_out)
         })
-        #print(result_toml$AVG_HYDROPATHY)
+        # print(result_toml$AVG_HYDROPATHY)
         output[[table_out]] <- DT::renderDataTable(
           data.table(
             `ID` = names(result_toml$AREA),
@@ -94,42 +90,60 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
             `Vol. (A³)` = unlist(result_toml$VOLUME),
             `Avg Dep. (A)` = unlist(result_toml$AVG_DEPTH),
             `Max Dep. (A)` = unlist(result_toml$MAX_DEPTH),
-            `Avg Hyd.` = unlist(result_toml$AVG_HYDROPATHY[names(result_toml$AVG_HYDROPATHY) != 'EisenbergWeiss'])
+            `Avg Hyd.` = unlist(result_toml$AVG_HYDROPATHY[names(result_toml$AVG_HYDROPATHY) != "EisenbergWeiss"])
           ),
           filter = c("none"),
           style = "auto",
-          options = list(dom = "lBfrtip", 
-                         buttons = c("excel", "pdf"), 
-                         #autoWidth = TRUE,
-                         scrollX = TRUE,
-                         columnDefs = list(list(targets=c(1), visible=TRUE, width='10%'))
-                         ),
+          options = list(
+            dom = "lBfrtip",
+            buttons = c("excel", "pdf"),
+            # autoWidth = TRUE,
+            scrollX = TRUE,
+            columnDefs = list(list(targets = c(1), visible = TRUE, width = "10%"))
+          ),
           extensions = "Buttons"
         )
         # save cavities name
         cav_out_names <- names(result_toml$AREA)
-        # Download the 3D retrivied input structure with cavities
-        pdb_all <- paste(retrieve_input_pdb, result_pdb_cav, sep = "\n")
         # create download button
-        output[[download]] <- renderUI({
-          downloadButton(download_results, "Download cavities", style = "color: #fff; background-color: #6c757d; border-color: #6c757d")
+        output[[download]] <- shiny::renderUI({
+          shiny::downloadButton(
+            download_results,
+            "Download Structures",
+            style = "color: #fff; background-color: #6c757d; border-color: #6c757d"
+          )
         })
-        output[[download_results]] <- downloadHandler(
-          filename = function() {
-            paste("KVfinder_results_", retrieve_content$id, ".pdb", sep = "")
-          },
+        output[[download_results]] <- shiny::downloadHandler(
+          filename = paste0(
+            "KVFinder_structures_",
+            retrieve_content$id,
+            ".zip"
+          ),
           content = function(filename) {
-            write(pdb_all, filename)
-          }
+            # Generate two files in the temporary directory
+            cavity <- paste0("cavity_", retrieve_content$id, ".pdb")
+            write(result_pdb_cav, cavity)
+            input <- paste0("input_", retrieve_content$id, ".pdb")
+            write(retrieve_input_pdb, input)
+
+            # Create a zip file containing the two files
+            zip(filename, files = c(cavity, input), flags = "-q")
+          },
+          contentType = "application/zip"
         )
         # Create button to download input parameter and job information
-        param_list <- list(Result_ID = retrieve_content$id, Create_time = retrieve_content$created_at, Result_param = retrieve_content$input$settings, Result_output = result_toml)
-        output[[download2]] <- renderUI({
+        param_list <- list(
+          ID = retrieve_content$id,
+          CREATE_TIME = retrieve_content$created_at,
+          PARAMETERS = retrieve_content$input$settings,
+          RESULTS = result_toml
+        )
+        output[[download2]] <- shiny::renderUI({
           downloadButton(download_results2, "Download Results", style = "color: #fff; background-color: #6c757d; border-color: #6c757d")
         })
-        output[[download_results2]] <- downloadHandler(
+        output[[download_results2]] <- shiny::downloadHandler(
           filename = function() {
-            paste("KVfinder_results_", retrieve_content$id, ".toml", sep = "")
+            paste0("KVFinder_results_", retrieve_content$id, ".toml")
           },
           content = function(filename) {
             write_toml(param_list, output = filename)
@@ -139,18 +153,18 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         output[[view_output]] <- renderUI({
           actionButton(inputId = view_str, label = "View", icon = icon("eye"), style = "color: #fff; background-color: #6c757d; border-color: #6c757d")
         })
-        
+
         output$table_footer <- renderText({
           paste(
             p(strong("ID: "), "Cavity ID, ", strong("Area: "), "Cavity area, ", strong("Vol: "), "Cavity volume, ", strong("Avg Dep: "), "Cavity average depth ,", strong("Max Dep: "), "Cavity maximum depth, ", strong("Avg Hyd: "), "Cavity average hydropathy.")
           )
         })
-        
-        #get values of depth for each atom 
-        str_cav = strsplit(result_pdb_cav, "\n")[[1]]
-        get_atoms = str_cav[sapply(str_cav, function(x) startsWith(x, 'ATOM'))]
-        #print(get_atoms[1:10])
-        list_depth = as.numeric(sapply(get_atoms, function(x) strsplit(x, '\\s+')[[1]][10]))
+
+        # get values of depth for each atom
+        str_cav <- strsplit(result_pdb_cav, "\n")[[1]]
+        get_atoms <- str_cav[sapply(str_cav, function(x) startsWith(x, "ATOM"))]
+        # print(get_atoms[1:10])
+        list_depth <- as.numeric(sapply(get_atoms, function(x) strsplit(x, "\\s+")[[1]][10]))
         # create list to store results
         result_list <- list(
           retrieve_input_pdb = retrieve_input_pdb,
