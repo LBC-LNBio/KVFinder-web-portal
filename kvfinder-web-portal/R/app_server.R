@@ -317,8 +317,7 @@ app_server <- function(input, output, session) {
 
   # Check results in the secondary page ("get latest results" page)
   observeEvent(input$check_loc_pg2, {
-    # output[["structure_p2"]] <<- NULL
-    result_pdb <<- check_results(input = input, output = output, run_id = input$insert_ID, is_pg2 = TRUE, url_address = url_address, session = session)
+    result_pdb <<- check_results(input = input, output = output, run_id = trimws(input$insert_ID), is_pg2 = TRUE, url_address = url_address, session = session)
     # When check results button in page 2 is clicked, the structure visualization and all buttons related to NGL viewer will be hidden
     # to allow an update if the check button is used multiple times
     output[["structure_pg2"]] <- renderNGLVieweR({})
