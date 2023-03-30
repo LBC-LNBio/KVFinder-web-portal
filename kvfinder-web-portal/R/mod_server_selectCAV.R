@@ -28,11 +28,38 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
      
      if(isTRUE(input$input_cavity_deep) | isTRUE(input$input_cavity_deep_pg2)){
        NGLVieweR_proxy(structure) %>%
-         updateSelection("deepth", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
+         #updateSelection("deepth", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
+         removeSelection(name = "deepth") %>%
+         addSelection(tail(cav_rep_list, n = 1),
+                      param =
+                        list(
+                          name = "deepth", # now the created selection is named "sel3"
+                          sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                          colorScheme = 'bfactor',
+                          colorScale = 'rainbow',
+                          colorReverse = TRUE,
+                          #colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
+                          colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH))) #I had to invert the domain 
+                          #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                        )
+         )
        
      } else if(isTRUE(input$input_cavity_hyd) | isTRUE(input$input_cavity_hyd_pg2)){
        NGLVieweR_proxy(structure) %>%
-       updateSelection("hyd", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
+       #updateSelection("hyd", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
+       removeSelection(name = "hyd") %>%
+       addSelection(tail(cav_rep_list, n = 1),
+                      param =
+                        list(
+                          name = "hyd", # now the created selection is named "sel3"
+                          sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                          colorScheme = 'occupancy',
+                          colorScale = c('blue', 'white', 'yellow'),
+                          colorReverse = TRUE,
+                          colorDomain = c(-1.42, 2.6)
+                          #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                        )
+         )   
      } else{
        NGLVieweR_proxy(structure) %>%
          updateSelection(tail(cav_rep_list, n = 1), sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
@@ -58,12 +85,38 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
     if(isTRUE(input$input_cavity_deep) | isTRUE(input$input_cavity_deep_pg2)){
       NGLVieweR_proxy(structure) %>%
         updateSelection(tail(cav_rep_list, n = 1), sele = paste(input[[select_cavity]]," and (not ",paste(result_pdb_list$result_cav_names[!result_pdb_list$result_cav_names == input[[select_cavity]]], collapse = " or "),')', sep="")) %>%
-        updateSelection("deepth", sele = input[[select_cavity]]) %>%
+        #updateSelection("deepth", sele = input[[select_cavity]]) %>% #update selection is someway change the scale and inverting it to the default
+        removeSelection(name = "deepth") %>%
+        addSelection(tail(cav_rep_list, n = 1),
+                     param =
+                       list(
+                         name = "deepth", # now the created selection is named "sel3"
+                         sele = input[[select_cavity]],
+                         colorScheme = 'bfactor',
+                         colorScale = 'rainbow',
+                         colorReverse = TRUE,
+                         colorDomain = c( 0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
+                         #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                       )
+        ) %>%
         updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
     } else if(isTRUE(input$input_cavity_hyd) | isTRUE(input$input_cavity_hyd_pg2)){
       NGLVieweR_proxy(structure) %>%
         updateSelection(tail(cav_rep_list, n = 1), sele = paste(input[[select_cavity]]," and (not ",paste(result_pdb_list$result_cav_names[!result_pdb_list$result_cav_names == input[[select_cavity]]], collapse = " or "),')', sep="")) %>%
-        updateSelection("hyd", sele = input[[select_cavity]]) %>%
+        #updateSelection("hyd", sele = input[[select_cavity]]) %>%
+        removeSelection(name = "hyd") %>%
+        addSelection(tail(cav_rep_list, n = 1),
+                     param =
+                       list(
+                         name = "hyd", # now the created selection is named "sel3"
+                         sele = input[[select_cavity]],
+                         colorScheme = 'occupancy',
+                         colorScale = c('blue', 'white', 'yellow'),
+                         colorReverse = TRUE,
+                         colorDomain = c(-1.42, 2.6)
+                         #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                       )
+        ) %>%
         updateZoomMove(input[[select_cavity]], input[[select_cavity]], 2000, -20)
     } else{
       if(tail(cav_rep_list, n = 1) == 'point'){

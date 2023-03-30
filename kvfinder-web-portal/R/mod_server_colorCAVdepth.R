@@ -40,7 +40,8 @@ color_cavity_deepth <- function(input, output, is_pg2, cav_rep_list, result_pdb_
                        colorScheme = 'bfactor',
                        colorScale = 'rainbow',
                        colorReverse = TRUE,
-                       colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
+                       #colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
+                       colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH))) #I had to invert the domain 
                        #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                      )
       )
