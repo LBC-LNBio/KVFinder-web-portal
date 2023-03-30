@@ -28,6 +28,7 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
      
      if(isTRUE(input$input_cavity_deep) | isTRUE(input$input_cavity_deep_pg2)){
        NGLVieweR_proxy(structure) %>%
+         updateSelection(tail(cav_rep_list, n = 1), sele = paste(result_pdb_list$result_cav_names, collapse = " or ")) %>%
          #updateSelection("deepth", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
          removeSelection(name = "deepth") %>%
          addSelection(tail(cav_rep_list, n = 1),
@@ -48,6 +49,7 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
        
      } else if(isTRUE(input$input_cavity_hyd) | isTRUE(input$input_cavity_hyd_pg2)){
        NGLVieweR_proxy(structure) %>%
+      updateSelection(tail(cav_rep_list, n = 1), sele = paste(result_pdb_list$result_cav_names, collapse = " or ")) %>%
        #updateSelection("hyd", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
        removeSelection(name = "hyd") %>%
        addSelection(tail(cav_rep_list, n = 1),
@@ -84,8 +86,8 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
    }
      
   } else { # show one cavity to show and zoom it
-    print(input$input_cavity_deep)
-    print(paste(input[[select_cavity]]," and (not ",paste(result_pdb_list$result_cav_names[!result_pdb_list$result_cav_names == input[[select_cavity]]], collapse = " or "),')', sep=""))
+    #print(input$input_cavity_deep)
+    #print(paste(input[[select_cavity]]," and (not ",paste(result_pdb_list$result_cav_names[!result_pdb_list$result_cav_names == input[[select_cavity]]], collapse = " or "),')', sep=""))
     if(isTRUE(input$input_cavity_deep) | isTRUE(input$input_cavity_deep_pg2)){
       NGLVieweR_proxy(structure) %>%
         updateSelection(tail(cav_rep_list, n = 1), sele = paste(input[[select_cavity]]," and (not ",paste(result_pdb_list$result_cav_names[!result_pdb_list$result_cav_names == input[[select_cavity]]], collapse = " or "),')', sep="")) %>%
