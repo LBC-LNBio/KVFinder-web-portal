@@ -106,6 +106,27 @@ kv_help <- function() {
 
     tags$br(),
 
+    ## Cavity naming convention
+    fluidRow(
+      column(12, align = "center", tags$h5(strong("Cavity naming convention"))),
+      tags$p(
+        "The naming convention for cavities in KVFinder suite (parKVFinder, pyKVFinder and KVFinder-web) is based on the integer label assigned to each cavity in the 3D grid. The first cavity identified in the grid is labeled as KAA, the second as KAB, the third as KAC, and so on.",
+        style = "text-align:justify",
+        ),
+      tags$p(
+        "The integer labels are assigned using a DFS clustering algorithm, which identifies cavities in the order they are found in the 3D grid. The integer labels used in the algorithm are:",
+        tags$ul(
+          tags$li("-1: bulk (solvent);"),
+          tags$li("0: biomolecule;"),
+          tags$li("1: empty space (cavities that do not reach the volume cutoff);"),
+          tags$li(">1: cavities."),
+        ),
+        style = "text-align:justify",
+      ),
+    ),
+
+    tags$br(),
+
     ## Depth characterization
     fluidRow(
       column(12, align = "center", tags$h5(strong("Depth characterization"))),
@@ -143,12 +164,14 @@ kv_help <- function() {
     fluidRow(
       column(12, align = "center", tags$h5(strong("Hydropathy characterization"))),
       tags$p(
-        "Hydropathy characterization provides valuable insights into the water attractiveness and types of interactions at the interface of the binding site."
+        "Hydropathy characterization provides valuable insights into the water attractiveness and types of interactions at the interface of the binding site.",
+        style = "text-align:justify"
         ),
       tags$p(
         "A schematic represention of hydropathy characterization is shown below. The",
         tags$a(href="https://doi.org/10.1073/pnas.81.1.140", "Eisenberg & Weiss"),
         " hydrophobicity scale ranges from -1.42 (highly hydrophobic) to 2.6 (highly hydrophilic), and projects the value of the amino acid nearest to a target surface point. Panel A displays the hydrophobicity of each amino acid. The distance between a surface point (black) and the atoms (carbon: green; oxygen: red; nitrogen: blue; sulfur: yellow) of the amino acids (methionine: left; valine: right) are calculated, and the residue of the atom with shortest distance (red line) maps its hydrophobicity value onto it (shown in panel B).",
+        style = "text-align:justify"
       ),
     ),
     fluidRow(

@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="147.27184mm"
-   height="13.727875mm"
-   viewBox="0 0 147.27184 13.727875"
+   width="123.72411mm"
+   height="14.322788mm"
+   viewBox="0 0 123.72412 14.322788"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="hydropathy_scale.svg"
    inkscape:export-filename="/home/helder/Downloads/hydropathy_scale.png"
    inkscape:export-xdpi="300"
@@ -30,78 +30,78 @@
      showgrid="false"
      showguides="true"
      inkscape:lockguides="false"
-     inkscape:zoom="1.2969159"
-     inkscape:cx="285.67775"
-     inkscape:cy="30.071342"
-     inkscape:window-width="1848"
-     inkscape:window-height="1043"
-     inkscape:window-x="1438"
-     inkscape:window-y="0"
+     inkscape:zoom="2.5938318"
+     inkscape:cx="165.58514"
+     inkscape:cy="16.96332"
+     inkscape:window-width="2560"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:pageshadow="2">
     <sodipodi:guide
-       position="-166.01502,177.71193"
+       position="-175.91421,181.45437"
        orientation="0.70710678,-0.70710678"
        id="guide3775"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="21.799746,130.6587"
+       position="11.90056,134.40113"
        orientation="1,0"
        id="guide3827"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="4.897345,179.88087"
+       position="-5.0018412,183.62331"
        orientation="0,-1"
        id="guide3829"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="22.217171,131.3133"
+       position="12.317985,135.05573"
        orientation="0,-1"
        id="guide3831"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="105.24691,110.47483"
+       position="95.347727,114.21726"
        orientation="1,0"
        id="guide3833"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="127.98726,122.19706"
+       position="118.08808,125.93949"
        orientation="1,0"
        id="guide15970"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="21.694334,120.51328"
+       position="11.795148,124.25571"
        orientation="0,-1"
        id="guide15972"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="21.97847,123.27678"
+       position="12.079284,127.01921"
        orientation="0,-1"
        id="guide15974"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="21.967308,86.696867"
+       position="12.068122,90.439301"
        orientation="0,-1"
        id="guide17068"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="21.967308,89.609747"
+       position="12.068122,93.352181"
        orientation="0,-1"
        id="guide17070"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="25.584047,52.690197"
+       position="15.684861,56.432629"
        orientation="0,-1"
        id="guide17837"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="154.81378,9.8410461"
+       position="144.9146,13.583477"
        orientation="0,-1"
        id="guide18533"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="44.240519,3.121146"
+       position="34.341334,6.8635769"
        orientation="0,-1"
        id="guide20530"
        inkscape:locked="false" />
@@ -205,12 +205,12 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-4.7905809,-144.02981)">
+     transform="translate(-14.689767,-143.49866)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="63.596458"
-       y="147.82686"
+       x="64.125626"
+       y="147.2977"
        id="text7019-1-7-04"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -218,13 +218,13 @@
          sodipodi:role="line"
          id="tspan7017-0-7-8"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="63.596458"
-         y="147.82686">0</tspan></text>
+         x="64.125626"
+         y="147.2977">0</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="73.733582"
-       y="147.80595"
+       x="74.262749"
+       y="147.27679"
        id="text7019-1-7-7-0"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -232,13 +232,13 @@
          sodipodi:role="line"
          id="tspan7017-0-7-2-4"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="73.733582"
-         y="147.80595">0.5</tspan></text>
+         x="74.262749"
+         y="147.27679">0.5</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="84.661057"
-       y="147.80164"
+       x="85.190224"
+       y="147.27248"
        id="text7019-1-7-8-2"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -246,13 +246,13 @@
          sodipodi:role="line"
          id="tspan7017-0-7-29-9"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="84.661057"
-         y="147.80164">1.0</tspan></text>
+         x="85.190224"
+         y="147.27248">1.0</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="95.632973"
-       y="147.81572"
+       x="96.16214"
+       y="147.28656"
        id="text7019-1-7-9-6"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -260,13 +260,13 @@
          sodipodi:role="line"
          id="tspan7017-0-7-6-1"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="95.632973"
-         y="147.81572">1.5</tspan></text>
+         x="96.16214"
+         y="147.28656">1.5</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="106.53778"
-       y="147.80225"
+       x="107.06695"
+       y="147.27309"
        id="text7019-1-7-0-0"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -274,13 +274,13 @@
          sodipodi:role="line"
          id="tspan7017-0-7-27-4"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="106.53778"
-         y="147.80225">2.0</tspan></text>
+         x="107.06695"
+         y="147.27309">2.0</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="117.47552"
-       y="147.83932"
+       x="118.00468"
+       y="147.31017"
        id="text7019-1-7-6-2"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -288,13 +288,13 @@
          sodipodi:role="line"
          id="tspan7017-0-7-1-2"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="117.47552"
-         y="147.83932">2.5</tspan></text>
+         x="118.00468"
+         y="147.31017">2.5</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="51.252369"
-       y="147.80095"
+       x="51.781536"
+       y="147.27179"
        id="text7019-1-7-3-2"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -302,13 +302,13 @@
          sodipodi:role="line"
          id="tspan7017-0-7-21-0"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="51.252369"
-         y="147.80095">-0.5</tspan></text>
+         x="51.781536"
+         y="147.27179">-0.5</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="40.263405"
-       y="147.82266"
+       x="40.792572"
+       y="147.2935"
        id="text7019-1-7-5-5"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -316,46 +316,46 @@
          sodipodi:role="line"
          id="tspan7017-0-7-9-5"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70604px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="40.263405"
-         y="147.82266">-1.0</tspan></text>
+         x="40.792572"
+         y="147.2935">-1.0</tspan></text>
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       d="m 64.181753,148.47548 c 0,0.86931 0,0.87589 0,0.87589"
+       d="m 64.71092,147.94631 c 0,0.86931 0,0.87589 0,0.87589"
        id="path3941-3-1-3-9-29"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       d="m 53.233321,148.47548 c 0,0.86931 0,0.87589 0,0.87589"
+       d="m 53.762488,147.94631 c 0,0.86931 0,0.87589 0,0.87589"
        id="path3941-3-1-3-9-2-0"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       d="m 75.130183,148.47548 c 0,0.86931 0,0.87589 0,0.87589"
+       d="m 75.65935,147.94631 c 0,0.86931 0,0.87589 0,0.87589"
        id="path3941-3-1-3-9-2-7-2"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       d="m 86.078615,148.47548 c 0,0.86931 0,0.87589 0,0.87589"
+       d="m 86.607782,147.94631 c 0,0.86931 0,0.87589 0,0.87589"
        id="path3941-3-1-3-9-2-7-5-83"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       d="m 97.027028,148.47548 c 0,0.86931 0,0.87589 0,0.87589"
+       d="m 97.556195,147.94631 c 0,0.86931 0,0.87589 0,0.87589"
        id="path3941-3-1-3-9-2-7-5-6-8"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       d="m 42.28489,148.47548 c 0,0.86931 0,0.87589 0,0.87589"
+       d="m 42.814057,147.94631 c 0,0.86931 0,0.87589 0,0.87589"
        id="path3941-3-1-3-9-2-6-0"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -363,8 +363,8 @@
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="51.054642"
-       y="155.67442"
+       x="51.583809"
+       y="155.14526"
        id="text7023-6-6-4"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -372,13 +372,13 @@
          sodipodi:role="line"
          id="tspan7021-1-4-0"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="51.054642"
-         y="155.67442">A</tspan></text>
+         x="51.583809"
+         y="155.14526">A</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="120.32547"
-       y="155.67442"
+       x="120.85464"
+       y="155.14526"
        id="text7027-5-3-9"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -386,13 +386,13 @@
          sodipodi:role="line"
          id="tspan7025-9-0-1"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="120.32547"
-         y="155.67442">R</tspan></text>
+         x="120.85464"
+         y="155.14526">R</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="82.120712"
-       y="155.64803"
+       x="82.649879"
+       y="155.11887"
        id="text9316-4-3-9"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -400,13 +400,13 @@
          sodipodi:role="line"
          id="tspan9314-9-0-6"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="82.120712"
-         y="155.64803">N</tspan></text>
+         x="82.649879"
+         y="155.11887">N</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="92.188385"
-       y="155.64803"
+       x="92.717552"
+       y="155.11887"
        id="text9352-0-9-2"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -414,13 +414,13 @@
          sodipodi:role="line"
          id="tspan9350-9-2-5"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="92.188385"
-         y="155.64803">D</tspan></text>
+         x="92.717552"
+         y="155.11887">D</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="57.490242"
-       y="155.67442"
+       x="58.019409"
+       y="155.14526"
        id="text9388-1-5-4"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -428,11 +428,11 @@
          sodipodi:role="line"
          id="tspan9386-7-4-4"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="57.490242"
-         y="155.67442">C</tspan></text>
+         x="58.019409"
+         y="155.14526">C</tspan></text>
     <g
        id="g9312-1-5-9"
-       transform="matrix(0.82783557,0,0,0.517519,10.588104,144.50194)"
+       transform="matrix(0.82783557,0,0,0.517519,11.117271,143.97277)"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300">
@@ -451,140 +451,140 @@
     </g>
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.175403;stroke-opacity:1"
-       d="m 98.083052,149.418 c 0,4.01422 0,4.04463 0,4.04463"
+       d="m 98.612219,148.88883 c 0,4.01422 0,4.04463 0,4.04463"
        id="path3941-9-76-9-6"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 40.060798,149.418 c 0,2.64937 0,2.66945 0,2.66945"
+       d="m 40.589965,148.88883 c 0,2.64937 0,2.66945 0,2.66945"
        id="path3941-9-7-7-2-0"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 58.46718,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 58.996347,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-9-8-3-2-5"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 46.192716,149.418 c 0,2.64937 0,2.66945 0,2.66945"
+       d="m 46.721883,148.88883 c 0,2.64937 0,2.66945 0,2.66945"
        id="path3941-9-1-6-4-0"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 65.45598,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 65.985147,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-9-6-5-7-2"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 50.32969,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 50.858857,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-63-7-9"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 40.499826,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 41.028993,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-70-9-5-4"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 37.665767,149.418 c 0,2.64977 0,2.66987 0,2.66987"
+       d="m 38.194934,148.88883 c 0,2.64977 0,2.66987 0,2.66987"
        id="path3941-3-70-6-4-4-3"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 61.721501,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 62.250668,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-70-6-0-8-8-5"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 68.311759,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 68.840926,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-70-6-0-2-1-1-1"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 49.923307,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 50.452474,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-70-3-2-2-7"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.175398;stroke-opacity:1"
-       d="m 33.251252,149.418 c 0,4.0142 0,4.04463 0,4.04463"
+       d="m 33.780419,148.88883 c 0,4.0142 0,4.04463 0,4.04463"
        id="path3941-3-2-9-8-4"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 53.628672,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 54.157839,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-9-9-3-3"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.172117;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 80.985049,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 81.514216,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-62-0-6-1"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.165046;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 81.863792,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 82.392959,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-7-8-8-4"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 73.371628,149.418 c 0,4.01422 0,4.04463 0,4.04463"
+       d="m 73.900795,148.88883 c 0,4.01422 0,4.04463 0,4.04463"
        id="path3941-3-7-6-8-0-6"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.175402;stroke-opacity:1"
-       d="m 121.09067,149.418 c 0,4.01421 0,4.04463 0,4.04463"
+       d="m 121.61984,148.88883 c 0,4.01421 0,4.04463 0,4.04463"
        id="path3941-3-6-5-2-9"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.178389;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 84.50003,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 85.029197,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-7-5-0-1-4"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.173341;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 57.807383,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 58.33655,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-7-5-3-9-0-2"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.17162;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 83.401596,149.418 c 0,2.64938 0,2.66945 0,2.66945"
+       d="m 83.930763,148.88883 c 0,2.64938 0,2.66945 0,2.66945"
        id="path3941-3-5-6-5-2"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -592,8 +592,8 @@
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="87.103226"
-       y="155.50305"
+       x="87.632393"
+       y="154.97389"
        id="text9474-3-1-6"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -601,13 +601,13 @@
          sodipodi:role="line"
          id="tspan9472-8-1-4"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="87.103226"
-         y="155.50305">Q</tspan></text>
+         x="87.632393"
+         y="154.97389">Q</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="77.464096"
-       y="155.64803"
+       x="77.993263"
+       y="155.11887"
        id="text9510-5-0-1"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -615,13 +615,13 @@
          sodipodi:role="line"
          id="tspan9508-6-8-2"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="77.464096"
-         y="155.64803">E</tspan></text>
+         x="77.993263"
+         y="155.11887">E</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="54.249992"
-       y="155.67442"
+       x="54.77916"
+       y="155.14526"
        id="text9546-1-5-8"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -629,13 +629,13 @@
          sodipodi:role="line"
          id="tspan9544-1-0-8"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="54.249992"
-         y="155.67442">G</tspan></text>
+         x="54.77916"
+         y="155.14526">G</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="72.581665"
-       y="155.67442"
+       x="73.110832"
+       y="155.14526"
        id="text9582-5-6-9"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -643,13 +643,13 @@
          sodipodi:role="line"
          id="tspan9580-9-4-2"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="72.581665"
-         y="155.67442">H</tspan></text>
+         x="73.110832"
+         y="155.14526">H</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="32.929523"
-       y="155.67442"
+       x="33.458691"
+       y="155.14526"
        id="text9618-8-6-8"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -657,13 +657,13 @@
          sodipodi:role="line"
          id="tspan9616-4-2-8"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="32.929523"
-         y="155.67442">I</tspan></text>
+         x="33.458691"
+         y="155.14526">I</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="37.42392"
-       y="155.67442"
+       x="37.953087"
+       y="155.14526"
        id="text9654-8-5-8"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -671,13 +671,13 @@
          sodipodi:role="line"
          id="tspan9652-1-8-6"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="37.42392"
-         y="155.67442">L</tspan></text>
+         x="37.953087"
+         y="155.14526">L</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="97.220909"
-       y="155.64803"
+       x="97.750076"
+       y="155.11887"
        id="text9690-0-6-8"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -685,13 +685,13 @@
          sodipodi:role="line"
          id="tspan9688-3-2-3"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="97.220909"
-         y="155.64803">K</tspan></text>
+         x="97.750076"
+         y="155.11887">K</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="47.49749"
-       y="155.67442"
+       x="48.026657"
+       y="155.14526"
        id="text9726-0-8-8"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -699,13 +699,13 @@
          sodipodi:role="line"
          id="tspan9724-4-4-3"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="47.49749"
-         y="155.67442">M</tspan></text>
+         x="48.026657"
+         y="155.14526">M</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.62762px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="34.755894"
-       y="155.67442"
+       x="35.285061"
+       y="155.14526"
        id="text9762-4-7-3"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -713,13 +713,13 @@
          sodipodi:role="line"
          id="tspan9760-4-2-3"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="34.755894"
-         y="155.67442">F</tspan></text>
+         x="35.285061"
+         y="155.14526">F</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-opacity:1"
-       x="63.674355"
-       y="155.67442"
+       x="64.203522"
+       y="155.14526"
        id="text9798-4-4-8"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -727,13 +727,13 @@
          sodipodi:role="line"
          id="tspan9796-7-0-0"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.218969"
-         x="63.674355"
-         y="155.67442">P</tspan></text>
+         x="64.203522"
+         y="155.14526">P</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       x="69.750694"
-       y="155.67442"
+       x="70.279861"
+       y="155.14526"
        id="text11337-6-6-4"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -741,13 +741,13 @@
          sodipodi:role="line"
          id="tspan11335-3-2-7"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164693"
-         x="69.750694"
-         y="155.67442">S</tspan></text>
+         x="70.279861"
+         y="155.14526">S</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       x="66.74395"
-       y="155.67442"
+       x="67.273117"
+       y="155.14526"
        id="text12099-1-9-6"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -755,13 +755,13 @@
          sodipodi:role="line"
          id="tspan12097-7-9-8"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.164693"
-         x="66.74395"
-         y="155.67442">T</tspan></text>
+         x="67.273117"
+         y="155.14526">T</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       x="43.676033"
-       y="155.67442"
+       x="44.2052"
+       y="155.14526"
        id="text13587-5-0-9"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -769,13 +769,13 @@
          sodipodi:role="line"
          id="tspan13585-9-8-0"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.164693"
-         x="43.676033"
-         y="155.67442">W</tspan></text>
+         x="44.2052"
+         y="155.14526">W</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       x="60.754852"
-       y="155.67442"
+       x="61.284019"
+       y="155.14526"
        id="text15179-6-1-6"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -783,13 +783,13 @@
          sodipodi:role="line"
          id="tspan15177-2-3-8"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.164693"
-         x="60.754852"
-         y="155.67442">Y</tspan></text>
+         x="61.284019"
+         y="155.14526">Y</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:2.62762px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       x="40.420391"
-       y="155.67442"
+       x="40.949558"
+       y="155.14526"
        id="text15941-1-1-7"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -797,11 +797,11 @@
          sodipodi:role="line"
          id="tspan15939-7-1-9"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;stroke:none;stroke-width:0.164693"
-         x="40.420391"
-         y="155.67442">V</tspan></text>
+         x="40.949558"
+         y="155.14526">V</tspan></text>
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 37.693085,151.96522 -2.038215,1.30534"
+       d="m 38.222252,151.43605 -2.038215,1.30534"
        id="path16041-3-7-3-0"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -809,7 +809,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="M 40.020628,151.96119 38.3315,153.24612"
+       d="m 40.549795,151.43202 -1.689128,1.28493"
        id="path16041-0-4-4-3"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -817,7 +817,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 40.519442,151.93653 0.820424,1.36119"
+       d="m 41.048609,151.40736 0.820424,1.36119"
        id="path16041-7-1-0-3"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -825,7 +825,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 46.183396,151.94775 -1.131752,1.34608"
+       d="m 46.712563,151.41858 -1.131752,1.34608"
        id="path16041-8-8-3-3"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -833,7 +833,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 49.923307,151.95122 -1.20519,1.28977"
+       d="m 50.452474,151.42205 -1.20519,1.28977"
        id="path16041-6-5-9-7"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -841,7 +841,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 50.323179,151.96016 1.608352,1.27323"
+       d="m 50.852346,151.43099 1.608352,1.27323"
        id="path16041-88-9-1-3"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -849,7 +849,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 53.607917,151.95942 1.578328,1.28354"
+       d="m 54.137084,151.43025 1.578328,1.28354"
        id="path16041-4-7-9-2"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -857,7 +857,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 57.78832,151.92645 0.563657,1.28398"
+       d="m 58.317487,151.39728 0.563657,1.28398"
        id="path16041-31-5-6-6"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -865,7 +865,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 58.439613,151.97257 3.082294,1.26723"
+       d="m 58.96878,151.4434 3.082294,1.26723"
        id="path16041-49-3-9-5"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -873,7 +873,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 61.689254,151.97041 2.642472,1.27786"
+       d="m 62.218421,151.44124 2.642472,1.27786"
        id="path16041-2-8-3-2"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -881,7 +881,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.176389;stroke-dasharray:none;stroke-opacity:1"
-       d="m 65.441519,151.96511 2.052406,1.32413"
+       d="m 65.970686,151.43594 2.052406,1.32413"
        id="path16041-06-8-3-6"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -889,7 +889,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.174815;stroke-dasharray:none;stroke-opacity:1"
-       d="m 84.523139,151.97747 8.422943,1.24487"
+       d="m 85.052306,151.4483 8.422943,1.24487"
        id="path16041-89-64-9-6-5"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -897,7 +897,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.174815;stroke-dasharray:none;stroke-opacity:1"
-       d="m 83.400083,151.97529 1.740276,0.4775 2.885547,0.79176"
+       d="m 83.92925,151.44612 1.740276,0.4775 2.885547,0.79176"
        id="path16041-89-9-6-6-8"
        sodipodi:nodetypes="ccc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -905,7 +905,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.174815;stroke-dasharray:none;stroke-opacity:1"
-       d="m 80.9801,151.9691 -2.597113,1.30585"
+       d="m 81.509267,151.43993 -2.597113,1.30585"
        id="path16041-89-5-4-4-7"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -913,7 +913,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.174815;stroke-dasharray:none;stroke-opacity:1"
-       d="m 81.861083,151.95052 1.158377,1.24608"
+       d="m 82.39025,151.42135 1.158377,1.24608"
        id="path16041-89-0-3-0-9"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -921,7 +921,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.180668;stroke-dasharray:none;stroke-opacity:1"
-       d="m 68.355343,151.96783 2.173574,1.34453"
+       d="m 68.88451,151.43866 2.173574,1.34453"
        id="path16041-89-4-3-0-6"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
@@ -930,8 +930,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.62762px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-dasharray:none;stroke-opacity:1"
-       x="15.116024"
-       y="152.47411"
+       x="15.64519"
+       y="151.94495"
        id="text18527-0"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -939,13 +939,13 @@
          sodipodi:role="line"
          id="tspan18525-4"
          style="stroke-width:0.218969"
-         x="15.116024"
-         y="152.47411">Hydrophobic</tspan></text>
+         x="15.64519"
+         y="151.94495">Hydrophobic</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.62762px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.218969;stroke-dasharray:none;stroke-opacity:1"
-       x="122.62167"
-       y="152.47411"
+       x="123.15084"
+       y="151.94495"
        id="text18531-1"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
@@ -953,18 +953,18 @@
          sodipodi:role="line"
          id="tspan18529-0"
          style="stroke-width:0.218969"
-         x="122.62167"
-         y="152.47411">Hydrophilic</tspan></text>
+         x="123.15084"
+         y="151.94495">Hydrophilic</tspan></text>
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       d="m 107.97552,148.47548 c 0,0.86931 0,0.87589 0,0.87589"
+       d="m 108.50469,147.94631 c 0,0.86931 0,0.87589 0,0.87589"
        id="path3941-3-1-3-9-2-7-5-9-4"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.164693;stroke-dasharray:none;stroke-opacity:1"
-       d="m 118.92397,148.52761 c 0,0.86929 0,0.87589 0,0.87589"
+       d="m 119.45314,147.99844 c 0,0.86929 0,0.87589 0,0.87589"
        id="path3941-3-1-3-9-2-7-5-8-8"
        inkscape:export-filename="/home/helder/Downloads/hyd_scale.png"
        inkscape:export-xdpi="300"

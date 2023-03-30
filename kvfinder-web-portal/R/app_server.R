@@ -5,7 +5,7 @@
 #' @import shiny
 #' @import shinyjs
 #' @import ggplot2
-#' 
+#'
 #'
 #' @noRd
 #'
@@ -67,39 +67,38 @@ app_server <- function(input, output, session) {
   observeEvent(input$input_pdb, {
     # run process_upload of mod_server_upload module to create boxes and buttons of run mode
     process_upload(input = input, output = output, session = session)
-    get_nonstand_check_upload <<- report_nonstand(pdb_input =input$input_pdb$datapath, show_modal=TRUE)
+    get_nonstand_check_upload <<- report_nonstand(pdb_input = input$input_pdb$datapath, show_modal = TRUE)
   })
-  
+
   observeEvent(input$show_preview_upload, {
     showModal(modalDialog(
-      #title = tags$a('Structure preview', style = "text-align: right;" ),
-      #NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
-      if(!is.null(input$input_pdb)){
-        #print(get_nonstand_check)
+      # title = tags$a('Structure preview', style = "text-align: right;" ),
+      # NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
+      if (!is.null(input$input_pdb)) {
+        # print(get_nonstand_check)
         renderNGLVieweR({
           # get input protein PDB with output cavities
           pdb <- input$input_pdb$datapath
-          print(paste("/",as.numeric(input$model_number),sep=""))
+          print(paste("/", as.numeric(input$model_number), sep = ""))
           # create initial scene
           NGLVieweR(pdb) %>%
-            # start protein with visible cartoon representation 
-            addRepresentation("cartoon", param=list(sele = paste("/",as.numeric(input$model_number)-1,sep=""))) %>%
-            addRepresentation("ball+stick", param = list(sele = paste(paste(get_nonstand_check_upload, collapse = " or "),"/",as.numeric(input$model_number)-1,sep=""))) %>%
-            
+            # start protein with visible cartoon representation
+            addRepresentation("cartoon", param = list(sele = paste("/", as.numeric(input$model_number) - 1, sep = ""))) %>%
+            addRepresentation("ball+stick", param = list(sele = paste(paste(get_nonstand_check_upload, collapse = " or "), "/", as.numeric(input$model_number) - 1, sep = ""))) %>%
             # start cavity with points
             stageParameters(backgroundColor = "black") %>%
             setQuality("high") %>%
             setFocus(0)
         })
-      }else{
+      } else {
         "No loaded structure to preview"
       },
       easyClose = TRUE,
       footer = NULL,
-      size = 'l'
+      size = "l"
     ))
   })
-  
+
   #-----------------------------------------------------
 
   #-----------------------------------------------------
@@ -110,7 +109,7 @@ app_server <- function(input, output, session) {
     pdb_name_click_load <<- input$pdb_id
     # check if the PDB code is valid by using get_nonstand
     showModal(modalDialog("Loading and checking PDB...", footer = NULL, fade = FALSE))
-    get_nonstand_check <<- report_nonstand(pdb_input = input$pdb_id, show_modal=TRUE)
+    get_nonstand_check <<- report_nonstand(pdb_input = input$pdb_id, show_modal = TRUE)
     removeModal()
     if (length(which(is.na(get_nonstand_check))) != 0) {
       shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
@@ -125,29 +124,29 @@ app_server <- function(input, output, session) {
   observeEvent(input$show_preview_fetch, {
     print(pdb_name_click_load)
     showModal(modalDialog(
-      #title = tags$a('Structure preview', style = "text-align: right;" ),
-      #NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
-      if(pdb_name_click_load != 'init'){
+      # title = tags$a('Structure preview', style = "text-align: right;" ),
+      # NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
+      if (pdb_name_click_load != "init") {
         print(get_nonstand_check)
         renderNGLVieweR({
           # get input protein PDB with output cavities
           pdb <- input$pdb_id
           # create initial scene
           NGLVieweR(pdb) %>%
-            # start protein with visible cartoon representation 
-            addRepresentation("cartoon", param=list(sele = paste("/",as.numeric(input$model_number)-1,sep=""))) %>%
-            addRepresentation("ball+stick", param = list(sele = paste(paste(get_nonstand_check, collapse = " or "),"/",as.numeric(input$model_number)-1,sep=""))) %>%
+            # start protein with visible cartoon representation
+            addRepresentation("cartoon", param = list(sele = paste("/", as.numeric(input$model_number) - 1, sep = ""))) %>%
+            addRepresentation("ball+stick", param = list(sele = paste(paste(get_nonstand_check, collapse = " or "), "/", as.numeric(input$model_number) - 1, sep = ""))) %>%
             # start cavity with points
             stageParameters(backgroundColor = "black") %>%
             setQuality("high") %>%
             setFocus(0)
         })
-      }else{
+      } else {
         "No loaded structure to preview"
       },
       easyClose = TRUE,
       footer = NULL,
-      size = 'l'
+      size = "l"
     ))
   })
 
@@ -318,8 +317,7 @@ app_server <- function(input, output, session) {
 
   # Check results in the secondary page ("get latest results" page)
   observeEvent(input$check_loc_pg2, {
-    # output[["structure_p2"]] <<- NULL
-    result_pdb <<- check_results(input = input, output = output, run_id = input$insert_ID, is_pg2 = TRUE, url_address = url_address, session = session)
+    result_pdb <<- check_results(input = input, output = output, run_id = trimws(input$insert_ID), is_pg2 = TRUE, url_address = url_address, session = session)
     # When check results button in page 2 is clicked, the structure visualization and all buttons related to NGL viewer will be hidden
     # to allow an update if the check button is used multiple times
     output[["structure_pg2"]] <- renderNGLVieweR({})
@@ -492,7 +490,7 @@ app_server <- function(input, output, session) {
       # fed the protein list of representations
       protein_rep_list <<- c(protein_rep_list, current_rep)
       # Create the work scene
-      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list, prot_or_cav = 'prot', cav_rep_list='')
+      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list, prot_or_cav = "prot", cav_rep_list = "")
       # clean protein color selector
       updateSelectInput(session, "input_protein_color", # This update is made to clean the protein color selector
         selected = ""
@@ -501,36 +499,36 @@ app_server <- function(input, output, session) {
     ignoreNULL = TRUE,
     ignoreInit = TRUE
   )
-  
+
   # Create a work scene every time users click on cavity representation selector and change biomolecular structure representation
   observeEvent(input$input_cavity_rep,
-               {
-                 # save the current representation
-                 current_rep_cav <- input$input_cavity_rep
-                 # fed the protein list of representations
-                 cav_rep_list <<- c(cav_rep_list, current_rep_cav)
-                 print(cav_rep_list)
-                 # Create the work scene
-                 create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list, prot_or_cav = 'cav', cav_rep_list=cav_rep_list)
-                 # clean protein color selector
-                 # updateSelectInput(session, "input_protein_color", # This update is made to clean the protein color selector
-                 #                   selected = ""
-                 # )
-               },
-               ignoreNULL = TRUE,
-               ignoreInit = TRUE
+    {
+      # save the current representation
+      current_rep_cav <- input$input_cavity_rep
+      # fed the protein list of representations
+      cav_rep_list <<- c(cav_rep_list, current_rep_cav)
+      print(cav_rep_list)
+      # Create the work scene
+      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list, prot_or_cav = "cav", cav_rep_list = cav_rep_list)
+      # clean protein color selector
+      # updateSelectInput(session, "input_protein_color", # This update is made to clean the protein color selector
+      #                   selected = ""
+      # )
+    },
+    ignoreNULL = TRUE,
+    ignoreInit = TRUE
   )
-  
+
 
   # Select cavity to be visualized from clicking on cavity selector button
   observeEvent(input$select_cavity, {
-    select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE, cav_rep_list=cav_rep_list)
+    select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE, cav_rep_list = cav_rep_list)
   })
-  
+
   observeEvent(input$interface_res, {
     interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = FALSE)
   })
-  
+
 
   # change biomolecular structure color
   observeEvent(input$input_protein_color, {
@@ -550,7 +548,7 @@ app_server <- function(input, output, session) {
 
   # change cavity color
   observeEvent(input$input_cavity_color, {
-    change_cav_color(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list)
+    change_cav_color(input = input, output = output, is_pg2 = FALSE, cav_rep_list = cav_rep_list)
   })
 
   # change background color
@@ -562,84 +560,50 @@ app_server <- function(input, output, session) {
   observeEvent(input$input_snapshot, {
     take_snapshot(input = input, output = output, is_pg2 = FALSE)
   })
-  
+
   observeEvent(input$input_cavity_deep, {
-    if(input$input_cavity_deep == TRUE){
-      updateCheckboxInput(session, "input_cavity_hyd", value = FALSE)  
+    if (input$input_cavity_deep == TRUE) {
+      updateCheckboxInput(session, "input_cavity_hyd", value = FALSE)
     }
-    
-    color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
-    
-    output$scale_plot_deep <- renderPlot({
-      depth_scale = c(0,result_pdb$list_depth, max(unlist(result_pdb$result_toml$MAX_DEPTH)))
-      df <- data.frame(x = seq(1,length(depth_scale)), y = depth_scale)
-      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) +
-        geom_point() +
-        scale_color_gradientn(name = "Depth (A)", colours = rev(rainbow(5)))+
-        theme(plot.title = element_text(hjust = 0.5, size=11),
-              legend.position = "bottom",
-              legend.key.width= unit(0.2, 'npc'),
-              legend.text = element_text(size = 11),
-              #legend.spacing = unit(0.25,"cm"),
-              legend.title = element_text(hjust = 0.5),
-              legend.justification = "center",
-              panel.background = element_rect(fill='transparent'),
-              plot.background = element_rect(fill='transparent'),
-              legend.background = element_rect(fill='transparent'),
-              legend.box.background = element_rect(fill='transparent'))+
-        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
-               size = guide_legend(title.position="top", title.hjust = 0.5))
 
-      # ggpubr does this for you
-      leg <- ggpubr::get_legend(p)
-      ggpubr::as_ggplot(leg)
+    color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
 
-    }, bg="transparent") #, height =50, width = '100%'
-})
+    output$scale_plot_deep <- renderPlot(
+      {
+        max_depth <- max(unlist(result_pdb$result_toml$MAX_DEPTH))
+        depth <- seq(0, max_depth, length.out = 100)
+        ggplot() +
+          geom_tile(aes(x = depth, y = 1, fill = depth)) +
+          geom_rect(aes(xmin = 0.0 - (max_depth / 100 / 2), xmax = max_depth + (max_depth / 100 / 2), ymin = 0.5, ymax = 1.5), alpha = 0.0, color = "black", size = 1) +
+          scale_fill_gradientn(colours = c("blue", "green", "yellow", "orange", "red")) +
+          scale_x_continuous(breaks = seq(0, max_depth, by = ceiling(max_depth / 10)), limits = c(-0.1, max_depth + 0.1), expand = c(0, 0), position = "top") +
+          scale_y_continuous(expand = c(0, 0)) +
+          theme_void() +
+          theme(
+            legend.position = "none",
+            plot.title = element_text(family = "DejaVu Sans", size = 16, hjust = 0.5),
+            axis.text.x = element_text(family = "DejaVu Sans", size = 16, color = "black"),
+            axis.ticks.x = element_line(linewidth = 0.5, linetype = "solid", color = "black"),
+            axis.ticks.length = unit(0.15, "cm")
+          ) +
+          ggtitle("Depth (Å)")
+      },
+      bg = "transparent"
+    )
+  })
 
   observeEvent(input$input_cavity_hyd, {
-    if(input$input_cavity_hyd == TRUE){
-    updateCheckboxInput(session, "input_cavity_deep", value = FALSE)
+    if (input$input_cavity_hyd == TRUE) {
+      updateCheckboxInput(session, "input_cavity_deep", value = FALSE)
     }
-    color_cavity_hyd(input = input, output = output, is_pg2 = FALSE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
-    # output$scale_plot <- renderPlot({
-    #   EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
-    #                            -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
-    #                            -0.12,0.18,0.05, -0.83, -0.27, -1.11)
-    #   df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
-    #   p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
-    #     geom_point() +
-    #     scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59, breaks = seq(-1,2.5,0.5))+
-    #     theme(plot.title = element_text(hjust = 0.5, size=11),
-    #           legend.position = "bottom",
-    #           legend.key.width= unit(0.2, 'npc'),
-    #           legend.text = element_text(size = 11),
-    #           #legend.spacing = unit(0.25,"cm"),
-    #           legend.title = element_text(hjust = 0.5),
-    #           legend.justification = "center",
-    #           panel.background = element_rect(fill='transparent'),
-    #           plot.background = element_rect(fill='transparent'),
-    #           legend.background = element_rect(fill='transparent'),
-    #           legend.box.background = element_rect(fill='transparent'))+
-    #     guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
-    #            size = guide_legend(title.position="top", title.hjust = 0.5))
-    #   
-    #   # ggpubr does this for you
-    #   leg <- ggpubr::get_legend(p)
-    #   ggpubr::as_ggplot(leg)
-    #   
-    # }, bg="transparent") #, height =50, 
-    # output$scale_plot <- renderImage({
-    #   list(src = 'www/help_probe_schema.png')
-    # }, deleteFile = FALSE)
+    color_cavity_hyd(input = input, output = output, is_pg2 = FALSE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
     output$scale_plot <- renderUI({
-      tags$img(src = "www/hydropathy_scale.svg",height = '40%', width = '60%', align = "center")
+      tags$img(src = "www/hydropathy_scale.svg", style = "width: 90%; max-width: 850px;")
     })
-   
   })
-  
-  
-  
+
+
+
   ##### View in Get latest results page (pg2)
 
   # Click view in the secondary page to initialize the result visualization with the NGL engine
@@ -737,7 +701,7 @@ app_server <- function(input, output, session) {
       # create a list of representations
       protein_rep_list <<- c(protein_rep_list, current_rep)
       # Create work scene
-      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list,  prot_or_cav = 'prot', cav_rep_list='')
+      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list, prot_or_cav = "prot", cav_rep_list = "")
 
       # clean protein color selector
       updateSelectInput(session, "input_protein_color_pg2", # This updation is made to clean the protein color selector
@@ -747,32 +711,32 @@ app_server <- function(input, output, session) {
     ignoreNULL = TRUE,
     ignoreInit = FALSE
   )
-  
-  
+
+
   # Create a work scene every time users click on cavity representation selector and change biomolecular structure representation
   observeEvent(input$input_cavity_rep_pg2,
-               {
-                 print('Inside cav rep pg2')
-                 # save the current representation
-                 current_rep_cav <- input$input_cavity_rep_pg2
-                 # fed the protein list of representations
-                 cav_rep_list <<- c(cav_rep_list, current_rep_cav)
-                 #print(cav_rep_list)
-                 # Create the work scene
-                 create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list, prot_or_cav = 'cav', cav_rep_list=cav_rep_list)
-                 # clean protein color selector
-                 # updateSelectInput(session, "input_protein_color", # This update is made to clean the protein color selector
-                 #                   selected = ""
-                 # )
-               },
-               ignoreNULL = TRUE,
-               ignoreInit = TRUE
+    {
+      print("Inside cav rep pg2")
+      # save the current representation
+      current_rep_cav <- input$input_cavity_rep_pg2
+      # fed the protein list of representations
+      cav_rep_list <<- c(cav_rep_list, current_rep_cav)
+      # print(cav_rep_list)
+      # Create the work scene
+      create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list, prot_or_cav = "cav", cav_rep_list = cav_rep_list)
+      # clean protein color selector
+      # updateSelectInput(session, "input_protein_color", # This update is made to clean the protein color selector
+      #                   selected = ""
+      # )
+    },
+    ignoreNULL = TRUE,
+    ignoreInit = TRUE
   )
-  
+
 
   # Select cavity to be visualized from clicking on cavity selector button
   observeEvent(input$select_cavity_pg2, {
-    select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE, cav_rep_list=cav_rep_list)
+    select_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE, cav_rep_list = cav_rep_list)
   })
   # change biomolecular structure color
   observeEvent(input$input_protein_color_pg2,
@@ -791,7 +755,7 @@ app_server <- function(input, output, session) {
   })
   # change cavity color
   observeEvent(input$input_cavity_color_pg2, {
-    change_cav_color(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list)
+    change_cav_color(input = input, output = output, is_pg2 = TRUE, cav_rep_list = cav_rep_list)
   })
   # change background color
   observeEvent(input$input_bg_color_pg2, {
@@ -801,87 +765,52 @@ app_server <- function(input, output, session) {
   observeEvent(input$input_snapshot_pg2, {
     take_snapshot(input = input, output = output, is_pg2 = TRUE)
   })
-  
+
   observeEvent(input$interface_res_pg2, {
     interface_cav(input = input, output = output, result_pdb_list = result_pdb, is_pg2 = TRUE)
   })
-  
+
   observeEvent(input$input_cavity_deep_pg2, {
-    if(input$input_cavity_deep_pg2 == TRUE){
-      updateCheckboxInput(session, "input_cavity_hyd_pg2", value = FALSE)  
+    if (input$input_cavity_deep_pg2 == TRUE) {
+      updateCheckboxInput(session, "input_cavity_hyd_pg2", value = FALSE)
     }
-    
-    color_cavity_deepth(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
-  
-    output$scale_plot_deep_pg2 <- renderPlot({
-      depth_scale = c(0,result_pdb$list_depth, max(unlist(result_pdb$result_toml$MAX_DEPTH)))
-      df <- data.frame(x = seq(1,length(depth_scale)), y = depth_scale)
-      p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) +
-        geom_point() +
-        scale_color_gradientn(name = "Depth (A)", colours = rev(rainbow(5)))+
-        theme(plot.title = element_text(hjust = 0.5, size=11),
-              legend.position = "bottom",
-              legend.key.width= unit(0.2, 'npc'),
-              legend.text = element_text(size = 11),
-              #legend.spacing = unit(0.25,"cm"),
-              legend.title = element_text(hjust = 0.5),
-              legend.justification = "center",
-              panel.background = element_rect(fill='transparent'),
-              plot.background = element_rect(fill='transparent'),
-              legend.background = element_rect(fill='transparent'),
-              legend.box.background = element_rect(fill='transparent'))+
-        guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
-               size = guide_legend(title.position="top", title.hjust = 0.5))
-      
-      # ggpubr does this for you
-      leg <- ggpubr::get_legend(p)
-      ggpubr::as_ggplot(leg)
-      
-    }, bg="transparent") #, height =50, width = '100%'
-    
-    
-    
+
+    color_cavity_deepth(input = input, output = output, is_pg2 = TRUE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
+
+    output$scale_plot_deep_pg2 <- renderPlot(
+      {
+        max_depth <- max(unlist(result_pdb$result_toml$MAX_DEPTH))
+        depth <- seq(0, max_depth, length.out = 100)
+        ggplot() +
+          geom_tile(aes(x = depth, y = 1, fill = depth)) +
+          geom_rect(aes(xmin = 0.0 - (max_depth / 100 / 2), xmax = max_depth + (max_depth / 100 / 2), ymin = 0.5, ymax = 1.5), alpha = 0.0, color = "black", size = 1) +
+          scale_fill_gradientn(colours = c("blue", "green", "yellow", "orange", "red")) +
+          scale_x_continuous(breaks = seq(0, max_depth, by = ceiling(max_depth / 10)), limits = c(-0.1, max_depth + 0.1), expand = c(0, 0), position = "top") +
+          scale_y_continuous(expand = c(0, 0)) +
+          theme_void() +
+          theme(
+            legend.position = "none",
+            plot.title = element_text(family = "DejaVu Sans", size = 16, hjust = 0.5),
+            axis.text.x = element_text(family = "DejaVu Sans", size = 16, color = "black"),
+            axis.ticks.x = element_line(linewidth = 0.5, linetype = "solid", color = "black"),
+            axis.ticks.length = unit(0.15, "cm")
+          ) +
+          ggtitle("Depth (Å)")
+      },
+      bg = "transparent"
+    )
   })
-  
+
   observeEvent(input$input_cavity_hyd_pg2, {
-    if(input$input_cavity_hyd_pg2 == TRUE){
+    if (input$input_cavity_hyd_pg2 == TRUE) {
       updateCheckboxInput(session, "input_cavity_deep_pg2", value = FALSE)
     }
-    
-    color_cavity_hyd(input = input, output = output, is_pg2 = TRUE, cav_rep_list=cav_rep_list,result_pdb_list=result_pdb )
-    
-    # output$scale_plot_pg2 <- renderPlot({
-    #   EisenbergWeiss_scale = c(-0.64, 2.6,0.8,0.92,-0.3,0.87,0.76,
-    #                            -0.49,0.41,-1.42,-1.09,1.54,-0.66,-1.22,
-    #                            -0.12,0.18,0.05, -0.83, -0.27, -1.11)
-    #   df <- data.frame(x = seq(1,length(EisenbergWeiss_scale)), y = EisenbergWeiss_scale)
-    #   p <- ggplot2::ggplot(data = df, aes(x = x, y = y, colour = y)) + 
-    #     geom_point() +
-    #     scale_colour_gradient2(name = "Hydropathy", low = "yellow", mid = "white", high = "blue", midpoint = 0.59, breaks = seq(-1,2.5,0.5))+
-    #     theme(plot.title = element_text(hjust = 0.5, size=11),
-    #           legend.position = "bottom",
-    #           legend.key.width= unit(0.2, 'npc'),
-    #           legend.text = element_text(size = 11),
-    #           #legend.spacing = unit(0.25,"cm"),
-    #           legend.title = element_text(hjust = 0.5),
-    #           legend.justification = "center",
-    #           panel.background = element_rect(fill='transparent'),
-    #           plot.background = element_rect(fill='transparent'),
-    #           legend.background = element_rect(fill='transparent'),
-    #           legend.box.background = element_rect(fill='transparent'))+
-    #     guides(colour = guide_colourbar(title.position="top", title.hjust = 0.5),
-    #            size = guide_legend(title.position="top", title.hjust = 0.5))
-    #   
-    #   # ggpubr does this for you
-    #   leg <- ggpubr::get_legend(p)
-    #   ggpubr::as_ggplot(leg)
-    #   
-    # }, bg="transparent") #, height =50, width = '100%'
-    
+
+    color_cavity_hyd(input = input, output = output, is_pg2 = TRUE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
+
     output$scale_plot_pg2 <- renderUI({
-      tags$img(src = "www/hydropathy_scale.png",height = '40%', width = '60%', align = "center")
+      tags$img(src = "www/hydropathy_scale.svg", style = "width: 90%; max-width: 850px;")
     })
-    
   })
 
   #----------------------------------------------------
