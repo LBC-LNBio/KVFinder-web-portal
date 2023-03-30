@@ -85,17 +85,40 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
         if (post_output$status_code == 200) { # job is running successfully
           # get ID of the submitted job
           get_run_id <<- content(post_output)$id
-          # Show submission message
-          output$run_id <- renderText({
-            paste(
-              br(),
-              p("Your job has been successfully submitted to the KVFinder-web server!"),
-              p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
-              # p("Your job is x in the queue and the estimated time is x min.")
-              p("Once the job is completed, the results will be available for 1 day."),
-              p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
-            )
-          })
+          print(content(post_output)$queue_size)
+          # get queue size 
+          get_queue <- content(post_output)$queue_size
+          if(is.null(get_queue)){
+            get_queue = 0 #if the job was already ran and does not go to the queue, the queue_size doens't exist
+          } else {
+            get_queue = as.numeric(get_queue)
+          }
+          if(get_queue > 0){ #if there are other jobs in queue 
+            # Show submission message
+            output$run_id <- renderText({
+              paste(
+                br(),
+                p("Your job has been successfully submitted to the KVFinder-web server!"),
+                p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
+                p("Your job is ", tags$b(get_queue) ," in the queue and the estimated time is ", tags$b(ceiling(((get_queue+1)*10)/60)) ," min."),
+                p("Once the job is completed, the results will be available for 1 day."),
+                p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
+              )
+            })
+          } else {
+            # Show submission message
+            output$run_id <- renderText({
+              paste(
+                br(),
+                p("Your job has been successfully submitted to the KVFinder-web server!"),
+                p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
+                p("The estimated time of your job is ", tags$b(ceiling(((get_queue+1)*10)/60)) ," min."),
+                p("Once the job is completed, the results will be available for 1 day."),
+                p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
+              )
+            })
+          }
+
           # Create check result button
           output$check_results_submit <- renderUI({
             actionButton(inputId = "go_to_check_results", label = "Check results", size = "lg", icon = icon("poll-h"))
