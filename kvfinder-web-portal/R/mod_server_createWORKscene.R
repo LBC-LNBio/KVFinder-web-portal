@@ -22,11 +22,15 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
     input_protein_rep <- "input_protein_rep_pg2"
     select_cavity <- "select_cavity_pg2"
     structure <- "structure_pg2"
+    input_cavity_hyd <- "input_cavity_hyd_pg2"
+    input_cavity_deep <- "input_cavity_deep_pg2"
     # in the main page
   } else {
     input_protein_rep <- "input_protein_rep"
     select_cavity <- "select_cavity"
     structure <- "structure"
+    input_cavity_hyd <- "input_cavity_hyd"
+    input_cavity_deep <- "input_cavity_deep"
   }
   # The work scene is always linked to the input_protein_rep input -> It is the start point
   # If protein_rep_list contains only 1 representations that means that it is still an initial scene, so we need to modify the visibility of the structure from initial scene to invisible
@@ -68,38 +72,189 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
     NGLVieweR_proxy(structure) %>%
       removeSelection(name = tail(cav_rep_list, n = 2)[1])
     # After the initial structure is invisible, we can add a new representation to the current scene
-    if(tail(cav_rep_list, n = 1) == "surface"){
-      op = 0.5
-    } else {
-      op = 1
-    }
     
-    if(input[[select_cavity]] == "All"){
-      NGLVieweR_proxy(structure) %>%
-        addSelection(tail(cav_rep_list, n = 1),
-                     param =
-                       list(
-                         name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
-                         sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
-                         surfaceType = 'vws',
-                         probeRadius = 0.3,
-                         opacity = op
-                         #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
-                       )
-        )
+    if(input[[select_cavity]] == "All"){ 
+      
+      if(input[[input_cavity_hyd]] == TRUE){ #if hydrop visualization is active
+        NGLVieweR_proxy(structure) %>%
+          removeSelection(name = "hyd")
+        NGLVieweR_proxy(structure) %>%  #we add an invisible regular selection without characterization to be able to recover this seelction when turn off the characterization
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = tail(cav_rep_list, n = 1), 
+                           sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           opacity = 1,
+                           visible = FALSE
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          ) 
+
+        NGLVieweR_proxy(structure) %>%
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = 'hyd', 
+                           sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           opacity = 1,
+                           colorScheme = 'occupancy',
+                           colorScale = c('blue', 'white', 'yellow'),
+                           colorReverse = TRUE,
+                           colorDomain = c(-1.42, 2.6)
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          )
+
+      } else if(input[[input_cavity_deep]] == TRUE){
+        NGLVieweR_proxy(structure) %>%
+          removeSelection(name = "deepth")
+        NGLVieweR_proxy(structure) %>%  #we add an invisible regular selection without characterization to be able to recover this seelction when turn off the characterization
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
+                           sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           opacity = 1,
+                           visible = FALSE
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          ) 
+
+        NGLVieweR_proxy(structure) %>%
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = "deepth", # now the created selection is named "sel3"
+                           sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                           colorScheme = 'bfactor',
+                           colorScale = 'rainbow',
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           colorReverse = TRUE,
+                           colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          )
+      } else {
+        NGLVieweR_proxy(structure) %>%
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
+                           sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           opacity = 1
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          )  
+      }
+      
+      
+      
+      
     } else{
-      NGLVieweR_proxy(structure) %>%
-        addSelection(tail(cav_rep_list, n = 1),
-                     param =
-                       list(
-                         name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
-                         sele = input[[select_cavity]],
-                         surfaceType = 'vws',
-                         probeRadius = 0.3,
-                         opacity = op
-                         #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
-                       )
-        )
+      
+      if(input[[input_cavity_hyd]] == TRUE){
+        NGLVieweR_proxy(structure) %>%
+          removeSelection(name = "hyd")
+        
+        NGLVieweR_proxy(structure) %>% #add first the selection that would be the background for the characterization selection
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
+                           sele = input[[select_cavity]],
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           opacity = 1,
+                           visible = FALSE
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          )
+        
+        NGLVieweR_proxy(structure) %>%
+          #addSelection("point",
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = "hyd", # now the created selection is named "sel3"
+                           sele = input[[select_cavity]],
+                           colorScheme = 'occupancy',
+                           colorScale = c('blue', 'white', 'yellow'),
+                           colorReverse = TRUE,
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           colorDomain = c(-1.42, 2.6)
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          )
+
+        
+        
+      } else if(input[[input_cavity_deep]] == TRUE){
+        NGLVieweR_proxy(structure) %>%
+          removeSelection(name = "deepth")
+        
+        NGLVieweR_proxy(structure) %>% #add first the selection that would be the background for the characterization selection
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
+                           sele = input[[select_cavity]],
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           opacity = 1,
+                           visible = FALSE
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          )
+        
+        NGLVieweR_proxy(structure) %>%
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = "deepth", # now the created selection is named "sel3"
+                           sele = input[[select_cavity]],
+                           colorScheme = 'bfactor',
+                           colorScale = 'rainbow',
+                           colorReverse = TRUE,
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          )
+        
+        
+        
+      } else {
+        NGLVieweR_proxy(structure) %>%
+          addSelection(tail(cav_rep_list, n = 1),
+                       param =
+                         list(
+                           name = tail(cav_rep_list, n = 1), # now the created selection is named "sel3"
+                           sele = input[[select_cavity]],
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
+                           opacity = 1
+                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
+                         )
+          )
+      }
+      
+      
+    
+      
+      
+      
+      
     }
 
     # In the case of protein representation selector has more than one representation, i.e. was used previously and is not a initial scene

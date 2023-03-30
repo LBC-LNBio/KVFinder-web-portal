@@ -32,7 +32,7 @@ color_cavity_deepth <- function(input, output, is_pg2, cav_rep_list, result_pdb_
   if(input[[input_cavity_deep]] == TRUE){
     if(input[[select_cavity]] == "All"){
     NGLVieweR_proxy(structure) %>%
-      addSelection("point",
+      addSelection(tail(cav_rep_list, n = 1),
                    param =
                      list(
                        name = "deepth", # now the created selection is named "sel3"
@@ -40,13 +40,16 @@ color_cavity_deepth <- function(input, output, is_pg2, cav_rep_list, result_pdb_
                        colorScheme = 'bfactor',
                        colorScale = 'rainbow',
                        colorReverse = TRUE,
-                       colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
+                       surfaceType = 'vws',
+                       probeRadius = 0.3,
+                       #colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
+                       colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH))) #I had to invert the domain 
                        #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                      )
       )
   } else {
     NGLVieweR_proxy(structure) %>%
-      addSelection("point",
+      addSelection(tail(cav_rep_list, n = 1),
                    param =
                      list(
                        name = "deepth", # now the created selection is named "sel3"
@@ -54,6 +57,8 @@ color_cavity_deepth <- function(input, output, is_pg2, cav_rep_list, result_pdb_
                        colorScheme = 'bfactor',
                        colorScale = 'rainbow',
                        colorReverse = TRUE,
+                       surfaceType = 'vws',
+                       probeRadius = 0.3,
                        colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
                        #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                      )
@@ -62,6 +67,8 @@ color_cavity_deepth <- function(input, output, is_pg2, cav_rep_list, result_pdb_
   } else{
     NGLVieweR_proxy(structure) %>%
        removeSelection(name = "deepth")
+    NGLVieweR_proxy(structure) %>%
+      updateVisibility(name = tail(cav_rep_list, n = 1),value=TRUE) #makes return to the original selection from work scene
   }
 
   # NGLVieweR_proxy(structure) %>%
