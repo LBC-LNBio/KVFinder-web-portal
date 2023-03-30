@@ -38,6 +38,8 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
                           colorScheme = 'bfactor',
                           colorScale = 'rainbow',
                           colorReverse = TRUE,
+                          surfaceType = 'vws',
+                          probeRadius = 0.3,
                           #colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
                           colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH))) #I had to invert the domain 
                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
@@ -56,6 +58,8 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
                           colorScheme = 'occupancy',
                           colorScale = c('blue', 'white', 'yellow'),
                           colorReverse = TRUE,
+                          surfaceType = 'vws',
+                          probeRadius = 0.3,
                           colorDomain = c(-1.42, 2.6)
                           #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                         )
@@ -95,6 +99,8 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
                          colorScheme = 'bfactor',
                          colorScale = 'rainbow',
                          colorReverse = TRUE,
+                         surfaceType = 'vws',
+                         probeRadius = 0.3,
                          colorDomain = c( 0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
                          #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                        )
@@ -113,6 +119,8 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
                          colorScheme = 'occupancy',
                          colorScale = c('blue', 'white', 'yellow'),
                          colorReverse = TRUE,
+                         surfaceType = 'vws',
+                         probeRadius = 0.3,
                          colorDomain = c(-1.42, 2.6)
                          #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                        )

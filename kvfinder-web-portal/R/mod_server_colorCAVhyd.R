@@ -41,6 +41,8 @@ color_cavity_hyd <- function(input, output, is_pg2, cav_rep_list, result_pdb_lis
                          colorScheme = 'occupancy',
                          colorScale = c('blue', 'white', 'yellow'),
                          colorReverse = TRUE,
+                         surfaceType = 'vws',
+                         probeRadius = 0.3,
                          colorDomain = c(-1.42, 2.6)
                          #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                        )
@@ -56,6 +58,8 @@ color_cavity_hyd <- function(input, output, is_pg2, cav_rep_list, result_pdb_lis
                          colorScheme = 'occupancy',
                          colorScale = c('blue', 'white', 'yellow'),
                          colorReverse = TRUE,
+                         surfaceType = 'vws',
+                         probeRadius = 0.3,
                          colorDomain = c(-1.42, 2.6)
                          #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                        )

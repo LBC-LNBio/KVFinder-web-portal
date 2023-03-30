@@ -134,6 +134,8 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
                            sele = paste(result_pdb_list$result_cav_names, collapse = " or "),
                            colorScheme = 'bfactor',
                            colorScale = 'rainbow',
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
                            colorReverse = TRUE,
                            colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
                            #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
@@ -187,6 +189,8 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
                            colorScheme = 'occupancy',
                            colorScale = c('blue', 'white', 'yellow'),
                            colorReverse = TRUE,
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
                            colorDomain = c(-1.42, 2.6)
                            #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                          )
@@ -221,6 +225,8 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
                            colorScheme = 'bfactor',
                            colorScale = 'rainbow',
                            colorReverse = TRUE,
+                           surfaceType = 'vws',
+                           probeRadius = 0.3,
                            colorDomain = c(0.0, max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
                            #colorScheme = scheme_color_list[[tail(protein_col_scheme_list, n = 1)]]
                          )
