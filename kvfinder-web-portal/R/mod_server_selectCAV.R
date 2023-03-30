@@ -25,6 +25,10 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
   # if click to select cavity...
   if (input[[select_cavity]] == "All") { # show all cavities
    if(!is.null(cav_rep_list)){
+     #to update interface res
+     res <- paste(unlist(lapply(result_pdb_list$result_toml$RESIDUES, function(x) lapply(x, function(y) paste(y[1], y[2], sep = ":")))), collapse = " or ")
+     NGLVieweR_proxy(structure) %>%
+       updateSelection("sel1", sele = res)
      
      if(isTRUE(input$input_cavity_deep) | isTRUE(input$input_cavity_deep_pg2)){
        NGLVieweR_proxy(structure) %>%
@@ -86,6 +90,11 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
    }
      
   } else { # show one cavity to show and zoom it
+    #to update interface
+    res <- paste(unlist(lapply(result_pdb_list$result_toml$RESIDUES[[input[[select_cavity]]]], function(x) paste(x[1], x[2], sep = ":"))), collapse = " or ")
+    NGLVieweR_proxy(structure) %>%
+      updateSelection("sel1", sele = res)
+    
     #print(input$input_cavity_deep)
     #print(paste(input[[select_cavity]]," and (not ",paste(result_pdb_list$result_cav_names[!result_pdb_list$result_cav_names == input[[select_cavity]]], collapse = " or "),')', sep=""))
     if(isTRUE(input$input_cavity_deep) | isTRUE(input$input_cavity_deep_pg2)){
