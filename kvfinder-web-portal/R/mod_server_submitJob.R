@@ -88,7 +88,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
           # get queue size 
           get_queue <- content(post_output)$queue_size
           if(is.null(get_queue)){
-            get_queue = 0 #if the job was already ran and does not go to the queue, the queue_size doens't exist
+            get_queue = -1 #if the job was already ran and does not go to the queue, the queue_size doens't exist
           } else {
             get_queue = as.numeric(get_queue)
           }
@@ -104,7 +104,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
                 p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
               )
             })
-          } else {
+          } else if(get_queue == 0) {
             # Show submission message
             output$run_id <- renderText({
               paste(
@@ -112,6 +112,16 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
                 p("The estimated time of your job is ", tags$b(ceiling(((get_queue+1)*10)/60)) ," min."),
+                p("Once the job is completed, the results will be available for 1 day."),
+                p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
+              )
+            })
+          } else {
+            output$run_id <- renderText({
+              paste(
+                br(),
+                p("Your job has been successfully submitted to the KVFinder-web server!"),
+                p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
                 p("Once the job is completed, the results will be available for 1 day."),
                 p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
               )
