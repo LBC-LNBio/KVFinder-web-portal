@@ -32,7 +32,8 @@ color_cavity_hyd <- function(input, output, is_pg2, cav_rep_list, result_pdb_lis
   if(input[[input_cavity_hyd]] == TRUE){
     if(input[[select_cavity]] == "All"){
       NGLVieweR_proxy(structure) %>%
-        addSelection("point",
+       # addSelection("point",
+        addSelection(tail(cav_rep_list, n = 1),
                      param =
                        list(
                          name = "hyd", # now the created selection is named "sel3"
@@ -46,7 +47,8 @@ color_cavity_hyd <- function(input, output, is_pg2, cav_rep_list, result_pdb_lis
         )  
     } else {
       NGLVieweR_proxy(structure) %>%
-        addSelection("point",
+        #addSelection("point",
+        addSelection(tail(cav_rep_list, n = 1),
                      param =
                        list(
                          name = "hyd", # now the created selection is named "sel3"
@@ -63,6 +65,8 @@ color_cavity_hyd <- function(input, output, is_pg2, cav_rep_list, result_pdb_lis
   } else{
     NGLVieweR_proxy(structure) %>%
       removeSelection(name = "hyd")
+    NGLVieweR_proxy(structure) %>%
+      updateVisibility(name = tail(cav_rep_list, n = 1),value=TRUE) #makes return to the original selection from work scene
   }
   
   # NGLVieweR_proxy(structure) %>%

@@ -85,7 +85,6 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
         if (post_output$status_code == 200) { # job is running successfully
           # get ID of the submitted job
           get_run_id <<- content(post_output)$id
-          print(content(post_output)$queue_size)
           # get queue size 
           get_queue <- content(post_output)$queue_size
           if(is.null(get_queue)){
