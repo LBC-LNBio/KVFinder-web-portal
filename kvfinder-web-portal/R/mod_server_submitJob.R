@@ -88,48 +88,42 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
           # get queue size
           get_queue <- content(post_output)$queue_size
           if (is.null(get_queue)) {
-            get_queue <- -1 # if the job was already ran and does not go to the queue, the queue_size doens't exist
-          } else {
+            output$run_id <- renderText({
+              paste(
+                br(),
+                p("Your job has been successfully submitted to the KVFinder-web server!"),
+                p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
+                p("Once the job is completed, the results will be available for 1 day."),
+                p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
+              )
+            })
+          } else if (as.numeric(get_queue) == 0){
             get_queue <- as.numeric(get_queue)
-          }
-          if (get_queue > 0) { # if there are other jobs in queue
-            # Show submission message
-            minutes <- ifelse(ceiling((get_queue + 1) * 10 / 60) > 1, " minutes", " minute")
             output$run_id <- renderText({
               paste(
                 br(),
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
-                p("Your job is currently in position", tags$b(get_queue + 1), " in the queue and the estimated time is ", tags$b(ceiling(((get_queue + 1) * 10) / 60)), minutes, "."),
-                p("Once the job is completed, the results will be available for 1 day."),
-                p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
-              )
-            })
-          } else if (get_queue == 0) {
-            # Show submission message
-            minutes <- ifelse(ceiling((get_queue + 1) * 10 / 60) > 1, " minutes", " minute")
-            output$run_id <- renderText({
-              paste(
-                br(),
-                p("Your job has been successfully submitted to the KVFinder-web server!"),
-                p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
-                p("Your job is currently in position", tags$b(get_queue + 1), " in the queue and the estimated time is ", tags$b(ceiling(((get_queue + 1) * 10) / 60)), minutes, "."),
+                p("Your job is the next in the queue and the estimated time is just some seconds."),
                 p("Once the job is completed, the results will be available for 1 day."),
                 p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
               )
             })
           } else {
+            # estimated time in minutes (10 seconds per job) - the estimated time is rounded up to the next minute (ceiling)
+            estimated_minutes <- ceiling(get_queue * 10 / 60) 
+            suffix <- ifelse(estimated_minutes > 1, " minutes", " minute")
             output$run_id <- renderText({
               paste(
                 br(),
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
+                p("Your job is currently in position", tags$b(get_queue + 1), " in the queue and the estimated time is ", tags$b(estimated_minutes), suffix, "."),
                 p("Once the job is completed, the results will be available for 1 day."),
                 p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
               )
             })
           }
-
           # Create check result button
           output$check_results_submit <- renderUI({
             actionButton(inputId = "go_to_check_results", label = "Check results", size = "lg", icon = icon("poll-h"))
