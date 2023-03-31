@@ -401,6 +401,7 @@ app_server <- function(input, output, session) {
     {
       protein_rep_list <<- c() # always initialize an empty list of protein representations when clicking on view button
       cav_rep_list <<- c()
+      cav_rep_list <<- c(cav_rep_list, 'point') # add initial rep for the cavities to avoid NULL when running a second job
       protein_col_scheme_list <<- c() # always initialize an empty list of protein color scheme when clicking on view button
       # use "residue index" as the first protein color scheme
       protein_col_scheme_list <<- c(protein_col_scheme_list, "Residue index")
@@ -610,6 +611,8 @@ app_server <- function(input, output, session) {
   observeEvent(input$view_str_pg2, {
     print(protein_rep_list)
     protein_rep_list <<- c() # always initialize an empty list of protein representations when clicking on view button
+    cav_rep_list <<- c()
+    cav_rep_list <<- c(cav_rep_list, 'point') # add initial rep for the cavities to avoid NULL when running a second job
     # protein_col_list <<- c(protein_col_list, "residueindex") #that one before!
     # protein_col_scheme_list <<- c(protein_col_scheme_list, "white")
     # now
