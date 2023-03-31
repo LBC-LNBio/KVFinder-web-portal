@@ -98,7 +98,6 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
               )
             })
           } else if (as.numeric(get_queue) == 0){
-            get_queue <- as.numeric(get_queue)
             output$run_id <- renderText({
               paste(
                 br(),
@@ -111,14 +110,14 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
             })
           } else {
             # estimated time in minutes (10 seconds per job) - the estimated time is rounded up to the next minute (ceiling)
-            estimated_minutes <- ceiling(get_queue * 10 / 60) 
+            estimated_minutes <- ceiling(as.numeric(get_queue) * 10 / 60) 
             suffix <- ifelse(estimated_minutes > 1, " minutes", " minute")
             output$run_id <- renderText({
               paste(
                 br(),
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
-                p("Your job is currently in position", tags$b(get_queue + 1), " in the queue and the estimated time is ", tags$b(estimated_minutes), suffix, "."),
+                p("Your job is currently in position", tags$b(as.numeric(get_queue) + 1), " in the queue and the estimated time is ", tags$b(estimated_minutes), suffix, "."),
                 p("Once the job is completed, the results will be available for 1 day."),
                 p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
               )
