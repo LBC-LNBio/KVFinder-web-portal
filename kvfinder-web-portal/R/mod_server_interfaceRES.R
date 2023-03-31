@@ -49,7 +49,7 @@ interface_cav <- function(input, output, result_pdb_list, is_pg2) {
   } else { # show one cavity to show and zoom 
                    if (input[[interface_res]] == TRUE & input[[select_cavity]] != "All") {
                      res <- paste(unlist(lapply(result_pdb_list$result_toml$RESIDUES[[input[[select_cavity]]]], function(x) paste(x[1], x[2], sep = ":"))), collapse = " or ")
-                     print(res)
+                     #print(res)
                      NGLVieweR_proxy(structure) %>%
                        # updateSelection("point", sele = paste(unlist(lapply(result_toml$RESIDUES[[input$select_cav]], function(x) x[1])), collapse = " or "))
                        addSelection("ball+stick",
