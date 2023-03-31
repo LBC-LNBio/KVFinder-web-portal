@@ -40,7 +40,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
     # Just another check if user uploaded a PDB or fetched a PDB ID before to submit
   } else if (length(input$pdb_id) > 0 & input$send_pdb_id == 0 & input$input_type != "pdb_from_file") {
     shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please load from PDB or upload a PDB file before to submit.", type = "error")
-  } else if (removal_dist_input == 0 & vol_cutoff_input ==0) {
+  } else if (removal_dist_input == 0 & vol_cutoff_input == 0) {
     shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Removal distance and volume cutoff cannot be zero at the same time.", type = "error")
   } else {
     # if pass through the above checks...
@@ -85,33 +85,35 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
         if (post_output$status_code == 200) { # job is running successfully
           # get ID of the submitted job
           get_run_id <<- content(post_output)$id
-          # get queue size 
+          # get queue size
           get_queue <- content(post_output)$queue_size
-          if(is.null(get_queue)){
-            get_queue = -1 #if the job was already ran and does not go to the queue, the queue_size doens't exist
+          if (is.null(get_queue)) {
+            get_queue <- -1 # if the job was already ran and does not go to the queue, the queue_size doens't exist
           } else {
-            get_queue = as.numeric(get_queue)
+            get_queue <- as.numeric(get_queue)
           }
-          if(get_queue > 0){ #if there are other jobs in queue 
+          if (get_queue > 0) { # if there are other jobs in queue
             # Show submission message
+            minutes <- ifelse(ceiling((get_queue + 1) * 10 / 60) > 1, " minutes", " minute")
             output$run_id <- renderText({
               paste(
                 br(),
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
-                p("Your job is ", tags$b(get_queue) ," in the queue and the estimated time is ", tags$b(ceiling(((get_queue+1)*10)/60)) ," min."),
+                p("Your job is currently in position", tags$b(get_queue + 1), " in the queue and the estimated time is ", tags$b(ceiling(((get_queue + 1) * 10) / 60)), minutes, "."),
                 p("Once the job is completed, the results will be available for 1 day."),
                 p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
               )
             })
-          } else if(get_queue == 0) {
+          } else if (get_queue == 0) {
             # Show submission message
+            minutes <- ifelse(ceiling((get_queue + 1) * 10 / 60) > 1, " minutes", " minute")
             output$run_id <- renderText({
               paste(
                 br(),
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
-                p("The estimated time of your job is ", tags$b(ceiling(((get_queue+1)*10)/60)) ," min."),
+                p("Your job is currently in position", tags$b(get_queue + 1), " in the queue and the estimated time is ", tags$b(ceiling(((get_queue + 1) * 10) / 60)), minutes, "."),
                 p("Once the job is completed, the results will be available for 1 day."),
                 p("\u26A0\ufe0f Warning: KVFinder-web portal is a single-page application. Please do not reload this page or you will lose your progress.")
               )
