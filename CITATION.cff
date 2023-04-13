@@ -1,7 +1,7 @@
 cff-version: 1.2.0
-title: KVFinder-web service
+title: KVFinder-web portal
 message: >-
-  If you use this KVFinder-web service in your research,
+  If you use this KVFinder-web portal in your research,
   please cite it as below.
 type: software
 authors:
@@ -34,7 +34,7 @@ authors:
     affiliation: >-
       Brazilian Center for Research in Energy and Materials
       (CNPEM)
-repository-code: 'https://github.com/LBC-LNBio/KVFinder-web-service'
+repository-code: 'https://github.com/LBC-LNBio/KVFinder-web-portal'
 url: 'http://lbc-lnbio.github.io/KVFinder-web'
 abstract: >-
   KVFinder-web is an open-source web-based application of an
@@ -54,8 +54,8 @@ abstract: >-
   applications, that are:
     - a graphical PyMOL plugin: PyMOL KVFinder-web Tools;
 keywords:
-  - web-server
-  - web-service
+  - web-interface
+  - shiny-apps
   - cavity-detection
   - cavity-characterization
 license: Apache-2.0
