@@ -59,6 +59,6 @@ keywords:
   - cavity-detection
   - cavity-characterization
 license: Apache-2.0
-commit: c3cdf36
+commit: 12a3b9f
 version: v1.1.0
 date-released: '2023-04-13'
