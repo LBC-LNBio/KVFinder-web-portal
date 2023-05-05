@@ -83,9 +83,12 @@ kv_about <- function() {
       ),
       ", please cite:",
       tags$ol(
-        tags$li("Manuscript in submission"),
         tags$li(
-          "João Victor Da Silva Guerra, Helder Veras Ribeiro filho, Leandro Oliveira Bortot, Rodrigo Vargas Honorato, José Geraldo De Carvalho Pereira, and Paulo Sérgio Lopes-de-oliveira. ParKVFinder: a thread-level parallel approach in biomolecular cavity detection. SoftwareX, 12:100606, July 2020. URL: ",
+          "João V.S. Guerra, Helder V. Ribeiro-Filho, José G.C. Pereira, and Paulo S. Lopes-de-oliveira. KVFinder-web: a web-based application for detecting and characterizing biomolecular cavities. Nucleic Acids Research, May 2023. URL: ",
+          tags$a(href = "https://doi.org/10.1093/nar/gkad324", "https://doi.org/10.1093/nar/gkad324"),
+          ", doi:10.1016/10.1093/nar/gkad324."),
+        tags$li(
+          "João Victor Da Silva Guerra, Helder Veras Ribeiro Filho, Leandro Oliveira Bortot, Rodrigo Vargas Honorato, José Geraldo De Carvalho Pereira, and Paulo Sérgio Lopes-de-oliveira. ParKVFinder: a thread-level parallel approach in biomolecular cavity detection. SoftwareX, 12:100606, July 2020. URL: ",
           tags$a(href = "https://doi.org/10.1016/j.softx.2020.100606", "https://doi.org/10.1016/j.softx.2020.100606"),
           ", doi:10.1016/j.softx.2020.100606."),
       ),
