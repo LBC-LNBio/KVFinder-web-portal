@@ -5,7 +5,7 @@ message: >-
   please cite it as below.
 type: software
 authors:
-  - given-names: João
+  - given-names: João Victor
     family-names: Guerra
     email: joao.guerra@lnbio.cnpem.br
     affiliation: >-
@@ -15,19 +15,16 @@ authors:
   - affiliation: >-
       Brazilian Center for Research in Energy and Materials
       (CNPEM)
-    given-names: Helder
-    name-particle: Veras
+    given-names: Helder Veras
     family-names: Ribeiro-Filho
     email: helder.ribeiro@lnbio.cnpem.br
-  - given-names: José
-    name-particle: Geraldo de Carvalho
+  - given-names: José Geraldo de Carvalho
     family-names: Pereira
     email: jose.pereira@lnbio.cnpem.br
     affiliation: >-
       Brazilian Center for Research in Energy and Materials
       (CNPEM)
-  - given-names: Paulo
-    name-particle: Sergio
+  - given-names: Paulo Sergio
     family-names: Lopes-de-Oliveira
     email: paulo.oliveira@lnbio.cnpem.br
     affiliation: >-
