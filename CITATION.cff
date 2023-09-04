@@ -7,7 +7,6 @@ type: software
 authors:
   - given-names: João
     family-names: Guerra
-    name-particle: Victor da Silva
     email: joao.guerra@lnbio.cnpem.br
     affiliation: >-
       Brazilian Center for Research in Energy and Materials
