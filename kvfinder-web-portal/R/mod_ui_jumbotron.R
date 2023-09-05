@@ -7,15 +7,15 @@ create_jumbotron <- function() {
   jumb <-
     tags$div(
       class = "jumbotron bg-primary",
-      style = "padding: 1rem 2rem;",
+      style = "padding: 1rem 2rem; background-color: #578dca !important;",
       h1(
         class = "display-7",
-        "Welcome to the KVFinder-web service!",
+        "Welcome to the KVFinder-web!",
         style = "margin-left: .5rem;"
       ),
-      img(class = "col-sm-8", src = "www/cover.png"),
+      img(class = "col-sm-8", src = "www/cover.png", style="max-width: 1200px; margin-left: 1%; margin-right: 1%;"),
       h5(
-        "A web service for cavity detection and characterization in any type of biomolecular structure",
+        "A web application for cavity detection and characterization in any type of biomolecular structure.",
         style = "margin: 1rem;"
       ),
       hr(class = "my-1"),
@@ -24,7 +24,7 @@ create_jumbotron <- function() {
         id = "more_button",
         type = "button",
         "More",
-        style = "background-color: #6c757d; color:white"
+        style = "background-color: #6c757d; color:white; margin-top: 0.5rem;"
       )
     )
   return(jumb)

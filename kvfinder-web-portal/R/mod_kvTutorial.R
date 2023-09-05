@@ -12,7 +12,7 @@ kv_tutorial <- function() {
       column(12, align = "center", tags$h3(strong("Tutorial")))
     ),
     tags$br(),
-    tags$p("Welcome to the KVFinder-web service tutorial! This section provides an overview of the features available through our publicly available KVFinder-web service at (",
+    tags$p("Welcome to the KVFinder-web tutorial! This section provides an overview of the features available through our publicly available KVFinder-web service at (",
       tags$a(href = "https://kvfinder-web.cnpem.br", "kvfinder-web.cnpem.br"),
       ").",
       style = "text-align:justify"

@@ -39,7 +39,7 @@ app_ui <- function(request) {
         disable = FALSE,
         width = NULL,
         skin = "dark",
-        status = "primary",
+        status = "lightblue",
         elevation = 4,
         collapsed = FALSE,
         minified = TRUE,
@@ -90,21 +90,26 @@ app_ui <- function(request) {
             create_jumbotron(),
             #-------------------------------------------
             # Choose input card
-            fluidRow(column(
-              12,
-              choose_input()
-            )),
+            fluidRow(
+              column(
+                12,
+                choose_input(),
+                # align="center",
+              )
+            ),
             #------------------------------------------
             # Choose run mode card
-            fluidRow(column(
-              12,
-              choose_run_mode(),
-            )),
+            fluidRow(
+              column(
+                12,
+                choose_run_mode(),
+                # align="center",
+              )
+            ),
             #-------------------------------------------
             # Submit section
             column(
               12,
-              align = "center",
               actionButton(
                 "submit_button",
                 "Submit the job",
@@ -114,91 +119,95 @@ app_ui <- function(request) {
                 size = "lg",
                 flat = TRUE
               ),
+              align = "center",
               htmlOutput("run_id"),
               uiOutput("check_results_submit")
             ),
             tags$br(),
             #--------------------------------------------
             # Result section
-            fluidRow(
-              column(
-                5,
-                uiOutput("output_status1"),
-                tags$br(),
-                fluidRow(
-                  column(
-                    4,
-                    uiOutput("download")
-                  ),
-                  column(
-                    4,
-                    uiOutput("download2")
-                  ),
-                  column(
-                    4,
-                    uiOutput("view_output")
-                  )
-                ),
-                tags$br(),
-                uiOutput("results_table"),
-                tags$br(),
-                htmlOutput("table_footer")
-              ),
-              column(
-                7,
-                # function to fulscreen the entire div that contains the NGL viewer and all the othe buttons
-                fullscreen_this(tags$div(
-                  id = "view_panel",
+            conditionalPanel(
+              condition = "input.submit_button > 0",
+              fluidRow(
+                column(
+                  5,
+                  uiOutput("output_status1"),
+                  tags$br(),
                   fluidRow(
                     column(
-                      12,
-                      NGLVieweROutput("structure", width = "100%", height = "75vh")
+                      4,
+                      uiOutput("download")
+                    ),
+                    column(
+                      4,
+                      uiOutput("download2")
+                    ),
+                    column(
+                      4,
+                      uiOutput("view_output")
                     )
                   ),
-                  conditionalPanel(
-                    condition = "input.input_cavity_hyd==1",
+                  tags$br(),
+                  uiOutput("results_table"),
+                  tags$br(),
+                  htmlOutput("table_footer")
+                ),
+                column(
+                  7,
+                  # function to fulscreen the entire div that contains the NGL viewer and all the othe buttons
+                  fullscreen_this(tags$div(
+                    id = "view_panel",
                     fluidRow(
-                      column(12,
-                        align = "center",
-                        uiOutput(outputId = "scale_plot")
+                      column(
+                        12,
+                        NGLVieweROutput("structure", width = "100%", height = "75vh")
                       )
-                    )
-                  ),
-                  conditionalPanel(
-                    condition = "input.input_cavity_deep==1",
-                    fluidRow(
-                      column(12,
-                        align = "center",
-                        plotOutput("scale_plot_deep", height = 60, width = "60%"),
-                        tags$head(
-                          tags$style(
-                            HTML(
-                              "#scale_plot_deep { max-width: 600px; align: center; }"
+                    ),
+                    conditionalPanel(
+                      condition = "input.input_cavity_hyd==1",
+                      fluidRow(
+                        column(12,
+                          align = "center",
+                          uiOutput(outputId = "scale_plot")
+                        )
+                      )
+                    ),
+                    conditionalPanel(
+                      condition = "input.input_cavity_deep==1",
+                      fluidRow(
+                        column(12,
+                          align = "center",
+                          plotOutput("scale_plot_deep", height = 60, width = "60%"),
+                          tags$head(
+                            tags$style(
+                              HTML(
+                                "#scale_plot_deep { max-width: 600px; align: center; }"
+                              )
                             )
                           )
                         )
                       )
-                    )
-                  ),
-                  fluidRow(
-                    column(2, uiOutput("selection_pdb")),
-                    column(2, uiOutput("cavity_rep")),
-                    column(2, uiOutput("cavity_color")),
-                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_deep"))),
-                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_hyd"))),
-                    column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface"))),
-                  ),
-                  fluidRow(
-                    column(2, uiOutput("protein_rep")),
-                    column(2, uiOutput("protein_color")),
-                    column(3, uiOutput("protein_color_scheme")),
-                    column(2, uiOutput("bg_color")),
-                    column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
-                    column(1, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
-                  ),
-                ), click_id = "fullscreen")
+                    ),
+                    fluidRow(
+                      column(2, uiOutput("selection_pdb")),
+                      column(2, uiOutput("cavity_rep")),
+                      column(2, uiOutput("cavity_color")),
+                      column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_deep"))),
+                      column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("cavity_hyd"))),
+                      column(2, div(style = "display: inline-block; vertical-align: -20px;", uiOutput("show_interface"))),
+                    ),
+                    fluidRow(
+                      column(2, uiOutput("protein_rep")),
+                      column(2, uiOutput("protein_color")),
+                      column(3, uiOutput("protein_color_scheme")),
+                      column(2, uiOutput("bg_color")),
+                      column(2, align = "center", uiOutput("snapshot_title"), uiOutput("snapshot")),
+                      column(1, align = "center", uiOutput("fullscreen_title"), uiOutput("fullscreen"))
+                    ),
+                  ), click_id = "fullscreen")
+                )
               )
-            )
+            ),
           ),
 
           # 2nd tab: Get latest results
@@ -326,9 +335,29 @@ app_ui <- function(request) {
             tabName = "about_kv_sidebar",
             kv_about()
           )
-        )
+        ),
+      ),
+    ),
+    # Inline CSS configuration
+    tags$head(
+      tags$style(
+        HTML(".nav-link.active { background-color: #578dca !important; }"),
       )
-    )
+    ),
+    # Footer----------------------------------------------------
+    hr(),
+    tags$footer(
+      tags$img(src = "www/logo.png",
+        style = "max-width: 457px; max-height: 57px; width: 80%;"
+      ),
+      style = "display: flex; justify-content: center; width: 100%;"
+    ),
+    # Add Cloudflare Web Analytics
+    tags$script(
+        HTML(
+          "<!-- Cloudflare Web Analytics --><script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon=\"{\"token\": \"3885c958deb74bfcbdfe31b04ae5e67f\"}\"></script><!-- End Cloudflare Web Analytics -->"
+        )
+    ),
   )
 }
 
