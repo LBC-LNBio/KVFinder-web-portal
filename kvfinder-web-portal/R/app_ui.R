@@ -87,14 +87,14 @@ app_ui <- function(request) {
           tabItem(
             tabName = "run_kv_sidebar",
             # Create jumbotron
-            create_jumbotron(),
+            jumbotron(),
             #-------------------------------------------
             # Choose input card
             fluidRow(
               column(
                 12,
                 choose_input(),
-                # align="center",
+                align="center",
               )
             ),
             #------------------------------------------
@@ -103,7 +103,7 @@ app_ui <- function(request) {
               column(
                 12,
                 choose_run_mode(),
-                # align="center",
+                align="center",
               )
             ),
             #-------------------------------------------
@@ -341,7 +341,7 @@ app_ui <- function(request) {
     # Inline CSS configuration
     tags$head(
       tags$style(
-        HTML(".nav-link.active { background-color: #578dca !important; }"),
+        HTML(".nav-link.active { background-color: #578dca !important; }"), # Navigation panel selection color
       )
     ),
     # Footer----------------------------------------------------
