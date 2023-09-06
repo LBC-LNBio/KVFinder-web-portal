@@ -13,7 +13,7 @@ choose_input <- function() {
     title = tags$p(
       tags$strong("Step 1."), 
       "Choose input", 
-      style = "margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"
+      style = "margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; color: white;"
     ), # Optional title
     id = "run_mode_box", # Get the state of the card
     collapsible = TRUE, # If TRUE, display a button in the upper right that allows the user to collapse the box.
@@ -80,8 +80,6 @@ choose_input <- function() {
               style="display: flex; justify-content: center; align-items: center;"  ,  
             ),
           ),
-          # uiOutput("note_text2"),
-          # uiOutput("checkbox_nostand2", width = 800)
         ),
 
         # Upload mode
@@ -109,8 +107,6 @@ choose_input <- function() {
               style="display: flex; justify-content: center; align-items: center; text-align: center;",           
             )
           ),
-          # uiOutput("note_text1"),
-          # uiOutput("checkbox_nostand1", width = 800)
         ),
         style="display: flex; justify-content: center; align-items: center;" 
       ),
@@ -161,7 +157,7 @@ choose_input <- function() {
         tags$br(),
         "However, in specific situations, you may want to evaluate a portion of a cavity that includes a ligand, water, or ions. In such cases, you can use the 'Include' option to incorporate the non-standard residue into the analysis."
       ),
-      style = "text-align: justify; margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"
+      style = "text-align: justify; margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; margin-right: 0.5rem;"
     )
 
   )

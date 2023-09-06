@@ -342,7 +342,8 @@ app_ui <- function(request) {
     tags$head(
       tags$style(
         HTML(".nav-link.active { background-color: #578dca !important; }"), # Navigation panel selection color
-        HTML(".card-header { background-color: #578dca; }") # Card header color
+        HTML(".card-header { background-color: #578dca; }"), # Card header color
+        HTML(".selectize-input { height: 38px; }"), # Selectize input height
       )
     ),
     # Footer----------------------------------------------------

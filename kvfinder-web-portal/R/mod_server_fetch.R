@@ -30,7 +30,7 @@ process_fetch <- function(input, output) {
     # checkpoint to create the uiOuput of show_lig_name of the ligand mode
     updateSelectInput(
       inputId = "lig_name",
-      label = "Ligand or molecule name:",
+      label = "Ligand or molecule:",
       choices = get_nonstand,
       selected = NULL
     )
