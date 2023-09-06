@@ -12,11 +12,6 @@ jumbotron <- function() {
       tags$h1(
         class = "display-7",
         "Welcome to KVFinder-web!",
-        tags$img(
-          src = "www/emoji.png", 
-          style = "width: 2.5rem; height: 2.5rem; margin-left: 0.5rem; margin-right: 0.5rem;"
-        ),
-        "🧬",
         style = "margin-top: 0.5rem; margin-bottom: 1rem; text-align: center;"
       ),
       tags$img(
