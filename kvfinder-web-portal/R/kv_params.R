@@ -1,7 +1,9 @@
 #' Function that creates radio buttons of the KVFinder parameters
 #'
 #' @import shiny
+#' 
 #' @export
+#' 
 
 kv_params <- function(id, input_type) {
   if (input_type == "probe_in") {

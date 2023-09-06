@@ -6,7 +6,6 @@
 #' @import shinyjs
 #' @import ggplot2
 #'
-#'
 #' @noRd
 #'
 

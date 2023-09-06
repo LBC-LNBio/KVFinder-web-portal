@@ -11,6 +11,7 @@
 #'
 #' @export
 #'
+
 pdb_process <- function(input, output, get_nonstand, mode, session) {
   # if the PDB was uploaded
   if (mode == "upload") {

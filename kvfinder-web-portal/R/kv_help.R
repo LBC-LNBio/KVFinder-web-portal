@@ -1,6 +1,7 @@
 #' Function that creates the help page of the KVFinder server
 #'
 #' @import shiny
+#' 
 #' @export
 #'
 

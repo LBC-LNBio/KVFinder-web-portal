@@ -1,8 +1,8 @@
 #' Function that creates the tutorial page of the KVFinder server
 #'
 #' @import shiny
+#' 
 #' @export
-#'
 #'
 
 kv_tutorial <- function() {

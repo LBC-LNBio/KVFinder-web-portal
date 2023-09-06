@@ -2,6 +2,8 @@
 #'
 #' @import shiny
 #'
+#' @export
+#' 
 
 jumbotron <- function() {
   

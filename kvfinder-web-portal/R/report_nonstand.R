@@ -9,7 +9,9 @@
 #' @import bio3d
 #'
 #' @examples
+#' 
 #' @export
+#' 
 
 report_nonstand <- function(pdb_input, show_modal) {
   if(missing(show_modal)){ #in some calls there's no need to inform the if want to use the show modal presented below for multi models
