@@ -6,7 +6,6 @@
 #' @export
 #' 
 
-
 choose_run_mode <- function() {
 
   # Choose run mode

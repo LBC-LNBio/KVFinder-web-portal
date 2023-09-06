@@ -222,7 +222,10 @@ app_ui <- function(request) {
               column(
                 5,
                 bs4Card(
-                  title = "Get latest results",
+                  title = tags$p(
+                    tags$strong("Get latest results"),
+                    style = "margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; color: white;"
+                  ), # Optional title "Get latest results",
                   id = "check_results_box",
                   collapsible = TRUE,
                   collapsed = FALSE,
