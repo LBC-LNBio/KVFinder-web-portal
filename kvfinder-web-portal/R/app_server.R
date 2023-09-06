@@ -567,7 +567,7 @@ app_server <- function(input, output, session) {
       updateCheckboxInput(session, "input_cavity_hyd", value = FALSE)
     }
 
-    color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
+    color_cavity_depth(input = input, output = output, is_pg2 = FALSE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
 
     output$scale_plot_deep <- renderPlot(
       {
@@ -778,7 +778,7 @@ app_server <- function(input, output, session) {
       updateCheckboxInput(session, "input_cavity_hyd_pg2", value = FALSE)
     }
 
-    color_cavity_deepth(input = input, output = output, is_pg2 = TRUE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
+    color_cavity_depth(input = input, output = output, is_pg2 = TRUE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
 
     output$scale_plot_deep_pg2 <- renderPlot(
       {

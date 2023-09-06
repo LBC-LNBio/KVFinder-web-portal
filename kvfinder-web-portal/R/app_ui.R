@@ -123,11 +123,11 @@ app_ui <- function(request) {
               htmlOutput("run_id"),
               uiOutput("check_results_submit")
             ),
-            tags$br(),
             #--------------------------------------------
             # Result section
             conditionalPanel(
               condition = "input.submit_button > 0",
+              tags$hr(),
               fluidRow(
                 column(
                   5,
@@ -347,7 +347,7 @@ app_ui <- function(request) {
       )
     ),
     # Footer----------------------------------------------------
-    hr(),
+    tags$hr(),
     tags$footer(
       tags$img(src = "www/logo.png",
         style = "max-width: 457px; max-height: 57px; width: 80%;"

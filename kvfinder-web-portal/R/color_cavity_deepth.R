@@ -13,7 +13,7 @@
 #' @export
 #'
 
-color_cavity_deepth <- function(input, output, is_pg2, cav_rep_list, result_pdb_list) {
+color_cavity_depth <- function(input, output, is_pg2, cav_rep_list, result_pdb_list) {
   if (is_pg2 == TRUE) {
     input_cavity_deep <- "input_cavity_deep_pg2"
     select_cavity <- "select_cavity_pg2"

@@ -84,9 +84,7 @@ select_cav <- function(input, output, result_pdb_list, is_pg2, cav_rep_list) {
      #   NGLVieweR_proxy(structure) %>%
      #     updateSelection("surface", sele = paste(result_pdb_list$result_cav_names, collapse = " or "))
      # }
-     
-     
-     
+
    }
      
   } else { # show one cavity to show and zoom it
