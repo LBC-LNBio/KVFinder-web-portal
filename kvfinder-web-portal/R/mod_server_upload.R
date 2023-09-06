@@ -37,13 +37,13 @@ process_upload <- function(input, output, session) {
     )
     # create a check box to allow users to include some nonstandard residues
     output$checkbox_nostand1 <- renderUI({
-      checkboxGroupInput(inputId = "select_nonstand1", label = "Non-standard residues found (select to include them in the analysis):", choices = get_nonstand, selected = TRUE, width = 800)
+      checkboxGroupInput(inputId = "select_nonstand1", label = "Non-standard residues found (select to include them in the analysis):", choices = get_nonstand, selected = TRUE)
     })
     # Note to guide the user in the choose
     output$note_text1 <- renderUI({
       tags$h6(strong("Note:"), "By default, the KVFinder server removes all non-standard residues from the input file and that is usually the preferred choice.
                    For specific cases, if you intend to consider the residues below in cavity detection, please select the box to include them.
-                     Otherwise, keep the check box unselected.", style = "text-align:justify")
+                     Otherwise, keep the check box unselected.", style = "text-align: justify;")
     })
   } else {
     # Do not show any widgets related to nonstandard residues inclusion
