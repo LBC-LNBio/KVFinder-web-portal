@@ -2,6 +2,7 @@
 #'
 #' @param input,output,session Internal parameters for {shiny}.
 #'     DO NOT REMOVE.
+#'
 #' @import shiny
 #' @import shinyjs
 #' @import ggplot2
@@ -74,11 +75,9 @@ app_server <- function(input, output, session) {
       # title = tags$a('Structure preview', style = "text-align: right;" ),
       # NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
       if (!is.null(input$input_pdb)) {
-        # print(get_nonstand_check)
         renderNGLVieweR({
           # get input protein PDB with output cavities
           pdb <- input$input_pdb$datapath
-          print(paste("/", as.numeric(input$model_number), sep = ""))
           # create initial scene
           NGLVieweR(pdb) %>%
             # start protein with visible cartoon representation
@@ -103,7 +102,6 @@ app_server <- function(input, output, session) {
   #-----------------------------------------------------
   # Fetch PDB section
   observeEvent(input$send_pdb_id, {
-    print(input$pdb_id)
     # save number of clicks in load button
     pdb_name_click_load <<- input$pdb_id
     # check if the PDB code is valid by using get_nonstand
@@ -113,7 +111,6 @@ app_server <- function(input, output, session) {
     if (length(which(is.na(get_nonstand_check))) != 0) {
       shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
     } else {
-      print("PDB ID ok")
       process_fetch(input = input, output = output)
     }
     # run process_fetch of mod_server_fetch module to create boxes and buttons of run mode
@@ -121,12 +118,10 @@ app_server <- function(input, output, session) {
   })
 
   observeEvent(input$show_preview_fetch, {
-    print(pdb_name_click_load)
     showModal(modalDialog(
       # title = tags$a('Structure preview', style = "text-align: right;" ),
       # NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
       if (pdb_name_click_load != "init") {
-        print(get_nonstand_check)
         renderNGLVieweR({
           # get input protein PDB with output cavities
           pdb <- input$pdb_id
@@ -290,7 +285,6 @@ app_server <- function(input, output, session) {
     observe({
       result_pdb <<- check_results(input = input, output = output, run_id = current_run_id, is_pg2 = FALSE, url_address = url_address, session = session)
       if (length(result_pdb) == 1) { # if results_pdb corresponds to output status and not kvfinder results
-        print(result_pdb)
         if (result_pdb %in% c("queued", "running")) {
           invalidateLater(5000) # means 5 seconds
         }
@@ -316,7 +310,36 @@ app_server <- function(input, output, session) {
 
   # Check results in the secondary page ("get latest results" page)
   observeEvent(input$check_loc_pg2, {
-    result_pdb <<- check_results(input = input, output = output, run_id = trimws(input$insert_ID), is_pg2 = TRUE, url_address = url_address, session = session)
+
+    run_id <- trimws(input$insert_ID)
+
+    # print(input$insert_ID)
+    # print(input$check_loc_pg2)
+
+    # # Check if run_id is empty
+    # if (nchar(run_id) == 0) {
+    #   sendSweetAlert(
+    #     session = session,
+    #     title = "Oops!",
+    #     text = "An error occurred when retrieving your job! \ 
+    #     Please insert a valid Job ID!",
+    #     type = "error"
+    #   )
+    #   return(0)
+    # }
+    # # Check if run_id is a alphanumeric string
+    # if (is.na(as.numeric(run_id))) {
+    #   sendSweetAlert(
+    #     session = session,
+    #     title = "Oops!",
+    #     text = "An error occurred when retrieving your job! \ 
+    #     Please insert a valid Job ID!",
+    #     type = "error"
+    #   )
+    #   return(0)
+    # }
+
+    result_pdb <<- check_results(input = input, output = output, run_id = run_id, is_pg2 = TRUE, url_address = url_address, session = session)
     # When check results button in page 2 is clicked, the structure visualization and all buttons related to NGL viewer will be hidden
     # to allow an update if the check button is used multiple times
     output[["structure_pg2"]] <- renderNGLVieweR({})
@@ -507,7 +530,6 @@ app_server <- function(input, output, session) {
       current_rep_cav <- input$input_cavity_rep
       # fed the protein list of representations
       cav_rep_list <<- c(cav_rep_list, current_rep_cav)
-      print(cav_rep_list)
       # Create the work scene
       create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list, prot_or_cav = "cav", cav_rep_list = cav_rep_list)
       # clean protein color selector
@@ -608,7 +630,6 @@ app_server <- function(input, output, session) {
 
   # Click view in the secondary page to initialize the result visualization with the NGL engine
   observeEvent(input$view_str_pg2, {
-    print(protein_rep_list)
     protein_rep_list <<- c() # always initialize an empty list of protein representations when clicking on view button
     cav_rep_list <<- c()
     cav_rep_list <<- c(cav_rep_list, 'point') # add initial rep for the cavities to avoid NULL when running a second job
@@ -718,12 +739,10 @@ app_server <- function(input, output, session) {
   # Create a work scene every time users click on cavity representation selector and change biomolecular structure representation
   observeEvent(input$input_cavity_rep_pg2,
     {
-      print("Inside cav rep pg2")
       # save the current representation
       current_rep_cav <- input$input_cavity_rep_pg2
       # fed the protein list of representations
       cav_rep_list <<- c(cav_rep_list, current_rep_cav)
-      # print(cav_rep_list)
       # Create the work scene
       create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list, prot_or_cav = "cav", cav_rep_list = cav_rep_list)
       # clean protein color selector
