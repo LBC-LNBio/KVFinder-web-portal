@@ -21,7 +21,6 @@ change_str_color_scheme <- function(input, output, protein_col_scheme_list, prot
     input_protein_color_scheme <- "input_protein_color_scheme"
     structure <- "structure"
   }
-  print("inside_Str_scheme")
   protein_col_scheme_list <- c(protein_col_scheme_list, input[[input_protein_color_scheme]])
 
   # this is a workaround to change the color scheme depending on if it is a initial scene or a work scene

@@ -21,8 +21,6 @@ deal_sele_nonstand <- function(input,pdb_input, nonstand_list, include_list, ses
   tryCatch(
     { # test if the pdb_input is an appropriated PDB ID and if the read,pdb function can download successfully this pdb
       pdb <- read.pdb(pdb_input, multi=T)
-      print(dim(pdb$xyz)[1])
-      print(include_list)
       if (is.null(include_list)) {
         
         # get nonstandard selected
@@ -49,8 +47,6 @@ deal_sele_nonstand <- function(input,pdb_input, nonstand_list, include_list, ses
         outfile <- file.path(tempdir(), paste(rand, ".pdb", sep = ""))
         # write tmp
         if(dim(pdb$xyz)[1] > 1){#case of multimodel, use the model selected by the user
-          print(input$model_number)
-          print('multimodel')
           write.pdb(pdb = clean_pdb, file = outfile, xyz=clean_pdb$xyz[as.numeric(input$model_number),])
         } else{
           write.pdb(pdb = clean_pdb, file = outfile)

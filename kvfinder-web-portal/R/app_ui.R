@@ -12,8 +12,6 @@
 #' @noRd
 #'
 
-
-
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
@@ -30,8 +28,8 @@ app_ui <- function(request) {
         status = "white",
         border = TRUE,
         compact = FALSE,
-        sidebarIcon = shiny::icon("bars"),
-        controlbarIcon = shiny::icon("th"),
+        sidebarIcon = icon("bars"),
+        controlbarIcon = icon("th"),
         fixed = FALSE,
         leftUi = NULL,
         rightUi = NULL
@@ -225,7 +223,7 @@ app_ui <- function(request) {
                   title = tags$p(
                     tags$strong("Get latest results"),
                     style = "margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; color: white;"
-                  ), # Optional title "Get latest results",
+                  ), # Optional title
                   id = "check_results_box",
                   collapsible = TRUE,
                   collapsed = FALSE,
