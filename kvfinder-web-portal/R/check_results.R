@@ -41,22 +41,8 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
     view_output <- "view_output"
     view_str <- "view_str"
   }
-  
-  # if (is_pg2 == TRUE) {
-  #   print(is.numeric(run_id))
-  #   print(nchar(run_id))
-  #   if (!is.numeric(run_id)) {
-  #     shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Test~!", type = "error")
-  #     return (NULL)
-  #   }
-  #   if (nchar(run_id) == 0 ) {
-  #     shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Test2~!", type = "error")
-  #     return (NULL)
-  #   }
-  # }
 
   # obtain results from the server
-  # get_output <- GET(url = paste("http://10.0.0.123:8081/", run_id, sep = ""))
   get_output <- GET(url = paste(url_address, run_id, sep = "")) # use localhost
 
   # check if the status is 200 and process the output

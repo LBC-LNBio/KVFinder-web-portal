@@ -311,38 +311,46 @@ app_server <- function(input, output, session) {
   # Check results in the secondary page ("get latest results" page)
   observeEvent(input$check_loc_pg2, {
 
-    run_id <- trimws(input$insert_ID)
+    # When Get results button in tab 2 is clicked, the job information and the results table will be hidden
+    # Hide elements
+    hideElement(
+      id = "output_status_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "download_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "download2_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "download_results_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "download_results2_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "results_table_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "table_out_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "view_output_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "view_str_pg2",
+      time = 0
+    )
 
-    # print(input$insert_ID)
-    # print(input$check_loc_pg2)
-
-    # # Check if run_id is empty
-    # if (nchar(run_id) == 0) {
-    #   sendSweetAlert(
-    #     session = session,
-    #     title = "Oops!",
-    #     text = "An error occurred when retrieving your job! \ 
-    #     Please insert a valid Job ID!",
-    #     type = "error"
-    #   )
-    #   return(0)
-    # }
-    # # Check if run_id is a alphanumeric string
-    # if (is.na(as.numeric(run_id))) {
-    #   sendSweetAlert(
-    #     session = session,
-    #     title = "Oops!",
-    #     text = "An error occurred when retrieving your job! \ 
-    #     Please insert a valid Job ID!",
-    #     type = "error"
-    #   )
-    #   return(0)
-    # }
-
-    result_pdb <<- check_results(input = input, output = output, run_id = run_id, is_pg2 = TRUE, url_address = url_address, session = session)
-    # When check results button in page 2 is clicked, the structure visualization and all buttons related to NGL viewer will be hidden
-    # to allow an update if the check button is used multiple times
-    output[["structure_pg2"]] <- renderNGLVieweR({})
+    # When View button in tab 2 is clicked, the structure visualization and all buttons related to NGL viewer will be hidden
     hideElement(
       id = "structure_pg2",
       time = 0
@@ -411,6 +419,70 @@ app_server <- function(input, output, session) {
       id = "scale_plot",
       time = 0
     )
+
+    # Remove whitespaces from input$insert_ID
+    id <- trimws(input$insert_ID)
+
+    # Check if run_id is empty or an alphanumeric string
+    if ((nchar(id) == 0) || (is.na(as.numeric(id)))) {
+      shinyWidgets::sendSweetAlert(
+        session = session,
+        title = "Oops!",
+        text = "An error occurred when retrieving your job! \ 
+        Please insert a valid Job ID!",
+        type = "error"
+      )
+
+      return(NULL)
+    }
+
+    # Check results of a Job ID
+    result_pdb <<- check_results(input = input, output = output, run_id = id, is_pg2 = TRUE, url_address = url_address, session = session)
+
+    # Sucessfully got results, so show elements
+    showElement(
+      id = "output_status_pg2",
+      time = 0
+    )
+    if ("result_toml" %in% names(result_pdb)) {
+
+      showElement(
+        id = "download_pg2",
+        time = 0
+      )
+      showElement(
+        id = "download2_pg2",
+        time = 0
+      )
+      showElement(
+        id = "download_results_pg2",
+        time = 0
+      )
+      showElement(
+        id = "download_results2_pg2",
+        time = 0
+      )
+      showElement(
+        id = "results_table_pg2",
+        time = 0
+      )
+      showElement(
+        id = "table_out_pg2",
+        time = 0
+      )
+      showElement(
+        id = "view_output_pg2",
+        time = 0
+      )
+      showElement(
+        id = "view_str_pg2",
+        time = 0
+      )
+    }
+
+    # Show NGL viewer and buttons
+    output[["structure_pg2"]] <- renderNGLVieweR({})
+
   })
   #----------------------------------------------------
 

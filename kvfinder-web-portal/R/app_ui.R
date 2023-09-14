@@ -242,35 +242,32 @@ app_ui <- function(request) {
                     label = "Get results",
                     icon = icon("share-square")
                   ),
-                  conditionalPanel(
-                    condition = "input.check_loc_pg2 > 0",
-                    tags$br(),
-                    tags$br(),
-                    uiOutput("output_status_pg2"),
-                    fluidRow(
-                      column(
-                        4,
-                        uiOutput("download_pg2")
-                      ),
-                      column(
-                        4,
-                        uiOutput("download2_pg2")
-                      ),
-                      column(
-                        4,
-                        uiOutput(
-                          "view_output_pg2"
-                        )
-                      )
+                  tags$br(),
+                  tags$br(),
+                  uiOutput("output_status_pg2"),
+                  fluidRow(
+                    column(
+                      4,
+                      uiOutput("download_pg2")
                     ),
-                    tags$br(),
-                    uiOutput("results_table_pg2"),
-                    tags$br(),
-                    sidebar = boxSidebar(
-                      id = "help_get_results_pg2",
-                      icon = icon("info"),
-                      p("Here, you can insert a job ID to get or check your latest results.")
+                    column(
+                      4,
+                      uiOutput("download2_pg2")
+                    ),
+                    column(
+                      4,
+                      uiOutput(
+                        "view_output_pg2"
+                      )
                     )
+                  ),
+                  tags$br(),
+                  uiOutput("results_table_pg2"),
+                  tags$br(),
+                  sidebar = boxSidebar(
+                    id = "help_get_results_pg2",
+                    icon = icon("info"),
+                    p("Here, you can insert a job ID to get or check your latest results.")
                   )
                 )
               ),
