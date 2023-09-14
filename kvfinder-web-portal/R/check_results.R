@@ -193,6 +193,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         color = "danger"
       )
     })
+    var_status <<- "error"
   }
   return(var_status)
 }
