@@ -59,7 +59,7 @@ kv_tutorial <- function() {
       your own biomolecular structures.",
       style = "text-align:justify"
     ),
-    tags$br(),
+    tags$hr(),
 
     ## Cavity analysis
     tags$h4(
@@ -96,7 +96,6 @@ kv_tutorial <- function() {
       ),
       style = "display: flex; justify-content: center;"
     ),
-    tags$br(),
     tags$p(
       "Once the structure is loaded, you will have the option to keep \ 
       non-standard residues, such as water, ligands, and ions.",
@@ -116,7 +115,6 @@ kv_tutorial <- function() {
       ),
       style = "display: flex; justify-content: center;"
     ),
-    tags$br(),
 
     ### Step 2. Run Cavity Analysis
     tags$p(
@@ -326,7 +324,7 @@ kv_tutorial <- function() {
           style = "display: flex; justify-content: center;"
       ),
     ),
-    tags$hr(),
+    tags$br(),
 
     # Mode 2. Whole protein (customized)
     tags$h5(
@@ -455,7 +453,7 @@ kv_tutorial <- function() {
         " also influences cavity segregation.",
         style = "text-align:justify",
     ),
-    tags$hr(),
+    tags$br(),
 
     # Steered detection
     tags$h4(
@@ -497,6 +495,7 @@ kv_tutorial <- function() {
       ),
       style = "display: flex; justify-content: center;"
     ),
+    tags$br(),
 
     # Mode 3. Around target molecule
     tags$h5(
@@ -542,7 +541,7 @@ kv_tutorial <- function() {
       ),
       style = "display: flex; justify-content: center;"
     ),
-    tags$hr(),
+    tags$br(),
 
     # Mode 4. Around target residues
     tags$h5(
@@ -652,7 +651,7 @@ kv_tutorial <- function() {
     tags$p(
       tags$img(
         src = "www/tutorial-retrieve-job-results.png",
-        style = "width: 100%; max-width: 400px;"
+        style = "width: 100%; max-width: 1200px;"
       ),
       style = "display: flex; justify-content: center;"
     ),
