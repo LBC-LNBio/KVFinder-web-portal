@@ -586,7 +586,7 @@ kv_help <- function() {
       time that an accepted job could run on the server). Completed jobs will \ 
       be available on the web service up to 1 day after completion. The \ 
       maximum payload (maximum size of the JSON) of the data sent to the \ 
-      KVFinder-web service is 1 MB.",
+      KVFinder-web service is 5 MB.",
       style = "text-align:justify"
     ),
     tags$p(
