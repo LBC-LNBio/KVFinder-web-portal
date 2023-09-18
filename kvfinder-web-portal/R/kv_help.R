@@ -86,10 +86,10 @@ kv_help <- function() {
       ),
       tags$li(
         strong("Probe Out (Å):"),
-        " A larger probe that defines inacessibility region, i.e., the cavity \ 
-        and by rolling around the target biomolecule. Users can adjust the \ 
-        size of the probe based on the characteristics of the target \ 
-        structure.",
+        " A larger probe that defines inacessibility region, i.e., the \ 
+        cavities, and by rolling around the target biomolecule. Users can \ 
+        adjust the size of the probe based on the characteristics of the \ 
+        target structure.",
       ),
       tags$li(
         strong("Removal Distance (Å):"),
@@ -224,7 +224,252 @@ kv_help <- function() {
     ),
     tags$br(),
     tags$p(
-      
+      "KVFinder-web generates results in TOML (Tom's Obvious, \ 
+      Minimal Language) format, providing information about job \ 
+      details, detection parameters, and cavity characterizations \ 
+      (i.e., volume, area, depth, constitutional and hydropathy). \ 
+      TOML is a text format that conveniently maps to a hash table, \ 
+      making it easy to parse in various programming languages. For \ 
+      a comprehensive guide on TOML format, please refer to ",
+      tags$a(
+        href = "https://toml.io/en/",
+        "https://toml.io/en/"
+      ),
+      ".",
+      style = "text-align:justify",
+    ),
+    tags$p(
+      "Here's a concise description of the contents within this \ 
+      TOML-formatted file:"
+    ),
+    tags$ul(
+      # Job information
+      tags$li(
+        tags$strong("CREATE_TIME:"),
+        " A timestamp indicating the GMT date and time when the job was \ 
+        created. It follows the 'YYYY-MM-DDTHH:MM:SS.SSSSSSSSSZ' format.",
+      ),
+      tags$li(
+        tags$strong("ID:"),
+        " A unique identifier assigned to the job within the KVFinder-web \ 
+        service.",
+      ),
+      # Parameters
+      tags$li(
+        tags$strong("PARAMETERS:"),
+        "Identifies the list of parameters used in the cavity \ 
+        detection process.",
+        tags$ul(
+          # Cutoffs
+          tags$li(
+            tags$strong("cutoffs:"),
+            " Identifies the list of cutoffs used during the cavity \ 
+            detection process.",
+          ),
+          tags$ul(
+            # Ligand Cutoff
+            tags$li(
+              tags$strong("ligand_cutoff:"),
+              " Defines a radius (Å) to restrict space around a target ligand.",
+            ),
+            # Volume Cutoff
+            tags$li(
+              tags$strong("volume_cutoff:"),
+              " Sets a volume filter (Å³) to exclude cavities \ 
+              with smaller volumes than this limit.",
+            ),
+            # Removal Distance
+            tags$li(
+              tags$strong("removal_distance:"),
+              " Definies the length (Å) removed from the boundary between \ 
+              the cavity and bulk (solvent) region.",
+            ),
+          ),
+          # Modes
+          tags$li(
+            tags$strong("modes:"),
+            " Idenitifies the execution modes used in parKVFinder \ 
+            software (v1.2.0) for cavity detection.",
+            tags$ul(
+              # Box mode
+              tags$li(
+                tags$strong("box_mode:"),
+                " Determines whether to use a custom box to define the \ 
+                search space.",
+              ),
+              # Cavity representation mode
+              tags$li(
+                tags$strong("kvp_mode:"),
+                " Selects cavity representation mode for exporting points to \ 
+                PDB file. ",
+                tags$strong("true"),
+                " option exports all cavity points, while ",
+                tags$strong("false"),
+                " option filters out some internal points before \ 
+                exporting cavities. KVFinder-web fixes to ",
+                tags$strong("false"),
+                ".",
+              ),
+              # Ligand mode
+              tags$li(
+                tags$strong("ligand_mode:"),
+                " Specifies whether the search space is limited around a \ 
+                ligand or a molecule.",
+              ),
+              # Resolution mode
+              tags$li(
+                tags$strong("resolution_mode:"),
+                " Indirectly defines the grid spacing used in the cavity \ 
+                detection process. It has three possible values: ",
+                tags$strong("Low"),
+                " (0.6 Å), ",
+                tags$strong("Medium"),
+                " (0.5 Å), and ",
+                tags$strong("High"),
+                " (0.25 Å). KVFinder-web fixes to ",
+                tags$strong("Low"),
+                ".",
+              ),
+              # Surface mode
+              tags$li(
+                tags$strong("surface_mode:"),
+                " Selects surface type to be considered. ",
+                tags$strong("true"),
+                " option defines the Solvent Excluded Surface (SES), while ",
+                tags$strong("false"),
+                " option defines the Solvent Accessible Surface (SAS). \ 
+                KVFinder-web fixes to ",
+                tags$strong("true"),
+                "."
+              ),
+              # Whole protein mode
+              tags$li(
+                tags$strong("whole_protein_mode:"),
+                " Determines whether the entire biomolecular structure is \ 
+                used as the search space.",
+              ),
+            ),
+          ),
+          # Probes
+          tags$li(
+            tags$strong("probes:"),
+            " Specifies the probes used in the cavity detection process.",
+            tags$ul(
+              # Probe In
+              tags$li(
+                tags$strong("probe_in:"),
+                " Sets Probe In (Å) size that defines the biomolecular \ 
+                surface.",
+              ),
+              # Probe Out
+              tags$li(
+                tags$strong("probe_out:"),
+                " Sets Probe Out (Å) size, which identifies inaccesibility \ 
+                regions (i.e., the cavities).",
+              ),
+            ),
+          ),
+          # Step size
+          tags$li(
+            tags$strong("step_size:"),
+            " Defines the grid spacing (Å). In KVFinder-web, this is set to ",
+            tags$strong("0.0"),
+            " Å, since Resolution mode is fixed at ",
+            tags$strong("Low"),
+            ".",
+          ),
+          # Visible box
+          tags$li(
+            tags$strong("visiblebox:"),
+            " Defines the coordinates of the vertices that shape the visible \ 
+            3D grid. Only four points are required to define the search space.",
+            tags$ul(
+              tags$li(
+                tags$strong("p1: "),
+                "Origin's x, y, z cooordiantes."
+              ),
+              tags$li(
+                tags$strong("p2: "),
+                "X-axis's x, y, z cooordiantes."
+              ),
+              tags$li(
+                tags$strong("p3: "),
+                "Y-axis's x, y, z cooordiantes."
+              ),
+              tags$li(
+                tags$strong("p4: "),
+                "Z-axis's x, y, z cooordiantes."
+              ),
+            ),
+          ),
+          # Internal box
+          tags$li(
+            tags$strong("internalbox:"),
+            " Specifies coordinates for the internal 3D grid, used for \ 
+            calculations.",
+            tags$ul(
+              tags$li(
+                tags$strong("p1: "),
+                "Origin's x, y, z cooordiantes."
+              ),
+              tags$li(
+                tags$strong("p2: "),
+                "X-axis's x, y, z cooordiantes."
+              ),
+              tags$li(
+                tags$strong("p3: "),
+                "Y-axis's x, y, z cooordiantes."
+              ),
+              tags$li(
+                tags$strong("p4: "),
+                "Z-axis's x, y, z cooordiantes."
+              ),
+            ),
+          ),
+        ),
+      ),
+      # Results
+      tags$li(
+        tags$strong("RESULTS:"),
+        " Provides a list of characterizations per cavity.",
+        tags$ul(
+          tags$li(
+            tags$strong("AREA:"),
+            " Provides the cavity area (Å²) for each identified cavity (e.g., \ 
+            KAA, KAB, KAC).",
+          ),
+          tags$li(
+            tags$strong("AVG_DEPTH:"),
+            " Provides the cavity average depth (Å) for each identified \ 
+            cavity (e.g., KAA, KAB, KAC).",
+          ),
+          tags$li(
+            tags$strong("AVG_HYDROPATHY:"),
+            " Provides the cavity average hydropathy, rated on the Eisenberg \ 
+            & Weiss scale, for each cavity (e.g., KAA, KAB, KAC). The scale \ 
+            ranges from -1.42 (highly hydrophobic) to 2.6 (highly \ 
+            hydrophilic).",
+          ),
+          tags$li(
+            tags$strong("MAX_DEPTH:"),
+            " Provides the cavity maximum depth (Å³) for each identified \ 
+            cavity (e.g., KAA, KAB, KAC).",
+          ),
+          tags$li(
+            tags$strong("RESIDUES:"),
+            " Enumerates the interface residues composing each cavity. \ 
+            Each element follows the format ",
+            tags$strong("[Residue Number, Chain ID, Amino Acid]"),
+            ".",
+          ),
+          tags$li(
+            tags$strong("VOLUME:"),
+            " Provides the cavity volume (Å³) for each identified cavity \ 
+            (e.g., KAA, KAB, KAC).",
+          ),
+        ),
+      ),
+      style = "text-align:justify",
     ),
     tags$hr(),
 
@@ -366,7 +611,7 @@ kv_help <- function() {
       tags$li(
         "The ",
         tags$strong("grid spacing"),
-        " is pre-set to 0.6 Å to prevent unnecessary time-consuming jobs;",
+        " is fixed to 0.6 Å to prevent unnecessary time-consuming jobs;",
       ),
       tags$li(
         "Cavity representation will always be ",
