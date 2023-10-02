@@ -2,22 +2,25 @@
 #'
 #' @param input,output,session Internal parameters for {shiny}.
 #'     DO NOT REMOVE.
+#'
 #' @import shiny
 #' @import shinyjs
 #' @import ggplot2
-#'
 #'
 #' @noRd
 #'
 
 app_server <- function(input, output, session) {
-  # url address to connection. This is used in submition and check results functions.
+  # URL address for KVFinder-web service
+  # Use this if KVFinder-web service is on the same machine
   url_address <- "http://localhost:8081/"
 
   # KVFinder-web portal outside KVFinder-web service container
+  # Uncomment and replace <ip> with the actual IP address if service is on a different container
   # url_address <- "http://<ip>:8081/"
 
   # KVFinder-web portal inside the same container of KVFinder-web service
+  # Uncomment and use this if service and portal are in the same container
   # url_address <- "http://kv-server:8081/"
 
   #-----------------------------------------------
@@ -75,11 +78,9 @@ app_server <- function(input, output, session) {
       # title = tags$a('Structure preview', style = "text-align: right;" ),
       # NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
       if (!is.null(input$input_pdb)) {
-        # print(get_nonstand_check)
         renderNGLVieweR({
           # get input protein PDB with output cavities
           pdb <- input$input_pdb$datapath
-          print(paste("/", as.numeric(input$model_number), sep = ""))
           # create initial scene
           NGLVieweR(pdb) %>%
             # start protein with visible cartoon representation
@@ -104,7 +105,6 @@ app_server <- function(input, output, session) {
   #-----------------------------------------------------
   # Fetch PDB section
   observeEvent(input$send_pdb_id, {
-    print(input$pdb_id)
     # save number of clicks in load button
     pdb_name_click_load <<- input$pdb_id
     # check if the PDB code is valid by using get_nonstand
@@ -114,7 +114,6 @@ app_server <- function(input, output, session) {
     if (length(which(is.na(get_nonstand_check))) != 0) {
       shinyWidgets::sendSweetAlert(session = session, title = "Oops!", text = "Please insert a valid PDB ID.", type = "error")
     } else {
-      print("PDB ID ok")
       process_fetch(input = input, output = output)
     }
     # run process_fetch of mod_server_fetch module to create boxes and buttons of run mode
@@ -122,12 +121,10 @@ app_server <- function(input, output, session) {
   })
 
   observeEvent(input$show_preview_fetch, {
-    print(pdb_name_click_load)
     showModal(modalDialog(
       # title = tags$a('Structure preview', style = "text-align: right;" ),
       # NGLVieweROutput("structure_prev", width = "100%", height = "75vh"),
       if (pdb_name_click_load != "init") {
-        print(get_nonstand_check)
         renderNGLVieweR({
           # get input protein PDB with output cavities
           pdb <- input$pdb_id
@@ -291,7 +288,6 @@ app_server <- function(input, output, session) {
     observe({
       result_pdb <<- check_results(input = input, output = output, run_id = current_run_id, is_pg2 = FALSE, url_address = url_address, session = session)
       if (length(result_pdb) == 1) { # if results_pdb corresponds to output status and not kvfinder results
-        print(result_pdb)
         if (result_pdb %in% c("queued", "running")) {
           invalidateLater(5000) # means 5 seconds
         }
@@ -317,10 +313,47 @@ app_server <- function(input, output, session) {
 
   # Check results in the secondary page ("get latest results" page)
   observeEvent(input$check_loc_pg2, {
-    result_pdb <<- check_results(input = input, output = output, run_id = trimws(input$insert_ID), is_pg2 = TRUE, url_address = url_address, session = session)
-    # When check results button in page 2 is clicked, the structure visualization and all buttons related to NGL viewer will be hidden
-    # to allow an update if the check button is used multiple times
-    output[["structure_pg2"]] <- renderNGLVieweR({})
+
+    # When Get results button in tab 2 is clicked, the job information and the results table will be hidden
+    # Hide elements
+    hideElement(
+      id = "output_status_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "download_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "download2_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "download_results_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "download_results2_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "results_table_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "table_out_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "view_output_pg2",
+      time = 0
+    )
+    hideElement(
+      id = "view_str_pg2",
+      time = 0
+    )
+
+    # When View button in tab 2 is clicked, the structure visualization and all buttons related to NGL viewer will be hidden
     hideElement(
       id = "structure_pg2",
       time = 0
@@ -389,6 +422,70 @@ app_server <- function(input, output, session) {
       id = "scale_plot",
       time = 0
     )
+
+    # Remove whitespaces from input$insert_ID
+    id <- trimws(input$insert_ID)
+
+    # Check if run_id is empty or an alphanumeric string
+    if ((nchar(id) == 0) || (is.na(as.numeric(id)))) {
+      shinyWidgets::sendSweetAlert(
+        session = session,
+        title = "Oops!",
+        text = "An error occurred when retrieving your job! \ 
+        Please insert a valid Job ID!",
+        type = "error"
+      )
+
+      return(NULL)
+    }
+
+    # Check results of a Job ID
+    result_pdb <<- check_results(input = input, output = output, run_id = id, is_pg2 = TRUE, url_address = url_address, session = session)
+
+    # Sucessfully got results, so show elements
+    showElement(
+      id = "output_status_pg2",
+      time = 0
+    )
+    if ("result_toml" %in% names(result_pdb)) {
+
+      showElement(
+        id = "download_pg2",
+        time = 0
+      )
+      showElement(
+        id = "download2_pg2",
+        time = 0
+      )
+      showElement(
+        id = "download_results_pg2",
+        time = 0
+      )
+      showElement(
+        id = "download_results2_pg2",
+        time = 0
+      )
+      showElement(
+        id = "results_table_pg2",
+        time = 0
+      )
+      showElement(
+        id = "table_out_pg2",
+        time = 0
+      )
+      showElement(
+        id = "view_output_pg2",
+        time = 0
+      )
+      showElement(
+        id = "view_str_pg2",
+        time = 0
+      )
+    }
+
+    # Show NGL viewer and buttons
+    output[["structure_pg2"]] <- renderNGLVieweR({})
+
   })
   #----------------------------------------------------
 
@@ -508,7 +605,6 @@ app_server <- function(input, output, session) {
       current_rep_cav <- input$input_cavity_rep
       # fed the protein list of representations
       cav_rep_list <<- c(cav_rep_list, current_rep_cav)
-      print(cav_rep_list)
       # Create the work scene
       create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = FALSE, scheme_color_list = scheme_color_list, prot_or_cav = "cav", cav_rep_list = cav_rep_list)
       # clean protein color selector
@@ -567,7 +663,7 @@ app_server <- function(input, output, session) {
       updateCheckboxInput(session, "input_cavity_hyd", value = FALSE)
     }
 
-    color_cavity_deepth(input = input, output = output, is_pg2 = FALSE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
+    color_cavity_depth(input = input, output = output, is_pg2 = FALSE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
 
     output$scale_plot_deep <- renderPlot(
       {
@@ -609,7 +705,6 @@ app_server <- function(input, output, session) {
 
   # Click view in the secondary page to initialize the result visualization with the NGL engine
   observeEvent(input$view_str_pg2, {
-    print(protein_rep_list)
     protein_rep_list <<- c() # always initialize an empty list of protein representations when clicking on view button
     cav_rep_list <<- c()
     cav_rep_list <<- c(cav_rep_list, 'point') # add initial rep for the cavities to avoid NULL when running a second job
@@ -719,12 +814,10 @@ app_server <- function(input, output, session) {
   # Create a work scene every time users click on cavity representation selector and change biomolecular structure representation
   observeEvent(input$input_cavity_rep_pg2,
     {
-      print("Inside cav rep pg2")
       # save the current representation
       current_rep_cav <- input$input_cavity_rep_pg2
       # fed the protein list of representations
       cav_rep_list <<- c(cav_rep_list, current_rep_cav)
-      # print(cav_rep_list)
       # Create the work scene
       create_work_scene(input = input, output = output, protein_rep_list = protein_rep_list, protein_col_list = protein_col_list, protein_col_scheme_list = protein_col_scheme_list, result_pdb_list = result_pdb, is_pg2 = TRUE, scheme_color_list = scheme_color_list, prot_or_cav = "cav", cav_rep_list = cav_rep_list)
       # clean protein color selector
@@ -778,7 +871,7 @@ app_server <- function(input, output, session) {
       updateCheckboxInput(session, "input_cavity_hyd_pg2", value = FALSE)
     }
 
-    color_cavity_deepth(input = input, output = output, is_pg2 = TRUE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
+    color_cavity_depth(input = input, output = output, is_pg2 = TRUE, cav_rep_list = cav_rep_list, result_pdb_list = result_pdb)
 
     output$scale_plot_deep_pg2 <- renderPlot(
       {

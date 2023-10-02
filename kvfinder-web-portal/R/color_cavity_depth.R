@@ -13,7 +13,7 @@
 #' @export
 #'
 
-color_cavity_deepth <- function(input, output, is_pg2, cav_rep_list, result_pdb_list) {
+color_cavity_depth <- function(input, output, is_pg2, cav_rep_list, result_pdb_list) {
   if (is_pg2 == TRUE) {
     input_cavity_deep <- "input_cavity_deep_pg2"
     select_cavity <- "select_cavity_pg2"
@@ -23,8 +23,6 @@ color_cavity_deepth <- function(input, output, is_pg2, cav_rep_list, result_pdb_
     select_cavity <- "select_cavity"
     structure <- "structure"
   }
-  #print(result_pdb_list$result_toml$MAX_DEPTH)
-  #print(max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
   #NGLVieweR_proxy(structure) %>%
   #  removeSelection(name = tail(cav_rep_list, n = 2)[1])
   # After the initial structure is invisible, we can add a new representation to the current scene

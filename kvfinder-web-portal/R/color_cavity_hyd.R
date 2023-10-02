@@ -23,8 +23,6 @@ color_cavity_hyd <- function(input, output, is_pg2, cav_rep_list, result_pdb_lis
     select_cavity <- "select_cavity"
     structure <- "structure"
   }
-  #print(result_pdb_list$result_toml$MAX_DEPTH)
-  #print(max(unlist(result_pdb_list$result_toml$MAX_DEPTH)))
   #NGLVieweR_proxy(structure) %>%
   #  removeSelection(name = tail(cav_rep_list, n = 2)[1])
   # After the initial structure is invisible, we can add a new representation to the current scene
