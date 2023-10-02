@@ -35,13 +35,33 @@ To run locally the KVFinder-web portal in Linux distributions, it is necessary t
 sudo apt install docker-compose
 ```
 
-After the docker-compose installation and clone of this repository. First, you have to build our KVFinder-web interface:
+Before using the KVFinder-web portal, you need to configure the URL address for the KVFinder-web service. Open the [app_server.R](kvfinder-web-portal/R/app_server.R#L14-L24) file and define the URL address:
+
+If KVFinder-web service is running on your local machine, use the first configuration:
+
+```r
+url_address <- "http://localhost:8081/"
+```
+
+If KVFinder-web service is on a different containers in the same network, replace <ip> in the second configuration with the actual IP address of that machine.
+
+```r
+url_address <- "http://<ip>:8081/"
+```
+
+If KVFinder-web service and portal are in the same container, use the third configuration (http://kv-server:8081/).
+
+```r
+url_address <- "http://kv-server:8081/"
+```
+
+Afterwards, you have to build our KVFinder-web portal:
 
 ```bash
 docker build -t kvfinder-web-portal .
 ```
 
-To start KVFinder-web interface:
+To start KVFinder-web portal:
 
 ```bash
 docker run -p 3838:3838 kvfinder-web-portal
