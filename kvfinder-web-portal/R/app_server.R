@@ -11,13 +11,16 @@
 #'
 
 app_server <- function(input, output, session) {
-  # url address to connection. This is used in submition and check results functions.
+  # URL address for KVFinder-web service
+  # Use this if KVFinder-web service is on the same machine
   url_address <- "http://localhost:8081/"
 
   # KVFinder-web portal outside KVFinder-web service container
+  # Uncomment and replace <ip> with the actual IP address if service is on a different container
   # url_address <- "http://<ip>:8081/"
 
   # KVFinder-web portal inside the same container of KVFinder-web service
+  # Uncomment and use this if service and portal are in the same container
   # url_address <- "http://kv-server:8081/"
 
   #-----------------------------------------------
