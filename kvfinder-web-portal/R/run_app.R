@@ -5,8 +5,11 @@
 #' @inheritParams shiny::shinyApp
 #'
 #' @export
+#' 
 #' @importFrom shiny shinyApp
 #' @importFrom golem with_golem_options
+#' 
+
 run_app <- function(onStart = NULL,
                     options = list(port = 3838, host = "0.0.0.0"),
                     enableBookmarking = NULL,

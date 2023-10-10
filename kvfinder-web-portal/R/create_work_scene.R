@@ -39,7 +39,6 @@ create_work_scene <- function(input, output, protein_rep_list, protein_col_list,
       updateVisibility("protein_init_cartoon", value = FALSE)
   }
   if (prot_or_cav == 'prot'){
-    print("inside protein mode")
     # After the initial structure is invisible, we can add a new representation to the current scene
     NGLVieweR_proxy(structure) %>%
       addSelection(tail(protein_rep_list, n = 1),

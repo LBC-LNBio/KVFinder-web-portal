@@ -13,6 +13,7 @@
 #' @import DT
 #' @import blogdown
 #' @import shinyWidgets
+#' 
 #' @export
 #'
 
@@ -42,7 +43,6 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
   }
 
   # obtain results from the server
-  # get_output <- GET(url = paste("http://10.0.0.123:8081/", run_id, sep = ""))
   get_output <- GET(url = paste(url_address, run_id, sep = "")) # use localhost
 
   # check if the status is 200 and process the output
@@ -71,7 +71,6 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
       retrieve_content <- content(retrieve_get)
       # get retrivied input PDB
       retrieve_input_pdb <- retrieve_content$input$pdb
-      print(content_get_output$output$report)
       # table with results
       result_toml <- parseTOML(input = content_get_output$output$report, fromFile = FALSE, escape = TRUE)$RESULTS
       # check if the at least one cavity was found
@@ -82,7 +81,6 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         output[[results_table]] <- renderUI({
           DT::dataTableOutput(table_out)
         })
-        # print(result_toml$AVG_HYDROPATHY)
         output[[table_out]] <- DT::renderDataTable(
           data.table(
             `ID` = names(result_toml$AREA),
@@ -163,7 +161,6 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         # get values of depth for each atom
         str_cav <- strsplit(result_pdb_cav, "\n")[[1]]
         get_atoms <- str_cav[sapply(str_cav, function(x) startsWith(x, "ATOM"))]
-        # print(get_atoms[1:10])
         list_depth <- as.numeric(sapply(get_atoms, function(x) strsplit(x, "\\s+")[[1]][10]))
         # create list to store results
         result_list <- list(
@@ -196,6 +193,7 @@ check_results <- function(input, output, run_id, is_pg2, url_address, session) {
         color = "danger"
       )
     })
+    var_status <<- "error"
   }
   return(var_status)
 }

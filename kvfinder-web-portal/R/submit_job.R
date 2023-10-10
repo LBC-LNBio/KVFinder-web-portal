@@ -90,7 +90,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
           if (is.null(get_queue)) {
             output$run_id <- renderText({
               paste(
-                br(),
+                hr(),
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
                 p("Once the job is completed, the results will be available for 1 day."),
@@ -100,7 +100,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
           } else if (as.numeric(get_queue) == 0){
             output$run_id <- renderText({
               paste(
-                br(),
+                hr(),
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
                 p("Your job is the next in the queue and the estimated time is just some seconds."),
@@ -114,7 +114,7 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
             suffix <- ifelse(estimated_minutes > 1, " minutes", " minute")
             output$run_id <- renderText({
               paste(
-                br(),
+                hr(),
                 p("Your job has been successfully submitted to the KVFinder-web server!"),
                 p("Please save the following job ID: ", tags$b(get_run_id), "to check your results later."),
                 p("Your job is currently in position", tags$b(as.numeric(get_queue) + 1), " in the queue and the estimated time is ", tags$b(estimated_minutes), suffix, "."),
@@ -124,9 +124,16 @@ submit_job <- function(input, output, pdb_name_click_load, url_address, session)
             })
           }
           # Create check result button
-          output$check_results_submit <- renderUI({
-            actionButton(inputId = "go_to_check_results", label = "Check results", size = "lg", icon = icon("poll-h"))
-          })
+          output$check_results_submit <- renderUI(
+            {
+              actionButton(
+                inputId = "go_to_check_results",
+                label = "Check results",
+                size = "lg",
+                icon = icon("poll-h")
+              )
+            }
+          )
           # return the job id
           return(get_run_id)
         } else { # if the submission status is other than 200
