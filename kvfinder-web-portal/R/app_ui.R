@@ -364,10 +364,6 @@ app_ui <- function(request) {
       style = "display: flex; justify-content: center; width: 100%;"
     ),
     # Add Cloudflare Web Analytics
-    tags$body(
-        HTML(
-          "<!-- Cloudflare Web Analytics --><script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon=\"{\"token\": \"3885c958deb74bfcbdfe31b04ae5e67f\"}\"></script><!-- End Cloudflare Web Analytics -->"
-        )
-    ),
+    HTML('<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "3885c958deb74bfcbdfe31b04ae5e67f"}\'></script><!-- End Cloudflare Web Analytics -->')
   )
 }
