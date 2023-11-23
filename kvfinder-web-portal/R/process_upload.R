@@ -43,7 +43,7 @@ process_upload <- function(input, output, session) {
     output$note_text1 <- renderUI({
       tags$h6(
         strong("Note:"), 
-        "By default, KVFinder-web removes all non-standard residues from the input file, which is usually the preferred choice. However, for specific cases where you want to include these residues as part of the biomolecular surface in cavity detection, select the residues below to include them. Otherwise, keep the checkbox unselected.",
+        "By default, KVFinder-web removes all non-standard residues from the input file, which is usually the preferred choice. However, for specific cases where you want to include these residues as part of the biomolecular surface for cavity detection, select the residues below to include them. Otherwise, keep the checkbox unselected.",
         style = "text-align: justify;"
       )
     })

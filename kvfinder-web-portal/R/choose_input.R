@@ -157,7 +157,7 @@ choose_input <- function() {
         tags$br(),
         "By default, KVFinder-web removes all non-standard protein residues from the input. For example, if a target pocket contains a ligand, that ligand is automatically excluded before computing the cavity.",
         tags$br(),
-        "However, in specific situations, you may want to evaluate a portion of a cavity that includes a ligand, water, or ions. In such cases, you can use the 'Include' option to incorporate the non-standard residue into the analysis."
+        "However, in specific situations, you may want to evaluate a portion of a cavity that includes a ligand, water, or ions. In such cases, you can use the 'Include' option to incorporate the non-standard residue into the biomolecular surface for cavity analysis."
       ),
       style = "text-align: justify; margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; margin-right: 0.5rem;"
     )
