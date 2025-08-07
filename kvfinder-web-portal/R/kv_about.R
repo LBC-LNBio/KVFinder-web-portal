@@ -240,19 +240,14 @@ kv_about <- function() {
       style = "text-align:justify"
     ),
     tags$ul(
-      tags$li("João Victor da Silva Guerra"),
-      tags$li("Helder Veras Ribeiro-Filho"),
-      tags$li("José Geraldo de Carvalho Pereira"),
-      tags$li("Paulo Sergio Lopes-de-Oliveira (Principal Investigator)"),
+      tags$li("João V. S. Guerra"),
+      tags$li("Helder V. Ribeiro-Filho"),
+      tags$li("José G. C. Pereira"),
+      tags$li("Paulo S. Lopes-de-Oliveira"),
     ),
     tags$br(),
     tags$p(
-      "This team operates within the Computational Biology Laboratory (",
-      tags$a(
-        href = "https://github.com/LBC-LNBio",
-        "LBC"
-      ),
-      ") at the Brazilian Biosciences National Laboratory (",
+      "KVFinder-web is hosted at the Brazilian Biosciences National Laboratory (",
       tags$a(
         href = "https://lnbio.cnpem.br",
         "LNBio"
@@ -264,24 +259,6 @@ kv_about <- function() {
       ),
       ")",
       style = "text-align:justify"
-    ),
-    tags$br(),
-    tags$h5(
-      tags$strong("LBC Staff"),
-      style = "text-align: center;"
-    ),
-    tags$br(),
-    tags$ul(
-      tags$li("Amauri Donadon Leal Junior"),
-      tags$li("Gabriel Ernesto Jara"),
-      tags$li("Helder Veras Ribeiro Filho"),
-      tags$li("João Victor da Silva Guerra"),
-      tags$li("José Geraldo de Carvalho Pereira"),
-      tags$li("Leandro Oliveira Bortot"),
-      tags$li("Marcos Rogério Simões"),
-      tags$li("Pablo Wesley de Aguiar e Silva"),
-      tags$li("Patrick Hideki Fuzimoto Alvares"),
-      tags$li("Paulo Sergio Lopes de Oliveira (Principal Investigator)"),
     ),
     tags$hr(),
 
@@ -300,8 +277,8 @@ kv_about <- function() {
       ),
       " or ",
       tags$a(
-        href = "mailto:paulo.oliveira@lnbio.cnpem.br",
-        "paulo.oliveira@lnbio.cnpem.br"
+        href = "mailto:psloliveira1@gmail.com",
+        "psloliveira1@gmail.com"
       ),
       ".",
       style = "text-align:justify"
